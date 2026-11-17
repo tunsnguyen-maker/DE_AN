@@ -1,0 +1,27 @@
+# The fortran modules provided by this target.
+provides
+ w90_berry.mod
+ w90_boltzwann.mod
+ w90_comms.mod
+ w90_constants.mod
+ w90_disentangle.mod
+ w90_dos.mod
+ w90_geninterp.mod
+ w90_get_oper.mod
+ w90_gyrotropic.mod
+ w90_hamiltonian.mod
+ w90_io.mod
+ w90_kmesh.mod
+ w90_kpath.mod
+ w90_kslice.mod
+ w90_overlap.mod
+ w90_parameters.mod
+ w90_plot.mod
+ w90_postw90_common.mod
+ w90_sitesym.mod
+ w90_spin.mod
+ w90_transport.mod
+ w90_utility.mod
+ w90_wan_ham.mod
+ w90_wannierise.mod
+ w90_ws_distance.mod

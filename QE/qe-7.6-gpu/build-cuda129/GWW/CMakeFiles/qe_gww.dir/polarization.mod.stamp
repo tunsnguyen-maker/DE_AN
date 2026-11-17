@@ -1,0 +1,769 @@
+V35 :0x24 polarization
+16 polarization.f90 S624 0
+11/11/2026  20:55:43
+use times_gw private
+use input_gw private
+use compact_product private
+use basic_structures private
+use green_function private
+use kinds private
+enduse
+D 85 26 644 240 643 7
+D 91 23 10 2 41 39 0 1 0 0 1
+ 23 27 35 23 27 25
+ 29 33 37 29 33 31
+D 94 23 7 1 0 20 0 0 0 0 0
+ 0 20 0 11 20 0
+D 97 23 7 1 0 11 0 0 0 0 0
+ 0 11 0 11 11 0
+D 100 26 716 864 715 7
+D 157 26 766 208 765 7
+D 172 26 776 168 775 7
+D 187 26 788 208 787 7
+D 541 26 776 168 775 7
+D 547 26 1205 552 1204 7
+D 553 23 10 1 558 561 1 1 0 0 1
+ 11 559 11 11 559 560
+D 556 23 10 1 562 565 1 1 0 0 1
+ 11 563 11 11 563 564
+D 559 26 1324 976 1323 7
+D 565 20 566
+D 569 20 567
+D 571 23 10 1 11 42 0 0 0 0 0
+ 0 42 11 11 42 42
+D 717 26 1486 264 1485 7
+D 723 23 10 1 691 694 1 1 0 0 1
+ 11 692 11 11 692 693
+D 726 23 10 1 695 698 1 1 0 0 1
+ 11 696 11 11 696 697
+D 729 23 10 1 699 702 1 1 0 0 1
+ 11 700 11 11 700 701
+D 732 23 10 1 703 706 1 1 0 0 1
+ 11 704 11 11 704 705
+D 735 23 10 1 707 710 1 1 0 0 1
+ 11 708 11 11 708 709
+D 738 26 1699 2136 1698 7
+D 831 20 566
+D 833 20 567
+D 844 26 1699 2136 1698 7
+D 850 20 568
+D 852 23 10 2 817 821 0 0 1 0 0
+ 0 819 11 11 820 820
+ 0 819 820 11 820 820
+D 855 20 568
+D 857 23 10 1 11 822 0 0 0 0 0
+ 0 822 11 11 822 822
+D 860 23 10 2 823 829 0 0 1 0 0
+ 0 827 11 11 828 828
+ 0 822 828 11 822 822
+D 863 23 10 2 823 829 0 0 1 0 0
+ 0 827 11 11 828 828
+ 0 822 828 11 822 822
+S 624 24 0 0 0 9 1 0 4986 10005 8000 A 0 0 0 0 B 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 polarization
+S 626 23 0 0 0 9 629 624 5005 4 0 A 0 0 0 0 B 400000 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dp
+S 628 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 629 16 1 kinds dp
+S 643 25 0 0 0 85 1 624 5178 10000004 800014 A 0 0 0 0 B 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 666 0 0 0 624 0 0 0 0 polaw
+S 644 5 0 0 0 6 645 624 5184 800004 0 A 0 0 0 0 B 0 18 0 0 0 0 0 0 85 0 0 0 0 0 0 0 0 0 0 0 1 644 0 624 0 0 0 0 label
+S 645 5 0 0 0 18 646 624 5190 800004 0 A 0 0 0 0 B 0 19 0 0 0 4 0 0 85 0 0 0 0 0 0 0 0 0 0 0 644 645 0 624 0 0 0 0 ontime
+S 646 5 0 0 0 10 647 624 2562 800004 0 A 0 0 0 0 B 0 0 0 0 0 8 0 0 85 0 0 0 0 0 0 0 0 0 0 0 645 646 0 624 0 0 0 0 time
+S 647 5 0 0 0 6 650 624 5197 800004 0 A 0 0 0 0 B 0 21 0 0 0 16 0 0 85 0 0 0 0 0 0 0 0 0 0 0 646 647 0 624 0 0 0 0 numpw
+S 648 6 4 0 0 7 649 624 5203 40800006 0 A 0 0 0 0 B 0 22 0 0 0 0 0 0 0 0 0 0 667 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_0
+S 649 6 4 0 0 7 1 624 5209 40800006 0 A 0 0 0 0 B 0 22 0 0 0 8 0 0 0 0 0 0 667 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_1
+S 650 5 6 0 0 91 653 624 5215 10a00004 14 A 0 0 0 0 B 0 22 0 0 0 24 653 0 85 0 655 0 0 0 0 0 0 0 0 652 647 650 654 624 0 0 0 0 pw
+S 651 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 652 5 1 0 0 94 665 624 5218 40822004 1020 A 0 0 0 0 B 0 22 0 0 0 40 0 0 85 0 0 0 0 0 0 0 0 0 0 0 654 652 0 624 0 0 0 0 pw$sd
+S 653 5 0 0 0 7 654 624 5224 40802001 1020 A 0 0 0 0 B 0 22 0 0 0 24 0 0 85 0 0 0 0 0 0 0 0 0 0 0 650 653 0 624 0 0 0 0 pw$p
+S 654 5 0 0 0 7 652 624 5229 40802000 1020 A 0 0 0 0 B 0 22 0 0 0 32 0 0 85 0 0 0 0 0 0 0 0 0 0 0 653 654 0 624 0 0 0 0 pw$o
+S 655 22 1 0 0 9 1 624 5234 40000000 1000 A 0 0 0 0 B 0 22 0 0 0 0 0 650 0 0 0 0 652 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pw$arrdsc
+S 656 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 657 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 659 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 660 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 661 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 662 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 663 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 664 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 665 5 0 0 0 14 1 624 5244 800004 0 A 0 0 0 0 B 0 23 0 0 0 224 0 0 85 0 0 0 0 0 0 0 0 0 0 0 650 665 0 624 0 0 0 0 factor
+S 666 8 5 0 0 97 1 624 5251 40822004 1220 A 0 0 0 0 B 0 24 0 0 0 0 0 85 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 polarization$polaw$td
+S 667 11 0 0 0 9 1 624 5273 40800000 805000 A 0 0 0 0 B 0 28 0 0 0 16 0 0 648 649 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _polarization$2
+S 668 23 5 0 0 0 670 624 5289 0 0 A 0 0 0 0 B 0 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initialize_polaw
+S 669 1 3 0 0 85 1 668 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 670 14 5 0 0 0 1 668 5289 0 400000 A 0 0 0 0 B 0 30 0 0 0 0 0 4 1 0 0 0 0 0 0 0 0 0 0 0 0 30 0 624 0 0 0 0 initialize_polaw initialize_polaw 
+F 670 1 669
+S 671 23 5 0 0 0 673 624 5306 0 0 A 0 0 0 0 B 0 38 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 free_memory_polaw
+S 672 1 3 0 0 85 1 671 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 673 14 5 0 0 0 1 671 5306 0 400000 A 0 0 0 0 B 0 38 0 0 0 0 0 6 1 0 0 0 0 0 0 0 0 0 0 0 0 38 0 624 0 0 0 0 free_memory_polaw free_memory_polaw 
+F 673 1 672
+S 674 23 5 0 0 0 676 624 5324 0 0 A 0 0 0 0 B 0 47 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 conjugate_polaw
+S 675 1 3 0 0 85 1 674 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 676 14 5 0 0 0 1 674 5324 0 400000 A 0 0 0 0 B 0 47 0 0 0 0 0 8 1 0 0 0 0 0 0 0 0 0 0 0 0 47 0 624 0 0 0 0 conjugate_polaw conjugate_polaw 
+F 676 1 675
+S 677 23 5 0 0 0 680 624 5340 0 0 A 0 0 0 0 B 0 57 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_polaw
+S 678 1 3 0 0 85 1 677 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 679 1 3 0 0 18 1 677 5352 4 3000 A 0 0 0 0 B 0 57 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 debug
+S 680 14 5 0 0 0 1 677 5340 0 400000 A 0 0 0 0 B 0 57 0 0 0 0 0 10 2 0 0 0 0 0 0 0 0 0 0 0 0 57 0 624 0 0 0 0 write_polaw write_polaw 
+F 680 2 678 679
+S 681 23 5 0 0 0 686 624 5358 0 0 A 0 0 0 0 B 0 138 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_polaw
+S 682 1 3 0 0 6 1 681 5184 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 label
+S 683 1 3 0 0 85 1 681 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 684 1 3 0 0 18 1 681 5352 4 3000 A 0 0 0 0 B 0 138 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 debug
+S 685 1 3 1 0 18 1 681 5369 4 3000 A 0 0 0 0 B 0 138 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_verbose
+S 686 14 5 0 0 0 1 681 5358 0 400000 A 0 0 0 0 B 0 138 0 0 0 0 0 13 4 0 0 0 0 0 0 0 0 0 0 0 0 138 0 624 0 0 0 0 read_polaw read_polaw 
+F 686 4 682 683 684 685
+S 687 23 5 0 0 0 690 624 5379 0 0 A 0 0 0 0 B 0 229 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_polaw_global
+S 688 1 3 0 0 6 1 687 5184 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 label
+S 689 1 3 0 0 85 1 687 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 690 14 5 0 0 0 1 687 5379 0 400000 A 0 0 0 0 B 0 229 0 0 0 0 0 18 2 0 0 0 0 0 0 0 0 0 0 0 0 229 0 624 0 0 0 0 read_polaw_global read_polaw_global 
+F 690 2 688 689
+S 691 23 5 0 0 0 697 624 5397 0 0 A 0 0 0 0 B 0 313 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_polaw_range
+S 692 1 3 0 0 85 1 691 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 693 1 3 0 0 18 1 691 5352 4 3000 A 0 0 0 0 B 0 313 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 debug
+S 694 1 3 1 0 6 1 691 5415 4 3000 A 0 0 0 0 B 0 313 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 range_min
+S 695 1 3 1 0 6 1 691 5425 4 3000 A 0 0 0 0 B 0 313 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 range_max
+S 696 1 3 1 0 18 1 691 5435 4 3000 A 0 0 0 0 B 0 313 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 full_range
+S 697 14 5 0 0 0 1 691 5397 0 400000 A 0 0 0 0 B 0 313 0 0 0 0 0 21 5 0 0 0 0 0 0 0 0 0 0 0 0 313 0 624 0 0 0 0 write_polaw_range write_polaw_range 
+F 697 5 692 693 694 695 696
+S 698 23 5 0 0 0 705 624 5446 0 0 A 0 0 0 0 B 0 412 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_polaw_range
+S 699 1 3 0 0 6 1 698 5184 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 label
+S 700 1 3 0 0 85 1 698 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 701 1 3 0 0 18 1 698 5352 4 3000 A 0 0 0 0 B 0 412 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 debug
+S 702 1 3 1 0 6 1 698 5415 4 3000 A 0 0 0 0 B 0 412 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 range_min
+S 703 1 3 1 0 6 1 698 5425 4 3000 A 0 0 0 0 B 0 412 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 range_max
+S 704 1 3 1 0 18 1 698 5435 4 3000 A 0 0 0 0 B 0 412 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 full_range
+S 705 14 5 0 0 0 1 698 5446 0 400000 A 0 0 0 0 B 0 412 0 0 0 0 0 27 6 0 0 0 0 0 0 0 0 0 0 0 0 412 0 624 0 0 0 0 read_polaw_range read_polaw_range 
+F 705 6 699 700 701 702 703 704
+S 707 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 715 25 2 basic_structures wannier_u
+R 716 5 3 basic_structures nspin wannier_u
+R 717 5 4 basic_structures nums wannier_u
+R 718 5 5 basic_structures nums_occ wannier_u
+R 721 5 8 basic_structures ene wannier_u
+R 722 5 9 basic_structures ene$sd wannier_u
+R 723 5 10 basic_structures ene$p wannier_u
+R 724 5 11 basic_structures ene$o wannier_u
+R 728 5 15 basic_structures ene_xc wannier_u
+R 729 5 16 basic_structures ene_xc$sd wannier_u
+R 730 5 17 basic_structures ene_xc$p wannier_u
+R 731 5 18 basic_structures ene_xc$o wannier_u
+R 735 5 22 basic_structures ene_lda_h wannier_u
+R 736 5 23 basic_structures ene_lda_h$sd wannier_u
+R 737 5 24 basic_structures ene_lda_h$p wannier_u
+R 738 5 25 basic_structures ene_lda_h$o wannier_u
+R 743 5 30 basic_structures umat wannier_u
+R 744 5 31 basic_structures umat$sd wannier_u
+R 745 5 32 basic_structures umat$p wannier_u
+R 746 5 33 basic_structures umat$o wannier_u
+R 765 25 52 basic_structures v_pot
+R 766 5 53 basic_structures numpw v_pot
+R 769 5 56 basic_structures vmat v_pot
+R 770 5 57 basic_structures vmat$sd v_pot
+R 771 5 58 basic_structures vmat$p v_pot
+R 772 5 59 basic_structures vmat$o v_pot
+R 775 25 62 basic_structures q_mat
+R 776 5 63 basic_structures numpw q_mat
+R 777 5 64 basic_structures is_parallel q_mat
+R 778 5 65 basic_structures numpw_para q_mat
+R 779 5 66 basic_structures first_para q_mat
+R 781 5 68 basic_structures wp q_mat
+R 782 5 69 basic_structures wp$sd q_mat
+R 783 5 70 basic_structures wp$p q_mat
+R 784 5 71 basic_structures wp$o q_mat
+R 787 25 74 basic_structures ortho_polaw
+R 788 5 75 basic_structures numpw ortho_polaw
+R 789 5 76 basic_structures inverse ortho_polaw
+R 792 5 79 basic_structures on_mat ortho_polaw
+R 793 5 80 basic_structures on_mat$sd ortho_polaw
+R 794 5 81 basic_structures on_mat$p ortho_polaw
+R 795 5 82 basic_structures on_mat$o ortho_polaw
+R 1204 25 2 green_function green
+R 1205 5 3 green_function label green
+R 1206 5 4 green_function ontime green
+R 1207 5 5 green_function time green
+R 1208 5 6 green_function nums green
+R 1209 5 7 green_function zero_time_neg green
+R 1213 5 11 green_function gf green
+R 1214 5 12 green_function gf$sd green
+R 1215 5 13 green_function gf$p green
+R 1216 5 14 green_function gf$o green
+R 1218 5 16 green_function l_part green
+R 1222 5 20 green_function gf_p green
+R 1223 5 21 green_function gf_p$sd green
+R 1224 5 22 green_function gf_p$p green
+R 1225 5 23 green_function gf_p$o green
+R 1227 5 25 green_function factor green
+R 1228 5 26 green_function nspin green
+S 1273 23 5 0 0 0 1280 624 9698 0 0 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization
+S 1274 1 3 0 0 10 1 1273 2562 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 time
+S 1275 1 3 0 0 85 1 1273 9718 4 3000 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pr
+S 1276 1 3 0 0 547 1 1273 9460 4 3000 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gf_p
+S 1277 1 3 0 0 547 1 1273 9721 4 3000 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gf_m
+S 1278 1 3 0 0 541 1 1273 9338 4 3000 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 qm
+S 1279 1 3 0 0 18 1 1273 5352 4 3000 A 0 0 0 0 B 0 535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 debug
+S 1280 14 5 0 0 0 1 1273 9698 0 400000 A 0 0 0 0 B 0 535 0 0 0 0 0 124 6 0 0 0 0 0 0 0 0 0 0 0 0 535 0 624 0 0 0 0 create_polarization create_polarization 
+F 1280 6 1274 1275 1276 1277 1278 1279
+S 1281 23 5 0 0 0 1295 624 9726 0 0 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 calculate_w
+S 1282 1 3 0 0 157 1 1281 9335 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1283 1 3 0 0 85 1 1281 9738 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pp
+S 1284 1 3 0 0 85 1 1281 9344 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ww
+S 1285 1 3 0 0 18 1 1281 9741 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 xc_together
+S 1286 1 3 0 0 18 1 1281 9753 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_symm_epsilon
+S 1287 1 3 0 0 18 1 1281 9768 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_head_epsilon
+S 1288 7 3 0 0 553 1 1281 9783 20000004 10003000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 agz
+S 1289 1 3 0 0 10 1 1281 6795 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 head
+S 1290 1 3 1 0 18 1 1281 9787 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_divergence
+S 1291 1 3 2 0 10 1 1281 9800 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 inv_epsi
+S 1292 1 3 1 0 18 1 1281 9809 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_wing_epsilon
+S 1293 7 3 0 0 556 1 1281 9824 20000004 10003000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 awing
+S 1294 1 3 1 0 18 1 1281 5369 4 3000 A 0 0 0 0 B 0 621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_verbose
+S 1295 14 5 0 0 0 1 1281 9726 20000000 400000 A 0 0 0 0 B 0 621 0 0 0 0 0 131 13 0 0 0 0 0 0 0 0 0 0 0 0 621 0 624 0 0 0 0 calculate_w calculate_w 
+F 1295 13 1282 1283 1284 1285 1286 1287 1288 1289 1290 1291 1292 1293 1294
+S 1296 6 1 0 0 7 1 1281 9617 40800006 3000 A 0 0 0 0 B 0 638 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_1
+S 1297 6 1 0 0 7 1 1281 9625 40800006 3000 A 0 0 0 0 B 0 638 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_1
+S 1298 6 1 0 0 7 1 1281 9633 40800006 3000 A 0 0 0 0 B 0 638 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_1
+S 1299 6 1 0 0 7 1 1281 9830 40800006 3000 A 0 0 0 0 B 0 638 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_574
+S 1300 6 1 0 0 7 1 1281 9838 40800006 3000 A 0 0 0 0 B 0 643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_1
+S 1301 6 1 0 0 7 1 1281 9846 40800006 3000 A 0 0 0 0 B 0 643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_1
+S 1302 6 1 0 0 7 1 1281 9854 40800006 3000 A 0 0 0 0 B 0 643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_1
+S 1303 6 1 0 0 7 1 1281 9862 40800006 3000 A 0 0 0 0 B 0 643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_581
+S 1305 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+S 1306 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1307 3 0 0 0 831 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 9879 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 6 70 72 65 66 69 78
+S 1308 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 256 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1309 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1310 3 0 0 0 833 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 9886 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 2 2e 2f
+S 1311 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 50 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1312 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1055193269 -1998362383 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 1313 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1314 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1315 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+S 1316 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1317 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1318 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 100 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1319 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1320 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1321 3 0 0 0 9 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1082130432 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9
+R 1323 25 2 input_gw input_options
+R 1324 5 3 input_gw n input_options
+R 1325 5 4 input_gw tau input_options
+R 1326 5 5 input_gw whole_s input_options
+R 1327 5 6 input_gw max_i input_options
+R 1328 5 7 input_gw prefix input_options
+R 1329 5 8 input_gw outdir input_options
+R 1330 5 9 input_gw num_rows input_options
+R 1331 5 10 input_gw xc_together input_options
+R 1332 5 11 input_gw debug input_options
+R 1333 5 12 input_gw n_multipoles input_options
+R 1334 5 13 input_gw fit_dt input_options
+R 1335 5 14 input_gw fit_thres input_options
+R 1336 5 15 input_gw fit_ma_0 input_options
+R 1337 5 16 input_gw fit_ma input_options
+R 1338 5 17 input_gw fit_mb input_options
+R 1339 5 18 input_gw fit_frice input_options
+R 1340 5 19 input_gw fit_maxiter input_options
+R 1341 5 20 input_gw starting_point input_options
+R 1342 5 21 input_gw ending_point input_options
+R 1343 5 22 input_gw use_contractions input_options
+R 1344 5 23 input_gw lnonorthogonal input_options
+R 1345 5 24 input_gw l_hf_energies input_options
+R 1346 5 25 input_gw n_fit input_options
+R 1347 5 26 input_gw lconduction input_options
+R 1348 5 27 input_gw l_contraction_single_state input_options
+R 1349 5 28 input_gw l_fft_timefreq input_options
+R 1350 5 29 input_gw grid_time input_options
+R 1351 5 30 input_gw grid_freq input_options
+R 1352 5 31 input_gw omega input_options
+R 1353 5 32 input_gw l_fourier_fit_time input_options
+R 1354 5 33 input_gw l_fourier_fit_freq input_options
+R 1355 5 34 input_gw r_tau input_options
+R 1356 5 35 input_gw r_omega input_options
+R 1357 5 36 input_gw g_tau input_options
+R 1358 5 37 input_gw g_omega input_options
+R 1359 5 38 input_gw grid_fit input_options
+R 1360 5 39 input_gw omega_fit input_options
+R 1361 5 40 input_gw n_grid_fit input_options
+R 1362 5 41 input_gw i_min input_options
+R 1363 5 42 input_gw i_max input_options
+R 1364 5 43 input_gw n_max_minpack input_options
+R 1365 5 44 input_gw cyc_minpack input_options
+R 1366 5 45 input_gw l_lda_hartree input_options
+R 1367 5 46 input_gw l_lda_exchange input_options
+R 1368 5 47 input_gw l_read_exchange input_options
+R 1369 5 48 input_gw l_symm_epsilon input_options
+R 1370 5 49 input_gw l_head_epsilon input_options
+R 1371 5 50 input_gw w_divergence input_options
+R 1372 5 51 input_gw l_wing_epsilon input_options
+R 1373 5 52 input_gw offset_fit input_options
+R 1374 5 53 input_gw lcprim_file input_options
+R 1375 5 54 input_gw lvcprim_file input_options
+R 1376 5 55 input_gw l_dft_xc_file input_options
+R 1377 5 56 input_gw lpola_file input_options
+R 1378 5 57 input_gw l_self_from_pola input_options
+R 1379 5 58 input_gw l_pola_beta input_options
+R 1380 5 59 input_gw l_self_beta input_options
+R 1381 5 60 input_gw l_pola_upper input_options
+R 1382 5 61 input_gw l_self_upper input_options
+R 1383 5 62 input_gw l_pola_lanczos input_options
+R 1384 5 63 input_gw l_self_lanczos input_options
+R 1385 5 64 input_gw l_lanczos_conv input_options
+R 1386 5 65 input_gw n_set input_options
+R 1387 5 66 input_gw n_set_ii input_options
+R 1388 5 67 input_gw n_set_pola input_options
+R 1389 5 68 input_gw n_set_self input_options
+R 1390 5 69 input_gw l_yet_pola input_options
+R 1391 5 70 input_gw l_reduce_io input_options
+R 1392 5 71 input_gw second_grid_n input_options
+R 1393 5 72 input_gw second_grid_i input_options
+R 1394 5 73 input_gw grid_levels input_options
+R 1395 5 74 input_gw l_t_wannier input_options
+R 1396 5 75 input_gw l_truncated_coulomb input_options
+R 1397 5 76 input_gw l_self_time input_options
+R 1398 5 77 input_gw l_g_grid input_options
+R 1399 5 78 input_gw grid_freq_g input_options
+R 1400 5 79 input_gw n_g input_options
+R 1401 5 80 input_gw second_grid_n_g input_options
+R 1402 5 81 input_gw second_grid_i_g input_options
+R 1403 5 82 input_gw omega_g input_options
+R 1404 5 83 input_gw i_min_whole input_options
+R 1405 5 84 input_gw i_max_whole input_options
+R 1406 5 85 input_gw nspin input_options
+R 1407 5 86 input_gw l_frac_occ input_options
+R 1408 5 87 input_gw l_semicore input_options
+R 1409 5 88 input_gw l_order input_options
+R 1410 5 89 input_gw l_verbose input_options
+R 1411 5 90 input_gw real_energy_min input_options
+R 1412 5 91 input_gw real_energy_max input_options
+R 1413 5 92 input_gw n_real_axis input_options
+R 1414 5 93 input_gw l_big_system input_options
+R 1415 5 94 input_gw l_list input_options
+R 1416 5 95 input_gw l_full input_options
+R 1417 5 96 input_gw n_full input_options
+R 1418 5 97 input_gw l_scissor input_options
+R 1419 5 98 input_gw scissor input_options
+R 1485 25 59 compact_product contraction_pola
+R 1486 5 60 compact_product numpw contraction_pola
+R 1487 5 61 compact_product nums contraction_pola
+R 1488 5 62 compact_product nums_occ contraction_pola
+R 1492 5 66 compact_product ou contraction_pola
+R 1493 5 67 compact_product ou$sd contraction_pola
+R 1494 5 68 compact_product ou$p contraction_pola
+R 1495 5 69 compact_product ou$o contraction_pola
+S 1594 23 5 0 0 0 1601 624 11949 0 0 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization_contraction
+S 1595 1 3 0 0 10 1 1594 2562 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 time
+S 1596 1 3 0 0 85 1 1594 9718 4 3000 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pr
+S 1597 1 3 0 0 717 1 1594 11463 4 3000 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 cp
+S 1598 1 3 0 0 100 1 1594 11748 4 3000 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 uu
+S 1599 1 3 1 0 18 1 1594 9596 4 3000 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_hf_energies
+S 1600 7 3 1 0 723 1 1594 9610 20000004 10003000 A 0 0 0 0 B 0 785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ene_hf
+S 1601 14 5 0 0 0 1 1594 11949 20000000 400000 A 0 0 0 0 B 0 785 0 0 0 0 0 210 6 0 0 0 0 0 0 0 0 0 0 0 0 785 0 624 0 0 0 0 create_polarization_contraction create_polarization_contraction 
+F 1601 6 1595 1596 1597 1598 1599 1600
+S 1602 6 1 0 0 7 1 1594 9617 40800006 3000 A 0 0 0 0 B 0 805 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_1
+S 1603 6 1 0 0 7 1 1594 9625 40800006 3000 A 0 0 0 0 B 0 805 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_1
+S 1604 6 1 0 0 7 1 1594 9633 40800006 3000 A 0 0 0 0 B 0 805 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_1
+S 1605 6 1 0 0 7 1 1594 11981 40800006 3000 A 0 0 0 0 B 0 805 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_811
+S 1606 23 5 0 0 0 1609 624 11989 0 0 A 0 0 0 0 B 0 877 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 invert_ortho_polaw
+S 1607 1 3 1 0 187 1 1606 9341 4 3000 A 0 0 0 0 B 0 877 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1608 1 3 2 0 187 1 1606 12008 4 3000 A 0 0 0 0 B 0 877 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 opi
+S 1609 14 5 0 0 0 1 1606 11989 0 400000 A 0 0 0 0 B 0 877 0 0 0 0 0 217 2 0 0 0 0 0 0 0 0 0 0 0 0 877 0 624 0 0 0 0 invert_ortho_polaw invert_ortho_polaw 
+F 1609 2 1607 1608
+S 1610 23 5 0 0 0 1613 624 12012 0 0 A 0 0 0 0 B 0 923 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 distribute_ortho_polaw
+S 1611 1 3 1 0 187 1 1610 9341 4 3000 A 0 0 0 0 B 0 923 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1612 1 3 2 0 187 1 1610 12035 4 3000 A 0 0 0 0 B 0 923 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 opd
+S 1613 14 5 0 0 0 1 1610 12012 0 400000 A 0 0 0 0 B 0 923 0 0 0 0 0 220 2 0 0 0 0 0 0 0 0 0 0 0 0 923 0 624 0 0 0 0 distribute_ortho_polaw distribute_ortho_polaw 
+F 1613 2 1611 1612
+S 1614 23 5 0 0 0 1617 624 12039 0 0 A 0 0 0 0 B 0 959 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 collect_ortho_polaw
+S 1615 1 3 2 0 187 1 1614 9341 4 3000 A 0 0 0 0 B 0 959 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1616 1 3 1 0 187 1 1614 12035 4 3000 A 0 0 0 0 B 0 959 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 opd
+S 1617 14 5 0 0 0 1 1614 12039 0 400000 A 0 0 0 0 B 0 959 0 0 0 0 0 223 2 0 0 0 0 0 0 0 0 0 0 0 0 959 0 624 0 0 0 0 collect_ortho_polaw collect_ortho_polaw 
+F 1617 2 1615 1616
+S 1618 23 5 0 0 0 1621 624 12059 0 0 A 0 0 0 0 B 0 1003 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize
+S 1619 1 3 1 0 187 1 1618 9341 4 3000 A 0 0 0 0 B 0 1003 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1620 1 3 3 0 85 1 1618 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 1621 14 5 0 0 0 1 1618 12059 0 400000 A 0 0 0 0 B 0 1003 0 0 0 0 0 226 2 0 0 0 0 0 0 0 0 0 0 0 0 1003 0 624 0 0 0 0 orthonormalize orthonormalize 
+F 1621 2 1619 1620
+S 1622 23 5 0 0 0 1625 624 12074 0 0 A 0 0 0 0 B 0 1042 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize_inverse
+S 1623 1 3 1 0 187 1 1622 9341 4 3000 A 0 0 0 0 B 0 1042 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1624 1 3 3 0 85 1 1622 5215 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 1625 14 5 0 0 0 1 1622 12074 0 400000 A 0 0 0 0 B 0 1042 0 0 0 0 0 229 2 0 0 0 0 0 0 0 0 0 0 0 0 1042 0 624 0 0 0 0 orthonormalize_inverse orthonormalize_inverse 
+F 1625 2 1623 1624
+S 1626 23 5 0 0 0 1629 624 12097 0 0 A 0 0 0 0 B 0 1081 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize_vpot_inverse
+S 1627 1 3 1 0 187 1 1626 9341 4 3000 A 0 0 0 0 B 0 1081 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1628 1 3 3 0 157 1 1626 9335 4 3000 A 0 0 0 0 B 0 1081 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1629 14 5 0 0 0 1 1626 12097 0 400000 A 0 0 0 0 B 0 1081 0 0 0 0 0 232 2 0 0 0 0 0 0 0 0 0 0 0 0 1081 0 624 0 0 0 0 orthonormalize_vpot_inverse orthonormalize_vpot_inverse 
+F 1629 2 1627 1628
+S 1630 23 5 0 0 0 1633 624 12125 0 0 A 0 0 0 0 B 0 1135 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize_vpot
+S 1631 1 3 1 0 187 1 1630 9341 4 3000 A 0 0 0 0 B 0 1135 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1632 1 3 3 0 157 1 1630 9335 4 3000 A 0 0 0 0 B 0 1135 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1633 14 5 0 0 0 1 1630 12125 0 400000 A 0 0 0 0 B 0 1135 0 0 0 0 0 235 2 0 0 0 0 0 0 0 0 0 0 0 0 1135 0 624 0 0 0 0 orthonormalize_vpot orthonormalize_vpot 
+F 1633 2 1631 1632
+S 1634 23 5 0 0 0 1637 624 12145 0 0 A 0 0 0 0 B 0 1187 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize_vpot_para
+S 1635 1 3 1 0 187 1 1634 9341 4 3000 A 0 0 0 0 B 0 1187 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1636 1 3 3 0 157 1 1634 9335 4 3000 A 0 0 0 0 B 0 1187 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1637 14 5 0 0 0 1 1634 12145 0 400000 A 0 0 0 0 B 0 1187 0 0 0 0 0 238 2 0 0 0 0 0 0 0 0 0 0 0 0 1187 0 624 0 0 0 0 orthonormalize_vpot_para orthonormalize_vpot_para 
+F 1637 2 1635 1636
+S 1638 23 5 0 0 0 1641 624 12170 0 0 A 0 0 0 0 B 0 1248 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 invert_v_pot
+S 1639 1 3 1 0 157 1 1638 9335 4 3000 A 0 0 0 0 B 0 1248 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1640 1 3 3 0 157 1 1638 12183 4 3000 A 0 0 0 0 B 0 1248 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vpi
+S 1641 14 5 0 0 0 1 1638 12170 0 400000 A 0 0 0 0 B 0 1248 0 0 0 0 0 241 2 0 0 0 0 0 0 0 0 0 0 0 0 1248 0 624 0 0 0 0 invert_v_pot invert_v_pot 
+F 1641 2 1639 1640
+S 1642 23 5 0 0 0 1644 624 12187 0 0 A 0 0 0 0 B 0 1295 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 fake_polarization_io
+S 1643 1 3 0 0 6 1 1642 6722 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 n
+S 1644 14 5 0 0 0 1 1642 12187 0 400000 A 0 0 0 0 B 0 1295 0 0 0 0 0 244 1 0 0 0 0 0 0 0 0 0 0 0 0 1295 0 624 0 0 0 0 fake_polarization_io fake_polarization_io 
+F 1644 1 1643
+S 1645 23 5 0 0 0 1648 624 12208 0 0 A 0 0 0 0 B 0 1312 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 orthonormalize_vpot_inverse_para
+S 1646 1 3 1 0 187 1 1645 9341 4 3000 A 0 0 0 0 B 0 1312 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op
+S 1647 1 3 3 0 157 1 1645 9335 4 3000 A 0 0 0 0 B 0 1312 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1648 14 5 0 0 0 1 1645 12208 0 400000 A 0 0 0 0 B 0 1312 0 0 0 0 0 246 2 0 0 0 0 0 0 0 0 0 0 0 0 1312 0 624 0 0 0 0 orthonormalize_vpot_inverse_para orthonormalize_vpot_inverse_para 
+F 1648 2 1646 1647
+S 1649 23 5 0 0 0 1656 624 12241 0 0 A 0 0 0 0 B 0 1369 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization_contraction_state
+S 1650 1 3 0 0 10 1 1649 2562 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 time
+S 1651 1 3 0 0 85 1 1649 9718 4 3000 A 0 0 0 0 B 0 1369 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pr
+S 1652 1 3 0 0 100 1 1649 11748 4 3000 A 0 0 0 0 B 0 1369 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 uu
+S 1653 1 3 1 0 18 1 1649 9596 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_hf_energies
+S 1654 7 3 1 0 726 1 1649 9610 20000004 10003000 A 0 0 0 0 B 0 1369 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ene_hf
+S 1655 1 3 0 0 559 1 1649 11606 4 3000 A 0 0 0 0 B 0 1369 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1656 14 5 0 0 0 1 1649 12241 20000000 400000 A 0 0 0 0 B 0 1369 0 0 0 0 0 249 6 0 0 0 0 0 0 0 0 0 0 0 0 1369 0 624 0 0 0 0 create_polarization_contraction_state create_polarization_contraction_state 
+F 1656 6 1650 1651 1652 1653 1654 1655
+S 1657 6 1 0 0 7 1 1649 9617 40800006 3000 A 0 0 0 0 B 0 1391 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_1
+S 1658 6 1 0 0 7 1 1649 9625 40800006 3000 A 0 0 0 0 B 0 1391 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_1
+S 1659 6 1 0 0 7 1 1649 9633 40800006 3000 A 0 0 0 0 B 0 1391 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_1
+S 1660 6 1 0 0 7 1 1649 12279 40800006 3000 A 0 0 0 0 B 0 1391 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_815
+S 1661 23 5 0 0 0 1664 624 12287 0 0 A 0 0 0 0 B 0 1505 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 distribute_v_pot
+S 1662 1 3 1 0 157 1 1661 9335 4 3000 A 0 0 0 0 B 0 1505 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1663 1 3 2 0 157 1 1661 12304 4 3000 A 0 0 0 0 B 0 1505 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vpd
+S 1664 14 5 0 0 0 1 1661 12287 0 400000 A 0 0 0 0 B 0 1505 0 0 0 0 0 256 2 0 0 0 0 0 0 0 0 0 0 0 0 1505 0 624 0 0 0 0 distribute_v_pot distribute_v_pot 
+F 1664 2 1662 1663
+S 1665 23 5 0 0 0 1668 624 12308 0 0 A 0 0 0 0 B 0 1541 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 collect_v_pot
+S 1666 1 3 2 0 157 1 1665 9335 4 3000 A 0 0 0 0 B 0 1541 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1667 1 3 1 0 157 1 1665 12304 4 3000 A 0 0 0 0 B 0 1541 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vpd
+S 1668 14 5 0 0 0 1 1665 12308 0 400000 A 0 0 0 0 B 0 1541 0 0 0 0 0 259 2 0 0 0 0 0 0 0 0 0 0 0 0 1541 0 624 0 0 0 0 collect_v_pot collect_v_pot 
+F 1668 2 1666 1667
+S 1669 23 5 0 0 0 1683 624 12322 0 0 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 calculate_w_g
+S 1670 1 3 0 0 157 1 1669 9335 4 3000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1671 1 3 0 0 85 1 1669 9738 4 3000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pp
+S 1672 1 3 0 0 85 1 1669 9344 4 3000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ww
+S 1673 1 3 0 0 18 1 1669 9741 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 xc_together
+S 1674 1 3 0 0 18 1 1669 9753 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_symm_epsilon
+S 1675 1 3 0 0 18 1 1669 9768 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_head_epsilon
+S 1676 7 3 0 0 729 1 1669 9783 20000004 10003000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 agz
+S 1677 1 3 0 0 10 1 1669 6795 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 head
+S 1678 1 3 1 0 18 1 1669 9787 4 3000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_divergence
+S 1679 1 3 2 0 10 1 1669 9800 4 3000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 inv_epsi
+S 1680 1 3 1 0 18 1 1669 9809 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_wing_epsilon
+S 1681 7 3 0 0 732 1 1669 9824 20000004 10003000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 awing
+S 1682 7 3 0 0 735 1 1669 12336 20000004 10003000 A 0 0 0 0 B 0 1581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 awing_c
+S 1683 14 5 0 0 0 1 1669 12322 20000000 400000 A 0 0 0 0 B 0 1581 0 0 0 0 0 262 13 0 0 0 0 0 0 0 0 0 0 0 0 1581 0 624 0 0 0 0 calculate_w_g calculate_w_g 
+F 1683 13 1670 1671 1672 1673 1674 1675 1676 1677 1678 1679 1680 1681 1682
+S 1684 6 1 0 0 7 1 1669 9617 40800006 3000 A 0 0 0 0 B 0 1601 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_1
+S 1685 6 1 0 0 7 1 1669 9625 40800006 3000 A 0 0 0 0 B 0 1601 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_1
+S 1686 6 1 0 0 7 1 1669 9633 40800006 3000 A 0 0 0 0 B 0 1601 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_1
+S 1687 6 1 0 0 7 1 1669 12344 40800006 3000 A 0 0 0 0 B 0 1601 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_712
+S 1688 6 1 0 0 7 1 1669 9838 40800006 3000 A 0 0 0 0 B 0 1606 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_1
+S 1689 6 1 0 0 7 1 1669 9846 40800006 3000 A 0 0 0 0 B 0 1606 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_1
+S 1690 6 1 0 0 7 1 1669 9854 40800006 3000 A 0 0 0 0 B 0 1606 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_1
+S 1691 6 1 0 0 7 1 1669 12352 40800006 3000 A 0 0 0 0 B 0 1606 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_719
+S 1692 6 1 0 0 7 1 1669 12360 40800006 3000 A 0 0 0 0 B 0 1607 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 1693 6 1 0 0 7 1 1669 12368 40800006 3000 A 0 0 0 0 B 0 1607 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 1694 6 1 0 0 7 1 1669 12377 40800006 3000 A 0 0 0 0 B 0 1607 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_11_1
+S 1695 6 1 0 0 7 1 1669 12386 40800006 3000 A 0 0 0 0 B 0 1607 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_726
+R 1698 25 2 times_gw times_freqs
+R 1699 5 3 times_gw grid_time times_freqs
+R 1700 5 4 times_gw grid_freq times_freqs
+R 1701 5 5 times_gw n times_freqs
+R 1702 5 6 times_gw tau times_freqs
+R 1703 5 7 times_gw omega times_freqs
+R 1704 5 8 times_gw times times_freqs
+R 1706 5 10 times_gw times$sd times_freqs
+R 1707 5 11 times_gw times$p times_freqs
+R 1708 5 12 times_gw times$o times_freqs
+R 1710 5 14 times_gw weights_time times_freqs
+R 1712 5 16 times_gw weights_time$sd times_freqs
+R 1713 5 17 times_gw weights_time$p times_freqs
+R 1714 5 18 times_gw weights_time$o times_freqs
+R 1716 5 20 times_gw freqs times_freqs
+R 1718 5 22 times_gw freqs$sd times_freqs
+R 1719 5 23 times_gw freqs$p times_freqs
+R 1720 5 24 times_gw freqs$o times_freqs
+R 1722 5 26 times_gw weights_freq times_freqs
+R 1724 5 28 times_gw weights_freq$sd times_freqs
+R 1725 5 29 times_gw weights_freq$p times_freqs
+R 1726 5 30 times_gw weights_freq$o times_freqs
+R 1728 5 32 times_gw l_fft_timefreq times_freqs
+R 1729 5 33 times_gw l_fourier_fit_time times_freqs
+R 1730 5 34 times_gw l_fourier_fit_freq times_freqs
+R 1731 5 35 times_gw r_tau times_freqs
+R 1732 5 36 times_gw r_omega times_freqs
+R 1733 5 37 times_gw g_tau times_freqs
+R 1734 5 38 times_gw g_omega times_freqs
+R 1735 5 39 times_gw grid_fit times_freqs
+R 1736 5 40 times_gw omega_fit times_freqs
+R 1737 5 41 times_gw n_grid_fit times_freqs
+R 1738 5 42 times_gw freqs_fit times_freqs
+R 1740 5 44 times_gw freqs_fit$sd times_freqs
+R 1741 5 45 times_gw freqs_fit$p times_freqs
+R 1742 5 46 times_gw freqs_fit$o times_freqs
+R 1744 5 48 times_gw whois_freq times_freqs
+R 1746 5 50 times_gw whois_freq$sd times_freqs
+R 1747 5 51 times_gw whois_freq$p times_freqs
+R 1748 5 52 times_gw whois_freq$o times_freqs
+R 1750 5 54 times_gw relative_weight times_freqs
+R 1752 5 56 times_gw relative_weight$sd times_freqs
+R 1753 5 57 times_gw relative_weight$p times_freqs
+R 1754 5 58 times_gw relative_weight$o times_freqs
+R 1756 5 60 times_gw second_grid_n times_freqs
+R 1757 5 61 times_gw second_grid_i times_freqs
+R 1758 5 62 times_gw l_g_grid times_freqs
+R 1759 5 63 times_gw omega_g times_freqs
+R 1760 5 64 times_gw n_g times_freqs
+R 1761 5 65 times_gw freqs_g times_freqs
+R 1763 5 67 times_gw freqs_g$sd times_freqs
+R 1764 5 68 times_gw freqs_g$p times_freqs
+R 1765 5 69 times_gw freqs_g$o times_freqs
+R 1767 5 71 times_gw weights_freq_g times_freqs
+R 1769 5 73 times_gw weights_freq_g$sd times_freqs
+R 1770 5 74 times_gw weights_freq_g$p times_freqs
+R 1771 5 75 times_gw weights_freq_g$o times_freqs
+R 1773 5 77 times_gw relative_weight_g times_freqs
+R 1775 5 79 times_gw relative_weight_g$sd times_freqs
+R 1776 5 80 times_gw relative_weight_g$p times_freqs
+R 1777 5 81 times_gw relative_weight_g$o times_freqs
+R 1779 5 83 times_gw grid_freq_g times_freqs
+R 1780 5 84 times_gw second_grid_n_g times_freqs
+R 1781 5 85 times_gw second_grid_i_g times_freqs
+R 1782 5 86 times_gw whois_freq_g times_freqs
+R 1784 5 88 times_gw whois_freq_g$sd times_freqs
+R 1785 5 89 times_gw whois_freq_g$p times_freqs
+R 1786 5 90 times_gw whois_freq_g$o times_freqs
+R 1788 5 92 times_gw freqs_eff times_freqs
+R 1790 5 94 times_gw freqs_eff$sd times_freqs
+R 1791 5 95 times_gw freqs_eff$p times_freqs
+R 1792 5 96 times_gw freqs_eff$o times_freqs
+R 1794 5 98 times_gw freqs_g_eff times_freqs
+R 1796 5 100 times_gw freqs_g_eff$sd times_freqs
+R 1797 5 101 times_gw freqs_g_eff$p times_freqs
+R 1798 5 102 times_gw freqs_g_eff$o times_freqs
+R 1800 5 104 times_gw grid_levels times_freqs
+S 1812 23 5 0 0 0 1816 624 13400 0 0 A 0 0 0 0 B 0 1845 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization_file
+S 1813 1 3 1 0 100 1 1812 11748 4 3000 A 0 0 0 0 B 0 1845 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 uu
+S 1814 1 3 0 0 844 1 1812 13382 4 3000 A 0 0 0 0 B 0 1845 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1815 1 3 1 0 850 1 1812 9921 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 prefix
+S 1816 14 5 0 0 0 1 1812 13400 0 400000 A 0 0 0 0 B 0 1845 0 0 0 0 0 281 3 0 0 0 0 0 0 0 0 0 0 0 0 1845 0 624 0 0 0 0 create_polarization_file create_polarization_file 
+F 1816 3 1813 1814 1815
+S 1817 23 5 0 0 0 1820 624 13425 0 0 A 0 0 0 0 B 0 1962 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 square_root_polaw
+S 1818 7 3 0 0 852 1 1817 5215 800204 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pw
+S 1819 6 3 0 0 6 1 1817 5197 800004 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 numpw
+S 1820 14 5 0 0 0 1 1817 13425 200 400000 A 0 0 0 0 B 0 1962 0 0 0 0 0 285 2 0 0 0 0 0 0 0 0 0 0 0 0 1962 0 624 0 0 0 0 square_root_polaw square_root_polaw 
+F 1820 2 1818 1819
+S 1821 6 1 0 0 7 1 1817 13443 40800006 3000 A 0 0 0 0 B 0 1971 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_826
+S 1822 6 1 0 0 7 1 1817 13451 40800006 3000 A 0 0 0 0 B 0 1971 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_828
+S 1823 6 1 0 0 7 1 1817 13459 40800006 3000 A 0 0 0 0 B 0 1971 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_830
+S 1824 23 5 0 0 0 1829 624 13467 0 0 A 0 0 0 0 B 0 2049 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization_beta
+S 1825 1 3 1 0 10 1 1824 2562 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 time
+S 1826 1 3 2 0 85 1 1824 9718 4 3000 A 0 0 0 0 B 0 2049 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pr
+S 1827 1 3 1 0 100 1 1824 11748 4 3000 A 0 0 0 0 B 0 2049 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 uu
+S 1828 1 3 1 0 172 1 1824 9338 4 3000 A 0 0 0 0 B 0 2049 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 qm
+S 1829 14 5 0 0 0 1 1824 13467 0 400000 A 0 0 0 0 B 0 2049 0 0 0 0 0 288 4 0 0 0 0 0 0 0 0 0 0 0 0 2049 0 624 0 0 0 0 create_polarization_beta create_polarization_beta 
+F 1829 4 1825 1826 1827 1828
+S 1830 23 5 0 0 0 1834 624 13492 0 0 A 0 0 0 0 B 0 2198 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_polarization_upper
+S 1831 1 3 1 0 100 1 1830 11748 4 3000 A 0 0 0 0 B 0 2198 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 uu
+S 1832 1 3 1 0 738 1 1830 13382 4 3000 A 0 0 0 0 B 0 2198 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1833 1 3 1 0 855 1 1830 9921 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 prefix
+S 1834 14 5 0 0 0 1 1830 13492 0 400000 A 0 0 0 0 B 0 2198 0 0 0 0 0 293 3 0 0 0 0 0 0 0 0 0 0 0 0 2198 0 624 0 0 0 0 create_polarization_upper create_polarization_upper 
+F 1834 3 1831 1832 1833
+S 1835 23 5 0 0 0 1847 624 13518 0 0 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 calculate_w_g_l
+S 1836 1 3 0 0 157 1 1835 9335 4 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vp
+S 1837 6 3 0 0 85 1 1835 9738 800004 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pp
+S 1838 1 3 0 0 85 1 1835 9344 4 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ww
+S 1839 1 3 0 0 18 1 1835 9741 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 xc_together
+S 1840 1 3 0 0 18 1 1835 9768 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_head_epsilon
+S 1841 7 3 0 0 857 1 1835 6795 800004 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 head
+S 1842 1 3 2 0 10 1 1835 9800 4 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 inv_epsi
+S 1843 1 3 1 0 18 1 1835 9809 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_wing_epsilon
+S 1844 7 3 0 0 860 1 1835 9824 800204 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 awing
+S 1845 7 3 0 0 863 1 1835 12336 800204 3000 A 0 0 0 0 B 0 2316 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 awing_c
+S 1846 1 3 1 0 18 1 1835 5369 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 l_verbose
+S 1847 14 5 0 0 0 1 1835 13518 200 400000 A 0 0 0 0 B 0 2316 0 0 0 0 0 297 11 0 0 0 0 0 0 0 0 0 0 0 0 2316 0 624 0 0 0 0 calculate_w_g_l calculate_w_g_l 
+F 1847 11 1836 1837 1838 1839 1840 1841 1842 1843 1844 1845 1846
+S 1848 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1849 6 1 0 0 7 1 1835 13534 40800006 3000 A 0 0 0 0 B 0 2337 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_834
+S 1850 6 1 0 0 7 1 1835 13542 40800006 3000 A 0 0 0 0 B 0 2337 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_836
+S 1851 6 1 0 0 7 1 1835 13550 40800006 3000 A 0 0 0 0 B 0 2337 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_838
+A 15 2 0 0 0 6 628 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0
+A 20 2 0 0 0 7 651 0 0 0 20 0 0 0 0 0 0 0 0 0 0 0
+A 21 2 0 0 0 7 656 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0
+A 22 1 0 1 0 94 652 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 23 10 0 0 0 7 22 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 21
+A 24 2 0 0 0 7 657 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0
+A 25 10 0 0 23 7 22 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 24
+A 26 4 0 0 0 7 25 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 27 4 0 0 0 7 23 0 26 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 28 2 0 0 0 7 659 0 0 0 28 0 0 0 0 0 0 0 0 0 0 0
+A 29 10 0 0 25 7 22 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 28
+A 30 2 0 0 0 7 660 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0
+A 31 10 0 0 29 7 22 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 30
+A 32 4 0 0 0 7 31 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 33 4 0 0 0 7 29 0 32 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 34 2 0 0 0 7 661 0 0 0 34 0 0 0 0 0 0 0 0 0 0 0
+A 35 10 0 0 31 7 22 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 34
+A 36 2 0 0 0 7 662 0 0 0 36 0 0 0 0 0 0 0 0 0 0 0
+A 37 10 0 0 35 7 22 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 36
+A 38 2 0 0 0 7 663 0 0 0 38 0 0 0 0 0 0 0 0 0 0 0
+A 39 10 0 0 37 7 22 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 38
+A 40 2 0 0 0 7 664 0 0 0 40 0 0 0 0 0 0 0 0 0 0 0
+A 41 10 0 0 39 7 22 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 40
+A 42 2 0 0 0 7 707 0 0 0 42 0 0 0 0 0 0 0 0 0 0 0
+A 558 1 0 0 0 7 1298 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 559 1 0 0 0 7 1296 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 560 1 0 0 0 7 1299 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 561 1 0 0 0 7 1297 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 562 1 0 0 0 7 1302 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 563 1 0 0 0 7 1300 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 564 1 0 0 0 7 1303 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 565 1 0 0 0 7 1301 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 566 2 0 0 0 6 1306 0 0 0 566 0 0 0 0 0 0 0 0 0 0 0
+A 567 2 0 0 0 6 1309 0 0 0 567 0 0 0 0 0 0 0 0 0 0 0
+A 568 2 0 0 0 6 1308 0 0 0 568 0 0 0 0 0 0 0 0 0 0 0
+A 569 2 0 0 0 10 617 0 0 0 569 0 0 0 0 0 0 0 0 0 0 0
+A 570 2 0 0 0 18 1305 0 0 0 570 0 0 0 0 0 0 0 0 0 0 0
+A 571 2 0 0 0 565 1307 0 0 0 571 0 0 0 0 0 0 0 0 0 0 0
+A 572 2 0 0 0 569 1310 0 0 0 572 0 0 0 0 0 0 0 0 0 0 0
+A 573 2 0 0 0 6 1311 0 0 0 573 0 0 0 0 0 0 0 0 0 0 0
+A 574 2 0 0 0 10 1312 0 0 0 574 0 0 0 0 0 0 0 0 0 0 0
+A 575 2 0 0 0 6 1313 0 0 0 575 0 0 0 0 0 0 0 0 0 0 0
+A 576 2 0 0 0 6 1314 0 0 0 576 0 0 0 0 0 0 0 0 0 0 0
+A 577 2 0 0 0 18 1315 0 0 0 577 0 0 0 0 0 0 0 0 0 0 0
+A 578 2 0 0 0 6 1316 0 0 0 578 0 0 0 0 0 0 0 0 0 0 0
+A 579 2 0 0 0 6 1317 0 0 0 579 0 0 0 0 0 0 0 0 0 0 0
+A 580 2 0 0 0 6 1318 0 0 0 580 0 0 0 0 0 0 0 0 0 0 0
+A 581 2 0 0 0 6 1319 0 0 0 581 0 0 0 0 0 0 0 0 0 0 0
+A 582 2 0 0 0 6 1320 0 0 0 582 0 0 0 0 0 0 0 0 0 0 0
+A 583 2 0 0 0 9 614 0 0 0 583 0 0 0 0 0 0 0 0 0 0 0
+A 584 2 0 0 0 9 1321 0 0 0 584 0 0 0 0 0 0 0 0 0 0 0
+A 691 1 0 0 0 7 1604 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 692 1 0 0 0 7 1602 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 693 1 0 0 0 7 1605 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 694 1 0 0 0 7 1603 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 695 1 0 0 0 7 1659 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 696 1 0 0 0 7 1657 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 697 1 0 0 0 7 1660 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 698 1 0 0 0 7 1658 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 699 1 0 0 0 7 1686 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 700 1 0 0 0 7 1684 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 701 1 0 0 0 7 1687 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 702 1 0 0 0 7 1685 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 703 1 0 0 0 7 1690 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 704 1 0 0 0 7 1688 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 705 1 0 0 0 7 1691 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 706 1 0 0 0 7 1689 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 707 1 0 0 0 7 1694 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 708 1 0 0 0 7 1692 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 709 1 0 0 0 7 1695 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 710 1 0 0 0 7 1693 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 817 1 0 0 0 7 1823 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 818 1 0 0 0 6 1819 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 819 7 0 0 0 7 818 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 820 1 0 0 0 7 1821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 821 1 0 0 0 7 1822 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 822 2 0 0 710 7 1848 0 0 0 822 0 0 0 0 0 0 0 0 0 0 0
+A 823 1 0 0 788 7 1851 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 824 1 0 0 0 85 1837 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 825 1 0 0 0 6 647 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 826 9 0 0 0 6 824 825 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 827 7 0 0 0 7 826 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 828 1 0 0 523 7 1849 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 829 1 0 0 0 7 1850 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 1323 559 0 3 0 0
+A 1325 10 0 0 1 569 1
+A 1326 18 0 0 1 570 1
+A 1328 565 0 0 1 571 1
+A 1329 569 0 0 1 572 1
+A 1330 6 0 0 1 573 1
+A 1331 18 0 0 1 570 1
+A 1332 18 0 0 1 570 1
+A 1333 6 0 0 1 567 1
+A 1335 10 0 0 1 574 1
+A 1340 6 0 0 1 575 1
+A 1341 6 0 0 1 3 1
+A 1342 6 0 0 1 576 1
+A 1343 18 0 0 1 570 1
+A 1344 18 0 0 1 570 1
+A 1345 18 0 0 1 570 1
+A 1347 18 0 0 1 577 1
+A 1348 18 0 0 1 577 1
+A 1349 18 0 0 1 570 1
+A 1350 6 0 0 1 578 1
+A 1351 6 0 0 1 578 1
+A 1353 18 0 0 1 570 1
+A 1354 18 0 0 1 570 1
+A 1355 10 0 0 1 569 1
+A 1356 10 0 0 1 569 1
+A 1357 10 0 0 1 569 1
+A 1358 10 0 0 1 569 1
+A 1359 6 0 0 1 3 1
+A 1364 6 0 0 1 579 1
+A 1365 6 0 0 1 3 1
+A 1366 18 0 0 1 577 1
+A 1367 18 0 0 1 577 1
+A 1368 18 0 0 1 570 1
+A 1369 18 0 0 1 577 1
+A 1370 18 0 0 1 577 1
+A 1372 18 0 0 1 577 1
+A 1373 6 0 0 1 567 1
+A 1374 18 0 0 1 570 1
+A 1375 18 0 0 1 577 1
+A 1376 18 0 0 1 570 1
+A 1377 18 0 0 1 577 1
+A 1378 18 0 0 1 570 1
+A 1379 18 0 0 1 570 1
+A 1380 18 0 0 1 570 1
+A 1381 18 0 0 1 570 1
+A 1382 18 0 0 1 570 1
+A 1383 18 0 0 1 577 1
+A 1384 18 0 0 1 577 1
+A 1385 18 0 0 1 577 1
+A 1386 6 0 0 1 580 1
+A 1387 6 0 0 1 581 1
+A 1388 6 0 0 1 15 1
+A 1389 6 0 0 1 3 1
+A 1390 18 0 0 1 570 1
+A 1391 18 0 0 1 577 1
+A 1392 6 0 0 1 582 1
+A 1393 6 0 0 1 3 1
+A 1394 6 0 0 1 3 1
+A 1395 18 0 0 1 577 1
+A 1396 18 0 0 1 577 1
+A 1397 18 0 0 1 577 1
+A 1398 18 0 0 1 570 1
+A 1399 6 0 0 1 578 1
+A 1401 6 0 0 1 582 1
+A 1402 6 0 0 1 3 1
+A 1404 6 0 0 1 2 1
+A 1405 6 0 0 1 2 1
+A 1406 6 0 0 1 3 1
+A 1407 18 0 0 1 570 1
+A 1408 18 0 0 1 570 1
+A 1409 18 0 0 1 570 1
+A 1410 18 0 0 1 570 1
+A 1411 9 0 0 1 584 1
+A 1412 9 0 0 1 583 1
+A 1413 6 0 0 1 2 1
+A 1414 18 0 0 1 570 1
+A 1415 18 0 0 1 570 1
+A 1416 18 0 0 1 570 1
+A 1417 6 0 0 1 2 1
+A 1418 18 0 0 1 570 1
+R 1419 571 0 0
+A 0 10 0 42 1 569 0
+T 1698 738 0 3 0 0
+A 1756 6 0 0 1 582 1
+A 1757 6 0 0 1 3 0
+Z

@@ -1,0 +1,31 @@
+file(REMOVE_RECURSE
+  "../lib/libqe_xspectra.a"
+  "../lib/libqe_xspectra.pdb"
+  "CMakeFiles/qe_xspectra.dir/src/assign_paw_radii_to_species.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/banner_xspectra.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/check_orthogonality_k_epsilon.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/gaunt_mod.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/io_routines.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/ipoolscatter.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/lanczos.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/lr_sm1_psi.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/mygetK.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/plot_xanes_cross_sections.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/radin_mod.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/read_input_and_bcast.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/read_k_points.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/reset_k_points_and_reinit.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/select_nl_init.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/set_xspectra_namelists_defaults.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/stdout_routines.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/xanes_dipole.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/xanes_dipole_general_edge.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/xanes_quadrupole.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/xspectra_mod.f90.o"
+  "CMakeFiles/qe_xspectra.dir/src/xspectra_utils.f90.o"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang Fortran)
+  include(CMakeFiles/qe_xspectra.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

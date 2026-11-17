@@ -1,0 +1,2127 @@
+V35 :0x24 rvv10
+12 xc_rVV10.f90 S624 0
+11/11/2026  20:55:13
+use fft_smallbox_type private
+use fft_types private
+use stick_base private
+use cuda_runtime_api private
+use iso_fortran_env private
+use cutensor_v2_types private
+use gpu_reductions private
+use nvf_acc_common private
+use iso_c_binding private
+use control_flags private
+use fft_interfaces private
+use fft_base private
+use io_global private
+use mp_bands private
+use mp private
+use constants private
+use kinds private
+enduse
+D 85 26 784 8 783 7
+D 94 26 787 8 786 7
+D 103 26 784 8 783 7
+D 124 26 881 8 880 7
+D 181 26 1020 4 1019 3
+D 190 26 1033 4 1032 3
+D 199 26 1042 4 1041 3
+D 208 26 1111 4 1110 3
+D 217 26 1144 4 1143 3
+D 226 26 1203 4 1202 3
+D 235 26 1226 4 1225 3
+D 244 26 1243 4 1242 3
+D 253 26 1258 4 1257 3
+D 262 26 1263 4 1262 3
+D 271 26 1270 4 1269 3
+D 280 26 1277 4 1276 3
+D 355 23 6 1 11 11 0 0 0 0 0
+ 0 11 11 11 11 11
+D 358 23 6 1 11 11 0 0 0 0 0
+ 0 11 11 11 11 11
+D 361 23 6 1 11 1005 0 0 0 0 0
+ 0 1005 11 11 1005 1005
+D 364 23 6 1 11 1005 0 0 0 0 0
+ 0 1005 11 11 1005 1005
+D 367 23 6 1 11 1005 0 0 0 0 0
+ 0 1005 11 11 1005 1005
+D 370 23 6 1 11 1005 0 0 0 0 0
+ 0 1005 11 11 1005 1005
+D 373 23 6 1 11 1006 0 0 0 0 0
+ 0 1006 11 11 1006 1006
+D 376 23 6 1 11 1006 0 0 0 0 0
+ 0 1006 11 11 1006 1006
+D 627 26 2178 88 2177 7
+D 633 23 7 1 11 1566 0 0 0 0 0
+ 0 1566 11 11 1566 1566
+D 7407 26 21427 1232 21423 7
+D 7425 23 6 1 11 1563 0 0 0 0 0
+ 0 1563 11 11 1563 1563
+D 7428 23 6 1 11 1563 0 0 0 0 0
+ 0 1563 11 11 1563 1563
+D 7728 26 21714 8680 21713 7
+D 8285 26 22204 1160 22203 7
+D 8690 23 10 1 11 8022 0 0 0 0 0
+ 0 8022 11 11 8022 8022
+D 8693 23 10 1 11 8022 0 0 0 0 0
+ 0 8022 11 11 8022 8022
+D 8696 23 10 3 8068 8067 0 0 0 0 0
+ 10 8064 11 10 8064 8065
+ 0 8022 8065 11 8022 8022
+ 0 8022 8066 11 8022 8022
+D 8699 23 10 3 8068 8067 0 0 0 0 0
+ 10 8064 11 10 8064 8065
+ 0 8022 8065 11 8022 8022
+ 0 8022 8066 11 8022 8022
+D 8702 23 10 1 8073 8076 1 1 0 0 1
+ 11 8074 11 11 8074 8075
+D 8705 23 10 1 8077 8080 1 1 0 0 1
+ 11 8078 11 11 8078 8079
+D 8708 23 10 2 8081 8087 1 1 0 0 1
+ 11 8082 11 11 8082 8083
+ 11 8084 8085 11 8084 8086
+D 8711 23 10 1 8088 8091 1 1 0 0 1
+ 11 8089 11 11 8089 8090
+D 8714 23 10 1 8092 8095 1 1 0 0 1
+ 11 8093 11 11 8093 8094
+D 8717 23 10 2 1005 7142 0 0 0 0 0
+ 0 1563 11 11 1563 1563
+ 0 1563 1563 11 1563 1563
+D 8720 23 10 1 8096 8099 1 1 0 0 1
+ 11 8097 11 11 8097 8098
+D 8723 23 10 2 8100 8106 1 1 0 0 1
+ 11 8101 11 11 8101 8102
+ 11 8103 8104 11 8103 8105
+D 8726 23 10 2 8107 8113 1 1 0 0 1
+ 11 8108 11 11 8108 8109
+ 11 8110 8111 11 8110 8112
+D 8729 23 10 1 8114 8117 1 1 0 0 1
+ 11 8115 11 11 8115 8116
+D 8732 23 10 1 8118 8121 1 1 0 0 1
+ 11 8119 11 11 8119 8120
+D 8735 23 10 1 8122 8125 1 1 0 0 1
+ 11 8123 11 11 8123 8124
+D 8738 23 14 2 8126 8132 1 1 0 0 1
+ 11 8127 11 11 8127 8128
+ 11 8129 8130 11 8129 8131
+D 8741 23 10 1 8133 8136 1 1 0 0 1
+ 11 8134 11 11 8134 8135
+D 8744 23 10 1 8137 8140 1 1 0 0 1
+ 11 8138 11 11 8138 8139
+D 8747 23 10 2 1005 7142 0 0 0 0 0
+ 0 1563 11 11 1563 1563
+ 0 1563 1563 11 1563 1563
+D 8750 23 14 2 8141 8147 1 1 0 0 1
+ 11 8142 11 11 8142 8143
+ 11 8144 8145 11 8144 8146
+D 8753 23 10 1 8148 8151 1 1 0 0 1
+ 11 8149 11 11 8149 8150
+D 8756 23 10 2 8152 8158 1 1 0 0 1
+ 11 8153 11 11 8153 8154
+ 11 8155 8156 11 8155 8157
+D 8759 23 10 1 8159 8162 1 1 0 0 1
+ 11 8160 11 11 8160 8161
+D 8762 23 10 1 8163 8166 1 1 0 0 1
+ 11 8164 11 11 8164 8165
+D 8765 23 10 1 8167 8170 1 1 0 0 1
+ 11 8168 11 11 8168 8169
+D 8768 23 10 1 8171 8174 1 1 0 0 1
+ 11 8172 11 11 8172 8173
+D 8771 23 10 1 8175 8178 1 1 0 0 1
+ 11 8176 11 11 8176 8177
+D 8774 23 14 2 8179 8185 1 1 0 0 1
+ 11 8180 11 11 8180 8181
+ 11 8182 8183 11 8182 8184
+D 8777 23 10 1 8186 8189 1 1 0 0 1
+ 11 8187 11 11 8187 8188
+D 8780 23 10 1 8190 8193 1 1 0 0 1
+ 11 8191 11 11 8191 8192
+D 8783 23 14 2 8194 8200 1 1 0 0 1
+ 11 8195 11 11 8195 8196
+ 11 8197 8198 11 8197 8199
+D 8786 23 10 1 8201 8204 1 1 0 0 1
+ 11 8202 11 11 8202 8203
+D 8789 23 10 2 8205 8211 1 1 0 0 1
+ 11 8206 11 11 8206 8207
+ 11 8208 8209 11 8208 8210
+D 8792 23 10 2 8212 8218 1 1 0 0 1
+ 11 8213 11 11 8213 8214
+ 11 8215 8216 11 8215 8217
+D 8795 23 10 2 2128 8219 0 0 0 0 0
+ 0 8022 11 11 8022 8022
+ 0 8022 8022 11 8022 8022
+D 8798 23 14 2 8220 8226 1 1 0 0 1
+ 11 8221 11 11 8221 8222
+ 11 8223 8224 11 8223 8225
+D 8801 23 14 2 8227 8233 1 1 0 0 1
+ 11 8228 11 11 8228 8229
+ 11 8230 8231 11 8230 8232
+D 8804 23 14 2 8234 8240 1 1 0 0 1
+ 11 8235 11 11 8235 8236
+ 11 8237 8238 11 8237 8239
+D 8807 23 10 1 8241 8244 1 1 0 0 1
+ 11 8242 11 11 8242 8243
+D 8810 23 10 2 8245 8251 1 1 0 0 1
+ 11 8246 11 11 8246 8247
+ 11 8248 8249 11 8248 8250
+D 8813 23 10 1 8252 8255 1 1 0 0 1
+ 11 8253 11 11 8253 8254
+D 8816 23 10 1 8256 8259 1 1 0 0 1
+ 11 8257 11 11 8257 8258
+D 8819 23 10 1 8260 8263 1 1 0 0 1
+ 11 8261 11 11 8261 8262
+D 8822 23 14 2 8264 8270 1 1 0 0 1
+ 11 8265 11 11 8265 8266
+ 11 8267 8268 11 8267 8269
+D 8825 23 10 1 8271 8274 1 1 0 0 1
+ 11 8272 11 11 8272 8273
+D 8828 23 10 1 10 8065 0 0 0 0 0
+ 10 8064 11 10 8064 8065
+D 8831 23 10 1 10 8065 0 0 0 0 0
+ 10 8064 11 10 8064 8065
+D 8834 23 10 1 10 8065 0 0 0 0 0
+ 10 8064 11 10 8064 8065
+S 624 24 0 0 0 9 1 0 4986 10015 8000 A 0 0 0 0 B 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 rvv10
+S 626 23 0 0 0 9 646 624 4998 14 0 A 0 0 0 0 B 400000 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dp
+S 628 23 0 0 0 9 711 624 5011 14 0 A 0 0 0 0 B 400000 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pi
+S 630 23 0 0 0 6 18449 624 5017 14 0 A 0 0 0 0 B 400000 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 mp_sum
+S 632 23 0 0 0 6 21397 624 5033 14 0 A 0 0 0 0 B 400000 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 intra_bgrp_comm
+S 634 23 0 0 0 6 21412 624 5059 14 0 A 0 0 0 0 B 400000 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ionode
+S 635 23 0 0 0 9 21410 624 5066 14 0 A 0 0 0 0 B 400000 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 stdout
+S 637 23 0 0 0 9 22290 624 5082 14 0 A 0 0 0 0 B 400000 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dfftp
+S 639 23 0 0 0 9 22304 624 5103 14 0 A 0 0 0 0 B 400000 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 fwfft
+S 640 23 0 0 0 6 22305 624 5109 14 0 A 0 0 0 0 B 400000 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 invfft
+S 642 23 0 0 0 9 22395 624 5130 14 0 A 0 0 0 0 B 400000 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 gamma_only
+S 643 23 0 0 0 6 22449 624 5141 14 0 A 0 0 0 0 B 400000 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 iverbosity
+S 644 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 645 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 646 16 1 kinds dp
+S 694 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1058682594 -350469331 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 697 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1030854553 -2127697391 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+R 711 16 2 constants pi
+S 768 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 783 25 7 iso_c_binding c_ptr
+R 784 5 8 iso_c_binding val c_ptr
+R 786 25 10 iso_c_binding c_funptr
+R 787 5 11 iso_c_binding val c_funptr
+R 821 6 45 iso_c_binding c_null_ptr$ac
+R 823 6 47 iso_c_binding c_null_funptr$ac
+R 824 26 48 iso_c_binding ==
+R 826 26 50 iso_c_binding !=
+S 852 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 853 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 854 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 855 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 856 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 857 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 858 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 859 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 860 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 861 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 862 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 863 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 864 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 865 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 866 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 867 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 868 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 869 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 870 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 871 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 872 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 873 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 26 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 874 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 880 25 6 nvf_acc_common c_devptr
+R 881 5 7 nvf_acc_common cptr c_devptr
+R 887 6 13 nvf_acc_common c_null_devptr$ac
+R 925 26 51 nvf_acc_common =
+S 985 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 986 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 987 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 988 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 989 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 990 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 991 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 992 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 993 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 994 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 995 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 33 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 996 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 34 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 997 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 998 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 36 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 999 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 37 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1000 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 38 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1001 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 39 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1002 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 40 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1003 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 41 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1004 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 42 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1005 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1006 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 1024 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1007 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4096 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1008 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8192 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1009 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 64 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1010 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 256 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1011 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 128 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1012 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 512 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 1019 25 1 cutensor_v2_types cutensoralgo
+R 1020 5 2 cutensor_v2_types algo cutensoralgo
+R 1023 6 5 cutensor_v2_types cutensor_algo_default_patient$ac
+R 1025 6 7 cutensor_v2_types cutensor_algo_gett$ac
+R 1027 6 9 cutensor_v2_types cutensor_algo_tgett$ac
+R 1029 6 11 cutensor_v2_types cutensor_algo_ttgt$ac
+R 1031 6 13 cutensor_v2_types cutensor_algo_default$ac
+R 1032 25 14 cutensor_v2_types cutensorworksizepreference
+R 1033 5 15 cutensor_v2_types wksp cutensorworksizepreference
+R 1036 6 18 cutensor_v2_types cutensor_workspace_min$ac
+R 1038 6 20 cutensor_v2_types cutensor_workspace_default$ac
+R 1040 6 22 cutensor_v2_types cutensor_workspace_max$ac
+R 1041 25 23 cutensor_v2_types cutensoroperator
+R 1042 5 24 cutensor_v2_types opno cutensoroperator
+R 1045 6 27 cutensor_v2_types cutensor_op_identity$ac
+R 1047 6 29 cutensor_v2_types cutensor_op_sqrt$ac
+R 1049 6 31 cutensor_v2_types cutensor_op_relu$ac
+R 1051 6 33 cutensor_v2_types cutensor_op_conj$ac
+R 1053 6 35 cutensor_v2_types cutensor_op_rcp$ac
+R 1055 6 37 cutensor_v2_types cutensor_op_sigmoid$ac
+R 1057 6 39 cutensor_v2_types cutensor_op_tanh$ac
+R 1059 6 41 cutensor_v2_types cutensor_op_exp$ac
+R 1061 6 43 cutensor_v2_types cutensor_op_log$ac
+R 1063 6 45 cutensor_v2_types cutensor_op_abs$ac
+R 1065 6 47 cutensor_v2_types cutensor_op_neg$ac
+R 1067 6 49 cutensor_v2_types cutensor_op_sin$ac
+R 1069 6 51 cutensor_v2_types cutensor_op_cos$ac
+R 1071 6 53 cutensor_v2_types cutensor_op_tan$ac
+R 1073 6 55 cutensor_v2_types cutensor_op_sinh$ac
+R 1075 6 57 cutensor_v2_types cutensor_op_cosh$ac
+R 1077 6 59 cutensor_v2_types cutensor_op_asin$ac
+R 1079 6 61 cutensor_v2_types cutensor_op_acos$ac
+R 1081 6 63 cutensor_v2_types cutensor_op_atan$ac
+R 1083 6 65 cutensor_v2_types cutensor_op_asinh$ac
+R 1085 6 67 cutensor_v2_types cutensor_op_acosh$ac
+R 1087 6 69 cutensor_v2_types cutensor_op_atanh$ac
+R 1089 6 71 cutensor_v2_types cutensor_op_ceil$ac
+R 1091 6 73 cutensor_v2_types cutensor_op_floor$ac
+R 1093 6 75 cutensor_v2_types cutensor_op_mish$ac
+R 1095 6 77 cutensor_v2_types cutensor_op_swish$ac
+R 1097 6 79 cutensor_v2_types cutensor_op_soft_plus$ac
+R 1099 6 81 cutensor_v2_types cutensor_op_soft_sign$ac
+R 1101 6 83 cutensor_v2_types cutensor_op_add$ac
+R 1103 6 85 cutensor_v2_types cutensor_op_mul$ac
+R 1105 6 87 cutensor_v2_types cutensor_op_max$ac
+R 1107 6 89 cutensor_v2_types cutensor_op_min$ac
+R 1109 6 91 cutensor_v2_types cutensor_op_unknown$ac
+R 1110 25 92 cutensor_v2_types cutensorstatus
+R 1111 5 93 cutensor_v2_types stat cutensorstatus
+R 1114 6 96 cutensor_v2_types cutensor_status_success$ac
+R 1116 6 98 cutensor_v2_types cutensor_status_not_initialized$ac
+R 1118 6 100 cutensor_v2_types cutensor_status_alloc_failed$ac
+R 1120 6 102 cutensor_v2_types cutensor_status_invalid_value$ac
+R 1122 6 104 cutensor_v2_types cutensor_status_arch_mismatch$ac
+R 1124 6 106 cutensor_v2_types cutensor_status_mapping_error$ac
+R 1126 6 108 cutensor_v2_types cutensor_status_execution_failed$ac
+R 1128 6 110 cutensor_v2_types cutensor_status_internal_error$ac
+R 1130 6 112 cutensor_v2_types cutensor_status_not_supported$ac
+R 1132 6 114 cutensor_v2_types cutensor_status_license_error$ac
+R 1134 6 116 cutensor_v2_types cutensor_status_cublas_error$ac
+R 1136 6 118 cutensor_v2_types cutensor_status_cuda_error$ac
+R 1138 6 120 cutensor_v2_types cutensor_status_insufficient_workspace$ac
+R 1140 6 122 cutensor_v2_types cutensor_status_insufficient_driver$ac
+R 1142 6 124 cutensor_v2_types cutensor_status_io_error$ac
+R 1143 25 125 cutensor_v2_types cutensordatatype
+R 1144 5 126 cutensor_v2_types cudadatatype cutensordatatype
+R 1147 6 129 cutensor_v2_types cutensor_r_16f$ac
+R 1149 6 131 cutensor_v2_types cutensor_c_16f$ac
+R 1151 6 133 cutensor_v2_types cutensor_r_16bf$ac
+R 1153 6 135 cutensor_v2_types cutensor_c_16bf$ac
+R 1155 6 137 cutensor_v2_types cutensor_r_32f$ac
+R 1157 6 139 cutensor_v2_types cutensor_c_32f$ac
+R 1159 6 141 cutensor_v2_types cutensor_r_64f$ac
+R 1161 6 143 cutensor_v2_types cutensor_c_64f$ac
+R 1163 6 145 cutensor_v2_types cutensor_r_4i$ac
+R 1165 6 147 cutensor_v2_types cutensor_c_4i$ac
+R 1167 6 149 cutensor_v2_types cutensor_r_4u$ac
+R 1169 6 151 cutensor_v2_types cutensor_c_4u$ac
+R 1171 6 153 cutensor_v2_types cutensor_r_8i$ac
+R 1173 6 155 cutensor_v2_types cutensor_c_8i$ac
+R 1175 6 157 cutensor_v2_types cutensor_r_8u$ac
+R 1177 6 159 cutensor_v2_types cutensor_c_8u$ac
+R 1179 6 161 cutensor_v2_types cutensor_r_16i$ac
+R 1181 6 163 cutensor_v2_types cutensor_c_16i$ac
+R 1183 6 165 cutensor_v2_types cutensor_r_16u$ac
+R 1185 6 167 cutensor_v2_types cutensor_c_16u$ac
+R 1187 6 169 cutensor_v2_types cutensor_r_32i$ac
+R 1189 6 171 cutensor_v2_types cutensor_c_32i$ac
+R 1191 6 173 cutensor_v2_types cutensor_r_32u$ac
+R 1193 6 175 cutensor_v2_types cutensor_c_32u$ac
+R 1195 6 177 cutensor_v2_types cutensor_r_64i$ac
+R 1197 6 179 cutensor_v2_types cutensor_c_64i$ac
+R 1199 6 181 cutensor_v2_types cutensor_r_64u$ac
+R 1201 6 183 cutensor_v2_types cutensor_c_64u$ac
+R 1202 25 184 cutensor_v2_types cutensorcomputetype
+R 1203 5 185 cutensor_v2_types type cutensorcomputetype
+R 1206 6 188 cutensor_v2_types cutensor_compute_16f$ac
+R 1208 6 190 cutensor_v2_types cutensor_compute_16bf$ac
+R 1210 6 192 cutensor_v2_types cutensor_compute_tf32$ac
+R 1212 6 194 cutensor_v2_types cutensor_compute_3xtf32$ac
+R 1214 6 196 cutensor_v2_types cutensor_compute_32f$ac
+R 1216 6 198 cutensor_v2_types cutensor_compute_64f$ac
+R 1218 6 200 cutensor_v2_types cutensor_compute_8u$ac
+R 1220 6 202 cutensor_v2_types cutensor_compute_8i$ac
+R 1222 6 204 cutensor_v2_types cutensor_compute_32u$ac
+R 1224 6 206 cutensor_v2_types cutensor_compute_32i$ac
+R 1225 25 207 cutensor_v2_types cutensoroperationdescriptorattribute
+R 1226 5 208 cutensor_v2_types attr cutensoroperationdescriptorattribute
+R 1229 6 211 cutensor_v2_types cutensor_operation_descriptor_tag$ac
+R 1231 6 213 cutensor_v2_types cutensor_operation_descriptor_scalar_type$ac
+R 1233 6 215 cutensor_v2_types cutensor_operation_descriptor_flops$ac
+R 1235 6 217 cutensor_v2_types cutensor_operation_descriptor_moved_bytes$ac
+R 1237 6 219 cutensor_v2_types cutensor_operation_descriptor_padding_left$ac
+R 1239 6 221 cutensor_v2_types cutensor_operation_descriptor_padding_right$ac
+R 1241 6 223 cutensor_v2_types cutensor_operation_descriptor_padding_value$ac
+R 1242 25 224 cutensor_v2_types cutensorplanpreferenceattribute
+R 1243 5 225 cutensor_v2_types attr cutensorplanpreferenceattribute
+R 1246 6 228 cutensor_v2_types cutensor_plan_preference_autotune_mode$ac
+R 1248 6 230 cutensor_v2_types cutensor_plan_preference_cache_mode$ac
+R 1250 6 232 cutensor_v2_types cutensor_plan_preference_incremental_count$ac
+R 1252 6 234 cutensor_v2_types cutensor_plan_preference_algo$ac
+R 1254 6 236 cutensor_v2_types cutensor_plan_preference_kernel_rank$ac
+R 1256 6 238 cutensor_v2_types cutensor_plan_preference_jit$ac
+R 1257 25 239 cutensor_v2_types cutensorplanattribute
+R 1258 5 240 cutensor_v2_types attr cutensorplanattribute
+R 1261 6 243 cutensor_v2_types cutensor_plan_required_workspace$ac
+R 1262 25 244 cutensor_v2_types cutensorautotunemode
+R 1263 5 245 cutensor_v2_types mode cutensorautotunemode
+R 1266 6 248 cutensor_v2_types cutensor_autotune_mode_none$ac
+R 1268 6 250 cutensor_v2_types cutensor_autotune_mode_incremental$ac
+R 1269 25 251 cutensor_v2_types cutensorjitmode
+R 1270 5 252 cutensor_v2_types mode cutensorjitmode
+R 1273 6 255 cutensor_v2_types cutensor_jit_mode_none$ac
+R 1275 6 257 cutensor_v2_types cutensor_jit_mode_default$ac
+R 1276 25 258 cutensor_v2_types cutensorcachemode
+R 1277 5 259 cutensor_v2_types mode cutensorcachemode
+R 1280 6 262 cutensor_v2_types cutensor_cache_mode_none$ac
+R 1282 6 264 cutensor_v2_types cutensor_cache_mode_pedantic$ac
+S 1313 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1314 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 1317 7 3 iso_fortran_env character_kinds$ac
+R 1339 7 25 iso_fortran_env integer_kinds$ac
+R 1341 7 27 iso_fortran_env logical_kinds$ac
+R 1343 7 29 iso_fortran_env real_kinds$ac
+S 1504 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1507 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1526 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 2177 25 626 cuda_runtime_api cudapointerattributes
+R 2178 5 627 cuda_runtime_api type cudapointerattributes
+R 2179 5 628 cuda_runtime_api device cudapointerattributes
+R 2180 5 629 cuda_runtime_api devptr cudapointerattributes
+R 2181 5 630 cuda_runtime_api hostptr cudapointerattributes
+R 2182 5 631 cuda_runtime_api reserved cudapointerattributes
+R 9313 26 436 gpu_reductions *
+S 11383 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+R 18449 19 13 mp mp_sum
+R 21397 6 13 mp_bands intra_bgrp_comm
+S 21408 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+R 21410 6 2 io_global stdout
+R 21412 6 4 io_global ionode
+S 21418 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 21423 25 5 stick_base sticks_map
+R 21427 5 9 stick_base lgamma sticks_map
+R 21428 5 10 stick_base lpara sticks_map
+R 21429 5 11 stick_base mype sticks_map
+R 21430 5 12 stick_base nproc sticks_map
+R 21431 5 13 stick_base nyfft sticks_map
+R 21432 5 14 stick_base iproc sticks_map
+R 21435 5 17 stick_base iproc$sd sticks_map
+R 21436 5 18 stick_base iproc$p sticks_map
+R 21437 5 19 stick_base iproc$o sticks_map
+R 21439 5 21 stick_base iproc2 sticks_map
+R 21441 5 23 stick_base iproc2$sd sticks_map
+R 21442 5 24 stick_base iproc2$p sticks_map
+R 21443 5 25 stick_base iproc2$o sticks_map
+R 21445 5 27 stick_base comm sticks_map
+R 21446 5 28 stick_base nstx sticks_map
+R 21447 5 29 stick_base lb sticks_map
+R 21448 5 30 stick_base ub sticks_map
+R 21449 5 31 stick_base idx sticks_map
+R 21451 5 33 stick_base idx$sd sticks_map
+R 21452 5 34 stick_base idx$p sticks_map
+R 21453 5 35 stick_base idx$o sticks_map
+R 21455 5 37 stick_base ist sticks_map
+R 21458 5 40 stick_base ist$sd sticks_map
+R 21459 5 41 stick_base ist$p sticks_map
+R 21460 5 42 stick_base ist$o sticks_map
+R 21462 5 44 stick_base stown sticks_map
+R 21465 5 47 stick_base stown$sd sticks_map
+R 21466 5 48 stick_base stown$p sticks_map
+R 21467 5 49 stick_base stown$o sticks_map
+R 21469 5 51 stick_base indmap sticks_map
+R 21472 5 54 stick_base indmap$sd sticks_map
+R 21473 5 55 stick_base indmap$p sticks_map
+R 21474 5 56 stick_base indmap$o sticks_map
+R 21476 5 58 stick_base bg sticks_map
+S 21710 3 0 0 0 22 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 114779 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 1 20
+R 21713 25 3 fft_types fft_type_descriptor
+R 21714 5 4 fft_types nr1 fft_type_descriptor
+R 21715 5 5 fft_types nr2 fft_type_descriptor
+R 21716 5 6 fft_types nr3 fft_type_descriptor
+R 21717 5 7 fft_types nr1x fft_type_descriptor
+R 21718 5 8 fft_types nr2x fft_type_descriptor
+R 21719 5 9 fft_types nr3x fft_type_descriptor
+R 21720 5 10 fft_types lpara fft_type_descriptor
+R 21721 5 11 fft_types lgamma fft_type_descriptor
+R 21722 5 12 fft_types root fft_type_descriptor
+R 21723 5 13 fft_types comm fft_type_descriptor
+R 21724 5 14 fft_types comm2 fft_type_descriptor
+R 21725 5 15 fft_types comm3 fft_type_descriptor
+R 21726 5 16 fft_types nproc fft_type_descriptor
+R 21727 5 17 fft_types nproc2 fft_type_descriptor
+R 21728 5 18 fft_types nproc3 fft_type_descriptor
+R 21729 5 19 fft_types mype fft_type_descriptor
+R 21730 5 20 fft_types mype2 fft_type_descriptor
+R 21731 5 21 fft_types mype3 fft_type_descriptor
+R 21732 5 22 fft_types iproc fft_type_descriptor
+R 21735 5 25 fft_types iproc$sd fft_type_descriptor
+R 21736 5 26 fft_types iproc$p fft_type_descriptor
+R 21737 5 27 fft_types iproc$o fft_type_descriptor
+R 21739 5 29 fft_types iproc2 fft_type_descriptor
+R 21741 5 31 fft_types iproc2$sd fft_type_descriptor
+R 21742 5 32 fft_types iproc2$p fft_type_descriptor
+R 21743 5 33 fft_types iproc2$o fft_type_descriptor
+R 21745 5 35 fft_types iproc3 fft_type_descriptor
+R 21747 5 37 fft_types iproc3$sd fft_type_descriptor
+R 21748 5 38 fft_types iproc3$p fft_type_descriptor
+R 21749 5 39 fft_types iproc3$o fft_type_descriptor
+R 21751 5 41 fft_types my_nr3p fft_type_descriptor
+R 21752 5 42 fft_types my_nr2p fft_type_descriptor
+R 21753 5 43 fft_types my_i0r3p fft_type_descriptor
+R 21754 5 44 fft_types my_i0r2p fft_type_descriptor
+R 21755 5 45 fft_types nr3p fft_type_descriptor
+R 21757 5 47 fft_types nr3p$sd fft_type_descriptor
+R 21758 5 48 fft_types nr3p$p fft_type_descriptor
+R 21759 5 49 fft_types nr3p$o fft_type_descriptor
+R 21761 5 51 fft_types nr3p_offset fft_type_descriptor
+R 21763 5 53 fft_types nr3p_offset$sd fft_type_descriptor
+R 21764 5 54 fft_types nr3p_offset$p fft_type_descriptor
+R 21765 5 55 fft_types nr3p_offset$o fft_type_descriptor
+R 21767 5 57 fft_types nr2p fft_type_descriptor
+R 21769 5 59 fft_types nr2p$sd fft_type_descriptor
+R 21770 5 60 fft_types nr2p$p fft_type_descriptor
+R 21771 5 61 fft_types nr2p$o fft_type_descriptor
+R 21773 5 63 fft_types nr2p_offset fft_type_descriptor
+R 21775 5 65 fft_types nr2p_offset$sd fft_type_descriptor
+R 21776 5 66 fft_types nr2p_offset$p fft_type_descriptor
+R 21777 5 67 fft_types nr2p_offset$o fft_type_descriptor
+R 21779 5 69 fft_types nr1p fft_type_descriptor
+R 21781 5 71 fft_types nr1p$sd fft_type_descriptor
+R 21782 5 72 fft_types nr1p$p fft_type_descriptor
+R 21783 5 73 fft_types nr1p$o fft_type_descriptor
+R 21785 5 75 fft_types nr1w fft_type_descriptor
+R 21787 5 77 fft_types nr1w$sd fft_type_descriptor
+R 21788 5 78 fft_types nr1w$p fft_type_descriptor
+R 21789 5 79 fft_types nr1w$o fft_type_descriptor
+R 21791 5 81 fft_types nr1w_tg fft_type_descriptor
+R 21792 5 82 fft_types i0r3p fft_type_descriptor
+R 21794 5 84 fft_types i0r3p$sd fft_type_descriptor
+R 21795 5 85 fft_types i0r3p$p fft_type_descriptor
+R 21796 5 86 fft_types i0r3p$o fft_type_descriptor
+R 21798 5 88 fft_types i0r2p fft_type_descriptor
+R 21800 5 90 fft_types i0r2p$sd fft_type_descriptor
+R 21801 5 91 fft_types i0r2p$p fft_type_descriptor
+R 21802 5 92 fft_types i0r2p$o fft_type_descriptor
+R 21804 5 94 fft_types ir1p fft_type_descriptor
+R 21806 5 96 fft_types ir1p$sd fft_type_descriptor
+R 21807 5 97 fft_types ir1p$p fft_type_descriptor
+R 21808 5 98 fft_types ir1p$o fft_type_descriptor
+R 21810 5 100 fft_types indp fft_type_descriptor
+R 21813 5 103 fft_types indp$sd fft_type_descriptor
+R 21814 5 104 fft_types indp$p fft_type_descriptor
+R 21815 5 105 fft_types indp$o fft_type_descriptor
+R 21817 5 107 fft_types ir1w fft_type_descriptor
+R 21819 5 109 fft_types ir1w$sd fft_type_descriptor
+R 21820 5 110 fft_types ir1w$p fft_type_descriptor
+R 21821 5 111 fft_types ir1w$o fft_type_descriptor
+R 21823 5 113 fft_types indw fft_type_descriptor
+R 21826 5 116 fft_types indw$sd fft_type_descriptor
+R 21827 5 117 fft_types indw$p fft_type_descriptor
+R 21828 5 118 fft_types indw$o fft_type_descriptor
+R 21830 5 120 fft_types ir1w_tg fft_type_descriptor
+R 21832 5 122 fft_types ir1w_tg$sd fft_type_descriptor
+R 21833 5 123 fft_types ir1w_tg$p fft_type_descriptor
+R 21834 5 124 fft_types ir1w_tg$o fft_type_descriptor
+R 21836 5 126 fft_types indw_tg fft_type_descriptor
+R 21838 5 128 fft_types indw_tg$sd fft_type_descriptor
+R 21839 5 129 fft_types indw_tg$p fft_type_descriptor
+R 21840 5 130 fft_types indw_tg$o fft_type_descriptor
+R 21842 5 132 fft_types ir1p_d fft_type_descriptor
+R 21844 5 134 fft_types ir1p_d$sd fft_type_descriptor
+R 21845 5 135 fft_types ir1p_d$p fft_type_descriptor
+R 21846 5 136 fft_types ir1p_d$o fft_type_descriptor
+R 21848 5 138 fft_types ir1w_d fft_type_descriptor
+R 21850 5 140 fft_types ir1w_d$sd fft_type_descriptor
+R 21851 5 141 fft_types ir1w_d$p fft_type_descriptor
+R 21852 5 142 fft_types ir1w_d$o fft_type_descriptor
+R 21854 5 144 fft_types ir1w_tg_d fft_type_descriptor
+R 21856 5 146 fft_types ir1w_tg_d$sd fft_type_descriptor
+R 21857 5 147 fft_types ir1w_tg_d$p fft_type_descriptor
+R 21858 5 148 fft_types ir1w_tg_d$o fft_type_descriptor
+R 21860 5 150 fft_types indp_d fft_type_descriptor
+R 21863 5 153 fft_types indp_d$sd fft_type_descriptor
+R 21864 5 154 fft_types indp_d$p fft_type_descriptor
+R 21865 5 155 fft_types indp_d$o fft_type_descriptor
+R 21867 5 157 fft_types indw_d fft_type_descriptor
+R 21870 5 160 fft_types indw_d$sd fft_type_descriptor
+R 21871 5 161 fft_types indw_d$p fft_type_descriptor
+R 21872 5 162 fft_types indw_d$o fft_type_descriptor
+R 21874 5 164 fft_types indw_tg_d fft_type_descriptor
+R 21877 5 167 fft_types indw_tg_d$sd fft_type_descriptor
+R 21878 5 168 fft_types indw_tg_d$p fft_type_descriptor
+R 21879 5 169 fft_types indw_tg_d$o fft_type_descriptor
+R 21881 5 171 fft_types nr1p_d fft_type_descriptor
+R 21883 5 173 fft_types nr1p_d$sd fft_type_descriptor
+R 21884 5 174 fft_types nr1p_d$p fft_type_descriptor
+R 21885 5 175 fft_types nr1p_d$o fft_type_descriptor
+R 21887 5 177 fft_types nr1w_d fft_type_descriptor
+R 21889 5 179 fft_types nr1w_d$sd fft_type_descriptor
+R 21890 5 180 fft_types nr1w_d$p fft_type_descriptor
+R 21891 5 181 fft_types nr1w_d$o fft_type_descriptor
+R 21893 5 183 fft_types nr1w_tg_d fft_type_descriptor
+R 21895 5 185 fft_types nr1w_tg_d$sd fft_type_descriptor
+R 21896 5 186 fft_types nr1w_tg_d$p fft_type_descriptor
+R 21897 5 187 fft_types nr1w_tg_d$o fft_type_descriptor
+R 21899 5 189 fft_types nst fft_type_descriptor
+R 21900 5 190 fft_types nsp fft_type_descriptor
+R 21902 5 192 fft_types nsp$sd fft_type_descriptor
+R 21903 5 193 fft_types nsp$p fft_type_descriptor
+R 21904 5 194 fft_types nsp$o fft_type_descriptor
+R 21906 5 196 fft_types nsp_offset fft_type_descriptor
+R 21909 5 199 fft_types nsp_offset$sd fft_type_descriptor
+R 21910 5 200 fft_types nsp_offset$p fft_type_descriptor
+R 21911 5 201 fft_types nsp_offset$o fft_type_descriptor
+R 21913 5 203 fft_types nsw fft_type_descriptor
+R 21915 5 205 fft_types nsw$sd fft_type_descriptor
+R 21916 5 206 fft_types nsw$p fft_type_descriptor
+R 21917 5 207 fft_types nsw$o fft_type_descriptor
+R 21919 5 209 fft_types nsw_offset fft_type_descriptor
+R 21922 5 212 fft_types nsw_offset$sd fft_type_descriptor
+R 21923 5 213 fft_types nsw_offset$p fft_type_descriptor
+R 21924 5 214 fft_types nsw_offset$o fft_type_descriptor
+R 21926 5 216 fft_types nsw_tg fft_type_descriptor
+R 21928 5 218 fft_types nsw_tg$sd fft_type_descriptor
+R 21929 5 219 fft_types nsw_tg$p fft_type_descriptor
+R 21930 5 220 fft_types nsw_tg$o fft_type_descriptor
+R 21932 5 222 fft_types ngl fft_type_descriptor
+R 21934 5 224 fft_types ngl$sd fft_type_descriptor
+R 21935 5 225 fft_types ngl$p fft_type_descriptor
+R 21936 5 226 fft_types ngl$o fft_type_descriptor
+R 21938 5 228 fft_types nwl fft_type_descriptor
+R 21940 5 230 fft_types nwl$sd fft_type_descriptor
+R 21941 5 231 fft_types nwl$p fft_type_descriptor
+R 21942 5 232 fft_types nwl$o fft_type_descriptor
+R 21944 5 234 fft_types ngm fft_type_descriptor
+R 21945 5 235 fft_types ngw fft_type_descriptor
+R 21946 5 236 fft_types iplp fft_type_descriptor
+R 21948 5 238 fft_types iplp$sd fft_type_descriptor
+R 21949 5 239 fft_types iplp$p fft_type_descriptor
+R 21950 5 240 fft_types iplp$o fft_type_descriptor
+R 21952 5 242 fft_types iplw fft_type_descriptor
+R 21954 5 244 fft_types iplw$sd fft_type_descriptor
+R 21955 5 245 fft_types iplw$p fft_type_descriptor
+R 21956 5 246 fft_types iplw$o fft_type_descriptor
+R 21958 5 248 fft_types nnp fft_type_descriptor
+R 21959 5 249 fft_types nnr fft_type_descriptor
+R 21960 5 250 fft_types nnr_tg fft_type_descriptor
+R 21961 5 251 fft_types iss fft_type_descriptor
+R 21963 5 253 fft_types iss$sd fft_type_descriptor
+R 21964 5 254 fft_types iss$p fft_type_descriptor
+R 21965 5 255 fft_types iss$o fft_type_descriptor
+R 21967 5 257 fft_types isind fft_type_descriptor
+R 21969 5 259 fft_types isind$sd fft_type_descriptor
+R 21970 5 260 fft_types isind$p fft_type_descriptor
+R 21971 5 261 fft_types isind$o fft_type_descriptor
+R 21973 5 263 fft_types ismap fft_type_descriptor
+R 21975 5 265 fft_types ismap$sd fft_type_descriptor
+R 21976 5 266 fft_types ismap$p fft_type_descriptor
+R 21977 5 267 fft_types ismap$o fft_type_descriptor
+R 21979 5 269 fft_types ismap_d fft_type_descriptor
+R 21981 5 271 fft_types ismap_d$sd fft_type_descriptor
+R 21982 5 272 fft_types ismap_d$p fft_type_descriptor
+R 21983 5 273 fft_types ismap_d$o fft_type_descriptor
+R 21985 5 275 fft_types nl fft_type_descriptor
+R 21987 5 277 fft_types nl$sd fft_type_descriptor
+R 21988 5 278 fft_types nl$p fft_type_descriptor
+R 21989 5 279 fft_types nl$o fft_type_descriptor
+R 21991 5 281 fft_types nlm fft_type_descriptor
+R 21993 5 283 fft_types nlm$sd fft_type_descriptor
+R 21994 5 284 fft_types nlm$p fft_type_descriptor
+R 21995 5 285 fft_types nlm$o fft_type_descriptor
+R 21997 5 287 fft_types nl_d fft_type_descriptor
+R 21999 5 289 fft_types nl_d$sd fft_type_descriptor
+R 22000 5 290 fft_types nl_d$p fft_type_descriptor
+R 22001 5 291 fft_types nl_d$o fft_type_descriptor
+R 22003 5 293 fft_types nlm_d fft_type_descriptor
+R 22005 5 295 fft_types nlm_d$sd fft_type_descriptor
+R 22006 5 296 fft_types nlm_d$p fft_type_descriptor
+R 22007 5 297 fft_types nlm_d$o fft_type_descriptor
+R 22009 5 299 fft_types tg_snd fft_type_descriptor
+R 22011 5 301 fft_types tg_snd$sd fft_type_descriptor
+R 22012 5 302 fft_types tg_snd$p fft_type_descriptor
+R 22013 5 303 fft_types tg_snd$o fft_type_descriptor
+R 22015 5 305 fft_types tg_rcv fft_type_descriptor
+R 22017 5 307 fft_types tg_rcv$sd fft_type_descriptor
+R 22018 5 308 fft_types tg_rcv$p fft_type_descriptor
+R 22019 5 309 fft_types tg_rcv$o fft_type_descriptor
+R 22021 5 311 fft_types tg_sdsp fft_type_descriptor
+R 22023 5 313 fft_types tg_sdsp$sd fft_type_descriptor
+R 22024 5 314 fft_types tg_sdsp$p fft_type_descriptor
+R 22025 5 315 fft_types tg_sdsp$o fft_type_descriptor
+R 22027 5 317 fft_types tg_rdsp fft_type_descriptor
+R 22029 5 319 fft_types tg_rdsp$sd fft_type_descriptor
+R 22030 5 320 fft_types tg_rdsp$p fft_type_descriptor
+R 22031 5 321 fft_types tg_rdsp$o fft_type_descriptor
+R 22033 5 323 fft_types has_task_groups fft_type_descriptor
+R 22034 5 324 fft_types use_pencil_decomposition fft_type_descriptor
+R 22035 5 325 fft_types rho_clock_label fft_type_descriptor
+R 22036 5 326 fft_types wave_clock_label fft_type_descriptor
+R 22037 5 327 fft_types grid_id fft_type_descriptor
+R 22039 5 329 fft_types stream_scatter_yz fft_type_descriptor
+R 22040 5 330 fft_types stream_scatter_yz$sd fft_type_descriptor
+R 22041 5 331 fft_types stream_scatter_yz$p fft_type_descriptor
+R 22042 5 332 fft_types stream_scatter_yz$o fft_type_descriptor
+R 22045 5 335 fft_types stream_many fft_type_descriptor
+R 22046 5 336 fft_types stream_many$sd fft_type_descriptor
+R 22047 5 337 fft_types stream_many$p fft_type_descriptor
+R 22048 5 338 fft_types stream_many$o fft_type_descriptor
+R 22050 5 340 fft_types a2a_comp fft_type_descriptor
+R 22052 5 342 fft_types bstreams fft_type_descriptor
+R 22053 5 343 fft_types bstreams$sd fft_type_descriptor
+R 22054 5 344 fft_types bstreams$p fft_type_descriptor
+R 22055 5 345 fft_types bstreams$o fft_type_descriptor
+R 22058 5 348 fft_types bevents fft_type_descriptor
+R 22059 5 349 fft_types bevents$sd fft_type_descriptor
+R 22060 5 350 fft_types bevents$p fft_type_descriptor
+R 22061 5 351 fft_types bevents$o fft_type_descriptor
+R 22063 5 353 fft_types batchsize fft_type_descriptor
+R 22064 5 354 fft_types subbatchsize fft_type_descriptor
+R 22065 5 355 fft_types nstream_many fft_type_descriptor
+R 22066 5 356 fft_types srh fft_type_descriptor
+R 22069 5 359 fft_types srh$sd fft_type_descriptor
+R 22070 5 360 fft_types srh$p fft_type_descriptor
+R 22071 5 361 fft_types srh$o fft_type_descriptor
+R 22074 5 364 fft_types aux fft_type_descriptor
+R 22075 5 365 fft_types aux$sd fft_type_descriptor
+R 22076 5 366 fft_types aux$p fft_type_descriptor
+R 22077 5 367 fft_types aux$o fft_type_descriptor
+R 22203 25 3 fft_smallbox_type fft_box_descriptor
+R 22204 5 4 fft_smallbox_type irb fft_box_descriptor
+R 22207 5 7 fft_smallbox_type irb$sd fft_box_descriptor
+R 22208 5 8 fft_smallbox_type irb$p fft_box_descriptor
+R 22209 5 9 fft_smallbox_type irb$o fft_box_descriptor
+R 22211 5 11 fft_smallbox_type imin2 fft_box_descriptor
+R 22213 5 13 fft_smallbox_type imin2$sd fft_box_descriptor
+R 22214 5 14 fft_smallbox_type imin2$p fft_box_descriptor
+R 22215 5 15 fft_smallbox_type imin2$o fft_box_descriptor
+R 22217 5 17 fft_smallbox_type imin3 fft_box_descriptor
+R 22219 5 19 fft_smallbox_type imin3$sd fft_box_descriptor
+R 22220 5 20 fft_smallbox_type imin3$p fft_box_descriptor
+R 22221 5 21 fft_smallbox_type imin3$o fft_box_descriptor
+R 22223 5 23 fft_smallbox_type imax2 fft_box_descriptor
+R 22225 5 25 fft_smallbox_type imax2$sd fft_box_descriptor
+R 22226 5 26 fft_smallbox_type imax2$p fft_box_descriptor
+R 22227 5 27 fft_smallbox_type imax2$o fft_box_descriptor
+R 22229 5 29 fft_smallbox_type imax3 fft_box_descriptor
+R 22231 5 31 fft_smallbox_type imax3$sd fft_box_descriptor
+R 22232 5 32 fft_smallbox_type imax3$p fft_box_descriptor
+R 22233 5 33 fft_smallbox_type imax3$o fft_box_descriptor
+R 22235 5 35 fft_smallbox_type np2 fft_box_descriptor
+R 22237 5 37 fft_smallbox_type np2$sd fft_box_descriptor
+R 22238 5 38 fft_smallbox_type np2$p fft_box_descriptor
+R 22239 5 39 fft_smallbox_type np2$o fft_box_descriptor
+R 22241 5 41 fft_smallbox_type np3 fft_box_descriptor
+R 22243 5 43 fft_smallbox_type np3$sd fft_box_descriptor
+R 22244 5 44 fft_smallbox_type np3$p fft_box_descriptor
+R 22245 5 45 fft_smallbox_type np3$o fft_box_descriptor
+R 22247 5 47 fft_smallbox_type nr1 fft_box_descriptor
+R 22248 5 48 fft_smallbox_type nr2 fft_box_descriptor
+R 22249 5 49 fft_smallbox_type nr3 fft_box_descriptor
+R 22250 5 50 fft_smallbox_type nr1x fft_box_descriptor
+R 22251 5 51 fft_smallbox_type nr2x fft_box_descriptor
+R 22252 5 52 fft_smallbox_type nr3x fft_box_descriptor
+R 22253 5 53 fft_smallbox_type nnr fft_box_descriptor
+R 22254 5 54 fft_smallbox_type mype fft_box_descriptor
+R 22255 5 55 fft_smallbox_type comm fft_box_descriptor
+R 22256 5 56 fft_smallbox_type nproc fft_box_descriptor
+R 22257 5 57 fft_smallbox_type root fft_box_descriptor
+R 22290 6 5 fft_base dfftp
+R 22304 19 1 fft_interfaces fwfft
+R 22305 19 2 fft_interfaces invfft
+R 22395 6 9 control_flags gamma_only
+R 22449 6 63 control_flags iverbosity
+S 22470 16 0 0 0 10 1 624 119757 14 400000 A 0 0 0 0 B 0 27 0 0 0 0 0 0 697 94 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 epsr
+S 22471 16 0 0 0 10 1 624 119769 14 400000 A 0 0 0 0 B 0 28 0 0 0 0 0 0 22472 8008 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 epsg
+S 22472 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1037794527 -640172613 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22473 16 1 0 0 6 1 624 119781 4 400000 A 0 0 0 0 B 0 29 0 0 0 0 0 0 1024 530 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 nr_points
+S 22474 16 1 0 0 10 1 624 119791 4 400000 A 0 0 0 0 B 0 30 0 0 0 0 0 0 22475 8011 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 r_max
+S 22475 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1079574528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22476 16 0 0 0 10 1 624 119805 14 400000 A 0 0 0 0 B 0 31 0 0 0 0 0 0 22478 8014 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dr
+S 22478 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1069088768 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22479 16 0 0 0 10 1 624 119808 14 400000 A 0 0 0 0 B 0 32 0 0 0 0 0 0 22480 8016 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dk
+S 22480 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1068504511 -1843976422 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22481 16 1 0 0 10 1 624 119817 4 400000 A 0 0 0 0 B 0 33 0 0 0 0 0 0 694 88 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 q_min
+S 22482 16 1 0 0 10 1 624 119830 4 400000 A 0 0 0 0 B 0 34 0 0 0 0 0 0 620 8019 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 q_cut
+S 22483 16 1 0 0 6 1 624 119842 4 400000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 20 215 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 nqs
+S 22484 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22485 16 0 0 0 8690 1 624 119846 4 400000 A 0 0 0 0 B 0 36 0 0 0 0 0 0 22504 126 0 0 0 0 0 0 0 0 0 0 0 8062 0 624 0 0 0 0 q_mesh
+S 22486 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1060350250 810889825 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22487 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1061376030 -723823310 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22488 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1062241355 547692329 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22489 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1062891886 -1748543577 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22490 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1063544610 -1914565643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22491 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1064225584 -1401903245 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22492 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1064757771 -1204359707 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22493 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1065411914 -1921279940 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22494 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1065927628 -1226640220 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22495 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1066537810 1387092982 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22496 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1067077658 638496556 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22497 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1067654572 -661165522 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22498 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1068219683 -1250253592 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22499 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1068768150 2111094272 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22500 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1069359706 -1651463106 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22501 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1069881582 451545091 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22502 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1070500821 164261327 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22503 3 0 0 0 10 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1070996454 -873258028 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 22504 7 4 0 4 8690 1 624 120213 4080004c 400100 A 10000000 0 0 0 B 0 36 0 0 0 0 0 0 0 0 0 0 22521 0 0 0 0 0 0 0 0 8062 0 624 0 22485 0 0 q_mesh$ac
+S 22505 7 4 0 4 8696 22511 624 120223 800014 100 A 0 0 0 0 B 0 42 0 0 0 0 0 0 0 0 0 0 22522 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 kernel
+S 22506 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 1024 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22507 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 1025 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22508 3 0 0 0 7 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20500 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22509 3 0 0 0 7 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 410000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22510 3 0 0 0 7 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21525 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22511 7 4 0 4 8699 1 624 120230 800014 100 A 0 0 0 0 B 0 42 0 0 0 3280064 0 0 0 0 0 0 22522 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 d2phi_dk2
+S 22512 6 4 0 0 10 1 624 120240 80000c 0 A 0 0 0 0 B 0 44 0 0 0 0 0 0 0 0 0 0 22523 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 b_value
+S 22514 6 4 0 0 10 1 624 120255 80001c 0 A 0 0 0 0 B 0 45 0 0 0 0 0 0 0 0 0 0 22524 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 c_value
+S 22516 27 0 0 0 9 22525 624 120270 0 8000000 A 0 0 0 0 B 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 xc_rvv10
+S 22517 27 0 0 0 6 22715 624 120279 0 8000000 A 0 0 0 0 B 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 interpolate_kernel
+S 22518 27 0 0 0 6 22700 624 120298 0 8000000 A 0 0 0 0 B 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 initialize_spline_interpolation
+S 22519 27 0 0 0 9 22549 624 120330 0 8000000 A 0 0 0 0 B 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rvv10_stress
+S 22521 11 0 0 4 9 22469 624 120343 40808000 805000 A 0 0 0 0 B 2 54 0 0 0 160 0 0 22504 22504 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _rvv10$21
+S 22522 11 0 0 4 9 22521 624 120353 40800010 805000 A 0 0 0 0 B 0 54 0 0 0 6560192 0 0 22505 22511 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _rvv10$6
+S 22523 11 0 0 0 9 22522 624 120362 40800000 805000 A 0 0 0 0 B 0 54 0 0 0 8 0 0 22512 22512 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _rvv10$10
+S 22524 11 0 0 0 9 22523 624 120372 40800010 805000 A 0 0 0 0 B 0 54 0 0 0 8 0 0 22514 22514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _rvv10$14
+S 22525 23 5 0 0 0 22533 624 120270 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 xc_rvv10
+S 22526 7 3 1 0 8702 1 22525 120382 20000014 10003000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rho_valence
+S 22527 7 3 1 0 8705 1 22525 120394 20000014 10003000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rho_core
+S 22528 1 3 1 0 6 1 22525 120403 14 3000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 nspin
+S 22529 1 3 3 0 10 1 22525 120409 14 3000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 etxc
+S 22530 1 3 3 0 10 1 22525 120414 14 3000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vtxc
+S 22531 7 3 3 0 8708 1 22525 120419 20000014 10003000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 v
+S 22532 1 3 1 0 10 1 22525 120421 80000014 3000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 b_value_
+S 22533 14 5 0 0 0 1 22525 120270 20000000 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11803 7 0 0 0 0 0 0 0 0 0 0 0 0 61 0 624 0 0 0 0 xc_rvv10 xc_rvv10 
+F 22533 7 22526 22527 22528 22529 22530 22531 22532
+S 22534 6 1 0 0 7 1 22525 118531 40800016 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22535 6 1 0 0 7 1 22525 118539 40800016 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22536 6 1 0 0 7 1 22525 120430 40800016 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22537 6 1 0 0 7 1 22525 120438 40800016 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8320
+S 22538 6 1 0 0 7 1 22525 118555 40800016 3000 A 0 0 0 0 B 0 75 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22539 6 1 0 0 7 1 22525 118563 40800016 3000 A 0 0 0 0 B 0 75 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22540 6 1 0 0 7 1 22525 118702 40800016 3000 A 0 0 0 0 B 0 75 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_2
+S 22541 6 1 0 0 7 1 22525 120447 40800016 3000 A 0 0 0 0 B 0 75 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8327
+S 22542 6 1 0 0 7 1 22525 114126 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22543 6 1 0 0 7 1 22525 117799 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22544 6 1 0 0 7 1 22525 120456 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22545 6 1 0 0 7 1 22525 117826 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22546 6 1 0 0 7 1 22525 117835 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22547 6 1 0 0 7 1 22525 120465 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8337
+S 22548 6 1 0 0 7 1 22525 120474 40800016 3000 A 0 0 0 0 B 0 83 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8340
+S 22549 23 5 0 0 0 22554 624 120330 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rvv10_stress
+S 22550 7 3 1 0 8711 1 22549 120382 20000014 10003000 A 0 0 0 0 B 0 257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rho_valence
+S 22551 7 3 1 0 8714 1 22549 120394 20000014 10003000 A 0 0 0 0 B 0 257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rho_core
+S 22552 1 3 1 0 6 1 22549 120403 14 3000 A 0 0 0 0 B 0 257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 nspin
+S 22553 7 3 3 0 8717 1 22549 120483 800014 3000 A 0 0 0 0 B 0 257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sigma
+S 22554 14 5 0 0 0 1 22549 120330 20000000 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11811 4 0 0 0 0 0 0 0 0 0 0 0 0 257 0 624 0 0 0 0 rvv10_stress rvv10_stress 
+F 22554 4 22550 22551 22552 22553
+S 22555 6 1 0 0 7 1 22549 118531 40800016 3000 A 0 0 0 0 B 0 267 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22556 6 1 0 0 7 1 22549 118539 40800016 3000 A 0 0 0 0 B 0 267 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22557 6 1 0 0 7 1 22549 120430 40800016 3000 A 0 0 0 0 B 0 267 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22558 6 1 0 0 7 1 22549 120489 40800016 3000 A 0 0 0 0 B 0 267 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8335
+S 22559 6 1 0 0 7 1 22549 118555 40800016 3000 A 0 0 0 0 B 0 269 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22560 6 1 0 0 7 1 22549 118563 40800016 3000 A 0 0 0 0 B 0 269 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22561 6 1 0 0 7 1 22549 118702 40800016 3000 A 0 0 0 0 B 0 269 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_2
+S 22562 6 1 0 0 7 1 22549 120498 40800016 3000 A 0 0 0 0 B 0 269 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8342
+S 22563 23 5 0 0 0 22571 624 120507 10 0 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rvv10_stress_gradient
+S 22564 7 3 1 0 8720 1 22563 120529 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 total_rho
+S 22565 7 3 1 0 8723 1 22563 120539 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gradient_rho
+S 22566 7 3 1 0 8729 1 22563 120552 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 q0
+S 22567 7 3 1 0 8732 1 22563 120555 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_drho
+S 22568 7 3 1 0 8735 1 22563 120564 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_dgradrho
+S 22569 7 3 1 0 8738 1 22563 120577 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas
+S 22570 7 3 3 0 8726 1 22563 120483 20000014 10003000 A 0 0 0 0 B 0 355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sigma
+S 22571 14 5 0 0 0 1 22563 120507 20000010 400000 A 0 0 0 0 B 0 355 0 0 0 0 0 11816 7 0 0 0 0 0 0 0 0 0 0 0 0 355 0 624 0 0 0 0 rvv10_stress_gradient rvv10_stress_gradient 
+F 22571 7 22564 22565 22566 22567 22568 22569 22570
+S 22572 6 1 0 0 7 1 22563 118531 40800016 3000 A 0 0 0 0 B 0 372 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22573 6 1 0 0 7 1 22563 118539 40800016 3000 A 0 0 0 0 B 0 372 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22574 6 1 0 0 7 1 22563 120430 40800016 3000 A 0 0 0 0 B 0 372 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22575 6 1 0 0 7 1 22563 120584 40800016 3000 A 0 0 0 0 B 0 372 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8343
+S 22576 6 1 0 0 7 1 22563 118555 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22577 6 1 0 0 7 1 22563 118563 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22578 6 1 0 0 7 1 22563 114118 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_8_1
+S 22579 6 1 0 0 7 1 22563 114126 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22580 6 1 0 0 7 1 22563 117799 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22581 6 1 0 0 7 1 22563 120593 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8353
+S 22582 6 1 0 0 7 1 22563 120602 40800016 3000 A 0 0 0 0 B 0 373 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8356
+S 22583 6 1 0 0 7 1 22563 120456 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22584 6 1 0 0 7 1 22563 117826 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22585 6 1 0 0 7 1 22563 117844 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_15_1
+S 22586 6 1 0 0 7 1 22563 120611 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_16_1
+S 22587 6 1 0 0 7 1 22563 117853 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_17_1
+S 22588 6 1 0 0 7 1 22563 120620 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8366
+S 22589 6 1 0 0 7 1 22563 120629 40800016 3000 A 0 0 0 0 B 0 374 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8369
+S 22590 6 1 0 0 7 1 22563 117871 40800016 3000 A 0 0 0 0 B 0 375 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_19_1
+S 22591 6 1 0 0 7 1 22563 120638 40800016 3000 A 0 0 0 0 B 0 375 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_20_1
+S 22592 6 1 0 0 7 1 22563 117880 40800016 3000 A 0 0 0 0 B 0 375 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_21_1
+S 22593 6 1 0 0 7 1 22563 120647 40800016 3000 A 0 0 0 0 B 0 375 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8376
+S 22594 6 1 0 0 7 1 22563 117898 40800016 3000 A 0 0 0 0 B 0 376 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_23_1
+S 22595 6 1 0 0 7 1 22563 120656 40800016 3000 A 0 0 0 0 B 0 376 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_24_1
+S 22596 6 1 0 0 7 1 22563 117907 40800016 3000 A 0 0 0 0 B 0 376 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_25_1
+S 22597 6 1 0 0 7 1 22563 120665 40800016 3000 A 0 0 0 0 B 0 376 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8383
+S 22598 6 1 0 0 7 1 22563 117925 40800016 3000 A 0 0 0 0 B 0 377 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_27_1
+S 22599 6 1 0 0 7 1 22563 120674 40800016 3000 A 0 0 0 0 B 0 377 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_28_1
+S 22600 6 1 0 0 7 1 22563 118848 40800016 3000 A 0 0 0 0 B 0 377 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_29_1
+S 22601 6 1 0 0 7 1 22563 120683 40800016 3000 A 0 0 0 0 B 0 377 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8390
+S 22602 6 1 0 0 7 1 22563 118866 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_31_1
+S 22603 6 1 0 0 7 1 22563 120692 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_32_1
+S 22604 6 1 0 0 7 1 22563 118893 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_34_1
+S 22605 6 1 0 0 7 1 22563 118902 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_35_1
+S 22606 6 1 0 0 7 1 22563 120701 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_36_1
+S 22607 6 1 0 0 7 1 22563 120710 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8400
+S 22608 6 1 0 0 7 1 22563 120719 40800016 3000 A 0 0 0 0 B 0 378 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8403
+S 22609 23 5 0 0 0 22614 624 120728 10 0 A 0 0 0 0 B 0 514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rvv10_stress_kernel
+S 22610 7 3 1 0 8744 1 22609 120529 20000014 10003000 A 0 0 0 0 B 0 514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 total_rho
+S 22611 7 3 1 0 8741 1 22609 120552 20000014 10003000 A 0 0 0 0 B 0 514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 q0
+S 22612 7 3 1 0 8750 1 22609 120577 20000014 10003000 A 0 0 0 0 B 0 514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas
+S 22613 7 3 3 0 8747 1 22609 120483 800014 3000 A 0 0 0 0 B 0 514 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sigma
+S 22614 14 5 0 0 0 1 22609 120728 20000010 400000 A 0 0 0 0 B 0 514 0 0 0 0 0 11824 4 0 0 0 0 0 0 0 0 0 0 0 0 514 0 624 0 0 0 0 rvv10_stress_kernel rvv10_stress_kernel 
+F 22614 4 22610 22611 22612 22613
+S 22615 6 1 0 0 7 1 22609 118531 40800016 3000 A 0 0 0 0 B 0 525 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22616 6 1 0 0 7 1 22609 118539 40800016 3000 A 0 0 0 0 B 0 525 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22617 6 1 0 0 7 1 22609 120430 40800016 3000 A 0 0 0 0 B 0 525 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22618 6 1 0 0 7 1 22609 120748 40800016 3000 A 0 0 0 0 B 0 525 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8380
+S 22619 6 1 0 0 7 1 22609 118555 40800016 3000 A 0 0 0 0 B 0 526 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22620 6 1 0 0 7 1 22609 118563 40800016 3000 A 0 0 0 0 B 0 526 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22621 6 1 0 0 7 1 22609 118702 40800016 3000 A 0 0 0 0 B 0 526 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_2
+S 22622 6 1 0 0 7 1 22609 120757 40800016 3000 A 0 0 0 0 B 0 526 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8387
+S 22623 6 1 0 0 7 1 22609 114126 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22624 6 1 0 0 7 1 22609 117799 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22625 6 1 0 0 7 1 22609 120456 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22626 6 1 0 0 7 1 22609 117826 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22627 6 1 0 0 7 1 22609 117835 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22628 6 1 0 0 7 1 22609 120766 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8397
+S 22629 6 1 0 0 7 1 22609 120710 40800016 3000 A 0 0 0 0 B 0 528 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8400
+S 22630 23 5 0 0 0 22636 624 120775 10 0 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 get_q0_on_grid
+S 22631 7 3 1 0 8753 1 22630 120529 20000014 10003000 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 total_rho
+S 22632 7 3 1 0 8756 1 22630 120539 20000014 10003000 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gradient_rho
+S 22633 7 3 2 0 8759 1 22630 120552 20000014 10003000 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 q0
+S 22634 7 3 2 0 8762 1 22630 120555 20000014 10003000 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_drho
+S 22635 7 3 2 0 8765 1 22630 120564 20000014 10003000 A 0 0 0 0 B 0 590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_dgradrho
+S 22636 14 5 0 0 0 1 22630 120775 20000010 400000 A 0 0 0 0 B 0 590 0 0 0 0 0 11829 5 0 0 0 0 0 0 0 0 0 0 0 0 590 0 624 0 0 0 0 get_q0_on_grid get_q0_on_grid 
+F 22636 5 22631 22632 22633 22634 22635
+S 22637 6 1 0 0 7 1 22630 118531 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22638 6 1 0 0 7 1 22630 118539 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22639 6 1 0 0 7 1 22630 120430 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22640 6 1 0 0 7 1 22630 120790 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8153
+S 22641 6 1 0 0 7 1 22630 118555 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22642 6 1 0 0 7 1 22630 118563 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22643 6 1 0 0 7 1 22630 114118 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_8_1
+S 22644 6 1 0 0 7 1 22630 114126 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22645 6 1 0 0 7 1 22630 117799 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22646 6 1 0 0 7 1 22630 120799 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8163
+S 22647 6 1 0 0 7 1 22630 120808 40800016 3000 A 0 0 0 0 B 0 594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8166
+S 22648 6 1 0 0 7 1 22630 120456 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22649 6 1 0 0 7 1 22630 117826 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22650 6 1 0 0 7 1 22630 117835 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22651 6 1 0 0 7 1 22630 120817 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8173
+S 22652 6 1 0 0 7 1 22630 120611 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_16_1
+S 22653 6 1 0 0 7 1 22630 117853 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_17_1
+S 22654 6 1 0 0 7 1 22630 117862 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_18_1
+S 22655 6 1 0 0 7 1 22630 120826 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8180
+S 22656 6 1 0 0 7 1 22630 120638 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_20_1
+S 22657 6 1 0 0 7 1 22630 117880 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_21_1
+S 22658 6 1 0 0 7 1 22630 117889 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_22_1
+S 22659 6 1 0 0 7 1 22630 120835 40800016 3000 A 0 0 0 0 B 0 595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8187
+S 22660 23 5 0 0 0 22664 624 120844 10 0 A 0 0 0 0 B 0 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 get_thetas_on_grid
+S 22661 7 3 1 0 8768 1 22660 120529 20000014 10003000 A 0 0 0 0 B 0 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 total_rho
+S 22662 7 3 1 0 8771 1 22660 120863 20000014 10003000 A 0 0 0 0 B 0 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 q0_on_grid
+S 22663 7 3 3 0 8774 1 22660 120577 20000014 10003000 A 0 0 0 0 B 0 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas
+S 22664 14 5 0 0 0 1 22660 120844 20000010 400000 A 0 0 0 0 B 0 675 0 0 0 0 0 11835 3 0 0 0 0 0 0 0 0 0 0 0 0 675 0 624 0 0 0 0 get_thetas_on_grid get_thetas_on_grid 
+F 22664 3 22661 22662 22663
+S 22665 6 1 0 0 7 1 22660 118531 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22666 6 1 0 0 7 1 22660 118539 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22667 6 1 0 0 7 1 22660 120430 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22668 6 1 0 0 7 1 22660 120874 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8176
+S 22669 6 1 0 0 7 1 22660 118555 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22670 6 1 0 0 7 1 22660 118563 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22671 6 1 0 0 7 1 22660 118702 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_2
+S 22672 6 1 0 0 7 1 22660 120883 40800016 3000 A 0 0 0 0 B 0 677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8183
+S 22673 6 1 0 0 7 1 22660 114126 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22674 6 1 0 0 7 1 22660 117799 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22675 6 1 0 0 7 1 22660 120456 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22676 6 1 0 0 7 1 22660 117826 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22677 6 1 0 0 7 1 22660 117835 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22678 6 1 0 0 7 1 22660 120892 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8193
+S 22679 6 1 0 0 7 1 22660 120901 40800016 3000 A 0 0 0 0 B 0 679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8196
+S 22680 23 5 0 0 0 22684 624 120910 10 0 A 0 0 0 0 B 0 723 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 spline_interpolation
+S 22681 7 3 1 0 8777 1 22680 6560 20000014 10003000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 x
+S 22682 7 3 1 0 8780 1 22680 120931 20000014 10003000 A 0 0 0 0 B 0 723 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 evaluation_points
+S 22683 7 3 3 0 8783 1 22680 120949 20000014 10003000 A 0 0 0 0 B 0 723 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 values
+S 22684 14 5 0 0 0 1 22680 120910 20000010 400000 A 0 0 0 0 B 0 723 0 0 0 0 0 11839 3 0 0 0 0 0 0 0 0 0 0 0 0 723 0 624 0 0 0 0 spline_interpolation spline_interpolation 
+F 22684 3 22681 22682 22683
+S 22685 6 1 0 0 7 1 22680 118531 40800016 3000 A 0 0 0 0 B 0 725 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22686 6 1 0 0 7 1 22680 118539 40800016 3000 A 0 0 0 0 B 0 725 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22687 6 1 0 0 7 1 22680 120430 40800016 3000 A 0 0 0 0 B 0 725 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22688 6 1 0 0 7 1 22680 120956 40800016 3000 A 0 0 0 0 B 0 725 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8191
+S 22689 6 1 0 0 7 1 22680 118555 40800016 3000 A 0 0 0 0 B 0 727 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22690 6 1 0 0 7 1 22680 118563 40800016 3000 A 0 0 0 0 B 0 727 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22691 6 1 0 0 7 1 22680 118702 40800016 3000 A 0 0 0 0 B 0 727 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_7_2
+S 22692 6 1 0 0 7 1 22680 120965 40800016 3000 A 0 0 0 0 B 0 727 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8198
+S 22693 6 1 0 0 7 1 22680 114126 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22694 6 1 0 0 7 1 22680 117799 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22695 6 1 0 0 7 1 22680 120456 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22696 6 1 0 0 7 1 22680 117826 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22697 6 1 0 0 7 1 22680 117835 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22698 6 1 0 0 7 1 22680 120974 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8208
+S 22699 6 1 0 0 7 1 22680 120983 40800016 3000 A 0 0 0 0 B 0 730 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8211
+S 22700 23 5 0 0 0 22703 624 120298 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initialize_spline_interpolation
+S 22701 7 3 1 0 8786 1 22700 6560 20000014 10003000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 x
+S 22702 7 3 3 0 8789 1 22700 120992 20000014 10003000 A 0 0 0 0 B 0 814 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d2y_dx2
+S 22703 14 5 0 0 0 1 22700 120298 20000000 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11843 2 0 0 0 0 0 0 0 0 0 0 0 0 814 0 624 0 0 0 0 initialize_spline_interpolation initialize_spline_interpolation 
+F 22703 2 22701 22702
+S 22704 6 1 0 0 7 1 22700 118531 40800016 3000 A 0 0 0 0 B 0 819 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22705 6 1 0 0 7 1 22700 118539 40800016 3000 A 0 0 0 0 B 0 819 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22706 6 1 0 0 7 1 22700 120430 40800016 3000 A 0 0 0 0 B 0 819 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22707 6 1 0 0 7 1 22700 121000 40800016 3000 A 0 0 0 0 B 0 819 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8206
+S 22708 6 1 0 0 7 1 22700 118555 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22709 6 1 0 0 7 1 22700 118563 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22710 6 1 0 0 7 1 22700 114118 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_8_1
+S 22711 6 1 0 0 7 1 22700 114126 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22712 6 1 0 0 7 1 22700 117799 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22713 6 1 0 0 7 1 22700 121009 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8216
+S 22714 6 1 0 0 7 1 22700 121018 40800016 3000 A 0 0 0 0 B 0 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8219
+S 22715 23 5 0 0 0 22718 624 120279 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 interpolate_kernel
+S 22716 1 3 1 0 10 1 22715 118046 14 3000 A 0 0 0 0 B 0 888 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 k
+S 22717 7 3 3 0 8792 1 22715 121027 20000014 10003000 A 0 0 0 0 B 0 888 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 kernel_of_k
+S 22718 14 5 0 0 0 1 22715 120279 20000000 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11846 2 0 0 0 0 0 0 0 0 0 0 0 0 888 0 624 0 0 0 0 interpolate_kernel interpolate_kernel 
+F 22718 2 22716 22717
+S 22719 6 1 0 0 7 1 22715 118531 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22720 6 1 0 0 7 1 22715 118539 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22721 6 1 0 0 7 1 22715 118547 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_4_2
+S 22722 6 1 0 0 7 1 22715 118555 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22723 6 1 0 0 7 1 22715 118563 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22724 6 1 0 0 7 1 22715 121039 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8220
+S 22725 6 1 0 0 7 1 22715 121048 40800016 3000 A 0 0 0 0 B 0 897 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8223
+S 22726 23 5 0 0 0 22729 624 121057 10 0 A 0 0 0 0 B 0 982 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 interpolate_dkernel_dk
+S 22727 1 3 1 0 10 1 22726 118046 14 3000 A 0 0 0 0 B 0 982 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 k
+S 22728 7 3 3 0 8795 1 22726 121080 800014 3000 A 0 0 0 0 B 0 982 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dkernel_of_dk
+S 22729 14 5 0 0 0 1 22726 121057 10 400000 A 0 0 0 0 B 0 982 0 0 0 0 0 11849 2 0 0 0 0 0 0 0 0 0 0 0 0 982 0 624 0 0 0 0 interpolate_dkernel_dk interpolate_dkernel_dk 
+F 22729 2 22727 22728
+S 22730 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 400 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 22731 23 5 0 0 0 22734 624 121094 10 0 A 0 0 0 0 B 0 1040 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas_to_uk
+S 22732 7 3 1 0 8798 1 22731 120577 20000014 10003000 A 0 0 0 0 B 0 1040 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas
+S 22733 7 3 2 0 8801 1 22731 121107 20000014 10003000 A 0 0 0 0 B 0 1040 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 u_vdw
+S 22734 14 5 0 0 0 1 22731 121094 20000010 400000 A 0 0 0 0 B 0 1040 0 0 0 0 0 11852 2 0 0 0 0 0 0 0 0 0 0 0 0 1040 0 624 0 0 0 0 thetas_to_uk thetas_to_uk 
+F 22734 2 22732 22733
+S 22735 6 1 0 0 7 1 22731 118531 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22736 6 1 0 0 7 1 22731 118539 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22737 6 1 0 0 7 1 22731 118547 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_4_2
+S 22738 6 1 0 0 7 1 22731 118555 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22739 6 1 0 0 7 1 22731 118563 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22740 6 1 0 0 7 1 22731 121113 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8470
+S 22741 6 1 0 0 7 1 22731 121122 40800016 3000 A 0 0 0 0 B 0 1046 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8473
+S 22742 6 1 0 0 7 1 22731 114118 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_8_1
+S 22743 6 1 0 0 7 1 22731 114126 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22744 6 1 0 0 7 1 22731 117808 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_11_1
+S 22745 6 1 0 0 7 1 22731 120456 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22746 6 1 0 0 7 1 22731 117826 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22747 6 1 0 0 7 1 22731 121131 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8483
+S 22748 6 1 0 0 7 1 22731 121140 40800016 3000 A 0 0 0 0 B 0 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8486
+S 22749 23 5 0 0 0 22752 624 121149 10 0 A 0 0 0 0 B 0 1097 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vdw_energy
+S 22750 7 3 3 0 8804 1 22749 120577 20000014 10003000 A 0 0 0 0 B 0 1097 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 thetas
+S 22751 1 3 2 0 10 1 22749 121160 14 3000 A 0 0 0 0 B 0 1097 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 vdw_xc_energy
+S 22752 14 5 0 0 0 1 22749 121149 20000010 400000 A 0 0 0 0 B 0 1097 0 0 0 0 0 11855 2 0 0 0 0 0 0 0 0 0 0 0 0 1097 0 624 0 0 0 0 vdw_energy vdw_energy 
+F 22752 2 22750 22751
+S 22753 6 1 0 0 7 1 22749 118531 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22754 6 1 0 0 7 1 22749 118539 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22755 6 1 0 0 7 1 22749 118547 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_4_2
+S 22756 6 1 0 0 7 1 22749 118555 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22757 6 1 0 0 7 1 22749 118563 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22758 6 1 0 0 7 1 22749 121174 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8484
+S 22759 6 1 0 0 7 1 22749 121183 40800016 3000 A 0 0 0 0 B 0 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8487
+S 22760 23 5 0 0 0 22768 624 121192 10 0 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 get_potential
+S 22761 7 3 1 0 8807 1 22760 120552 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 q0
+S 22762 7 3 1 0 8813 1 22760 120555 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_drho
+S 22763 7 3 1 0 8816 1 22760 120564 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dq0_dgradrho
+S 22764 7 3 1 0 8819 1 22760 120529 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 total_rho
+S 22765 7 3 1 0 8810 1 22760 120539 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gradient_rho
+S 22766 7 3 1 0 8822 1 22760 121107 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 u_vdw
+S 22767 7 3 3 0 8825 1 22760 121206 20000014 10003000 A 0 0 0 0 B 0 1174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 potential
+S 22768 14 5 0 0 0 1 22760 121192 20000010 400000 A 0 0 0 0 B 0 1174 0 0 0 0 0 11858 7 0 0 0 0 0 0 0 0 0 0 0 0 1174 0 624 0 0 0 0 get_potential get_potential 
+F 22768 7 22761 22762 22763 22764 22765 22766 22767
+S 22769 6 1 0 0 7 1 22760 118531 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_1_2
+S 22770 6 1 0 0 7 1 22760 118539 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_2_2
+S 22771 6 1 0 0 7 1 22760 120430 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_3_2
+S 22772 6 1 0 0 7 1 22760 121216 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8488
+S 22773 6 1 0 0 7 1 22760 118555 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_5_2
+S 22774 6 1 0 0 7 1 22760 118563 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_6_2
+S 22775 6 1 0 0 7 1 22760 114118 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_8_1
+S 22776 6 1 0 0 7 1 22760 114126 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_9_1
+S 22777 6 1 0 0 7 1 22760 117799 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_10_1
+S 22778 6 1 0 0 7 1 22760 121225 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8498
+S 22779 6 1 0 0 7 1 22760 121234 40800016 3000 A 0 0 0 0 B 0 1180 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8501
+S 22780 6 1 0 0 7 1 22760 120456 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_12_1
+S 22781 6 1 0 0 7 1 22760 117826 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_13_1
+S 22782 6 1 0 0 7 1 22760 117835 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_14_1
+S 22783 6 1 0 0 7 1 22760 121243 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8508
+S 22784 6 1 0 0 7 1 22760 120611 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_16_1
+S 22785 6 1 0 0 7 1 22760 117853 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_17_1
+S 22786 6 1 0 0 7 1 22760 117862 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_18_1
+S 22787 6 1 0 0 7 1 22760 121252 40800016 3000 A 0 0 0 0 B 0 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8515
+S 22788 6 1 0 0 7 1 22760 120638 40800016 3000 A 0 0 0 0 B 0 1182 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_20_1
+S 22789 6 1 0 0 7 1 22760 117880 40800016 3000 A 0 0 0 0 B 0 1182 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_21_1
+S 22790 6 1 0 0 7 1 22760 117889 40800016 3000 A 0 0 0 0 B 0 1182 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_22_1
+S 22791 6 1 0 0 7 1 22760 121261 40800016 3000 A 0 0 0 0 B 0 1182 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8522
+S 22792 6 1 0 0 7 1 22760 120656 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_24_1
+S 22793 6 1 0 0 7 1 22760 117907 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_25_1
+S 22794 6 1 0 0 7 1 22760 117925 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_27_1
+S 22795 6 1 0 0 7 1 22760 120674 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_28_1
+S 22796 6 1 0 0 7 1 22760 118848 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_29_1
+S 22797 6 1 0 0 7 1 22760 121270 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8532
+S 22798 6 1 0 0 7 1 22760 121279 40800016 3000 A 0 0 0 0 B 0 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8535
+S 22799 6 1 0 0 7 1 22760 118866 40800016 3000 A 0 0 0 0 B 0 1184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_31_1
+S 22800 6 1 0 0 7 1 22760 120692 40800016 3000 A 0 0 0 0 B 0 1184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_32_1
+S 22801 6 1 0 0 7 1 22760 118884 40800016 3000 A 0 0 0 0 B 0 1184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_b_33_1
+S 22802 6 1 0 0 7 1 22760 121288 40800016 3000 A 0 0 0 0 B 0 1184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_8542
+S 22803 23 5 0 0 0 22804 624 121297 10 0 A 0 0 0 0 B 0 1299 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 generate_kernel
+S 22804 14 5 0 0 0 1 22803 121297 10 400000 A 0 0 0 0 B 0 1299 0 0 0 0 0 11866 0 0 0 0 0 0 0 0 0 0 0 0 0 1299 0 624 0 0 0 0 generate_kernel generate_kernel 
+F 22804 0
+S 22805 23 5 0 0 0 22807 624 121313 10 0 A 0 0 0 0 B 0 1335 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 radial_fft
+S 22806 7 3 3 0 8828 1 22805 121324 800014 3000 A 0 0 0 0 B 0 1335 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 phi
+S 22807 14 5 0 0 0 1 22805 121313 10 400000 A 0 0 0 0 B 0 1335 0 0 0 0 0 11867 1 0 0 0 0 0 0 0 0 0 0 0 0 1335 0 624 0 0 0 0 radial_fft radial_fft 
+F 22807 1 22806
+S 22808 23 5 0 0 0 22811 624 121328 10 0 A 0 0 0 0 B 0 1370 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 set_up_splines
+S 22809 7 3 1 0 8831 1 22808 121324 800014 3000 A 0 0 0 0 B 0 1370 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 phi
+S 22810 7 3 3 0 8834 1 22808 121343 800014 3000 A 0 0 0 0 B 0 1370 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d2
+S 22811 14 5 0 0 0 1 22808 121328 10 400000 A 0 0 0 0 B 0 1370 0 0 0 0 0 11869 2 0 0 0 0 0 0 0 0 0 0 0 0 1370 0 624 0 0 0 0 set_up_splines set_up_splines 
+F 22811 2 22809 22810
+A 13 2 0 0 0 6 644 0 0 0 13 0 0 0 0 0 0 0 0 0 0 0
+A 15 2 0 0 0 6 645 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0
+A 88 2 0 0 0 10 694 0 0 0 88 0 0 0 0 0 0 0 0 0 0 0
+A 94 2 0 0 0 10 697 0 0 0 94 0 0 0 0 0 0 0 0 0 0 0
+A 127 2 0 0 0 6 768 0 0 0 127 0 0 0 0 0 0 0 0 0 0 0
+A 179 1 0 0 0 85 821 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 182 1 0 0 0 94 823 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 189 2 0 0 0 6 852 0 0 0 189 0 0 0 0 0 0 0 0 0 0 0
+A 191 2 0 0 0 6 853 0 0 0 191 0 0 0 0 0 0 0 0 0 0 0
+A 193 2 0 0 0 6 854 0 0 0 193 0 0 0 0 0 0 0 0 0 0 0
+A 198 2 0 0 0 6 855 0 0 0 198 0 0 0 0 0 0 0 0 0 0 0
+A 200 2 0 0 0 6 856 0 0 0 200 0 0 0 0 0 0 0 0 0 0 0
+A 202 2 0 0 0 6 857 0 0 0 202 0 0 0 0 0 0 0 0 0 0 0
+A 204 2 0 0 0 6 858 0 0 0 204 0 0 0 0 0 0 0 0 0 0 0
+A 206 2 0 0 0 6 859 0 0 0 206 0 0 0 0 0 0 0 0 0 0 0
+A 208 2 0 0 0 6 860 0 0 0 208 0 0 0 0 0 0 0 0 0 0 0
+A 210 2 0 0 0 6 861 0 0 0 210 0 0 0 0 0 0 0 0 0 0 0
+A 213 2 0 0 0 6 862 0 0 0 213 0 0 0 0 0 0 0 0 0 0 0
+A 215 2 0 0 0 6 863 0 0 0 215 0 0 0 0 0 0 0 0 0 0 0
+A 217 2 0 0 0 6 864 0 0 0 217 0 0 0 0 0 0 0 0 0 0 0
+A 219 2 0 0 0 6 865 0 0 0 219 0 0 0 0 0 0 0 0 0 0 0
+A 221 2 0 0 18 6 866 0 0 0 221 0 0 0 0 0 0 0 0 0 0 0
+A 223 2 0 0 20 6 867 0 0 0 223 0 0 0 0 0 0 0 0 0 0 0
+A 225 2 0 0 22 6 868 0 0 0 225 0 0 0 0 0 0 0 0 0 0 0
+A 227 2 0 0 24 6 869 0 0 0 227 0 0 0 0 0 0 0 0 0 0 0
+A 229 2 0 0 26 6 870 0 0 0 229 0 0 0 0 0 0 0 0 0 0 0
+A 231 2 0 0 28 6 871 0 0 0 231 0 0 0 0 0 0 0 0 0 0 0
+A 233 2 0 0 30 6 872 0 0 0 233 0 0 0 0 0 0 0 0 0 0 0
+A 235 2 0 0 32 6 873 0 0 0 235 0 0 0 0 0 0 0 0 0 0 0
+A 237 2 0 0 34 6 874 0 0 0 237 0 0 0 0 0 0 0 0 0 0 0
+A 252 1 0 0 0 124 887 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 253 2 0 0 0 6 990 0 0 0 253 0 0 0 0 0 0 0 0 0 0 0
+A 255 2 0 0 0 6 985 0 0 0 255 0 0 0 0 0 0 0 0 0 0 0
+A 259 2 0 0 0 6 986 0 0 0 259 0 0 0 0 0 0 0 0 0 0 0
+A 263 2 0 0 0 6 987 0 0 0 263 0 0 0 0 0 0 0 0 0 0 0
+A 267 2 0 0 0 6 988 0 0 0 267 0 0 0 0 0 0 0 0 0 0 0
+A 271 2 0 0 0 6 989 0 0 0 271 0 0 0 0 0 0 0 0 0 0 0
+A 326 2 0 0 0 6 991 0 0 0 326 0 0 0 0 0 0 0 0 0 0 0
+A 330 2 0 0 0 6 992 0 0 0 330 0 0 0 0 0 0 0 0 0 0 0
+A 334 2 0 0 0 6 993 0 0 0 334 0 0 0 0 0 0 0 0 0 0 0
+A 338 2 0 0 0 6 994 0 0 0 338 0 0 0 0 0 0 0 0 0 0 0
+A 342 2 0 0 0 6 995 0 0 0 342 0 0 0 0 0 0 0 0 0 0 0
+A 346 2 0 0 0 6 996 0 0 0 346 0 0 0 0 0 0 0 0 0 0 0
+A 350 2 0 0 0 6 997 0 0 0 350 0 0 0 0 0 0 0 0 0 0 0
+A 354 2 0 0 0 6 998 0 0 0 354 0 0 0 0 0 0 0 0 0 0 0
+A 358 2 0 0 0 6 999 0 0 0 358 0 0 0 0 0 0 0 0 0 0 0
+A 362 2 0 0 0 6 1000 0 0 0 362 0 0 0 0 0 0 0 0 0 0 0
+A 366 2 0 0 0 6 1001 0 0 0 366 0 0 0 0 0 0 0 0 0 0 0
+A 370 2 0 0 0 6 1002 0 0 0 370 0 0 0 0 0 0 0 0 0 0 0
+A 374 2 0 0 0 6 1003 0 0 0 374 0 0 0 0 0 0 0 0 0 0 0
+A 378 2 0 0 0 6 1004 0 0 0 378 0 0 0 0 0 0 0 0 0 0 0
+A 394 2 0 0 0 6 1005 0 0 0 394 0 0 0 0 0 0 0 0 0 0 0
+A 530 2 0 0 0 6 1006 0 0 0 530 0 0 0 0 0 0 0 0 0 0 0
+A 534 2 0 0 0 6 1007 0 0 0 534 0 0 0 0 0 0 0 0 0 0 0
+A 538 2 0 0 0 6 1008 0 0 0 538 0 0 0 0 0 0 0 0 0 0 0
+A 548 2 0 0 0 6 1009 0 0 0 548 0 0 0 0 0 0 0 0 0 0 0
+A 552 2 0 0 0 6 1010 0 0 0 552 0 0 0 0 0 0 0 0 0 0 0
+A 556 2 0 0 0 6 1011 0 0 0 556 0 0 0 0 0 0 0 0 0 0 0
+A 560 2 0 0 0 6 1012 0 0 0 560 0 0 0 0 0 0 0 0 0 0 0
+A 628 1 0 0 0 181 1023 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 631 1 0 0 0 181 1025 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 634 1 0 0 0 181 1027 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 637 1 0 0 0 181 1029 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 640 1 0 0 0 181 1031 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 643 1 0 0 0 190 1036 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 646 1 0 0 0 190 1038 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 649 1 0 0 0 190 1040 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 652 1 0 0 0 199 1045 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 655 1 0 0 0 199 1047 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 658 1 0 0 0 199 1049 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 661 1 0 0 0 199 1051 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 664 1 0 0 0 199 1053 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 667 1 0 0 0 199 1055 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 670 1 0 0 0 199 1057 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 673 1 0 0 0 199 1059 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 676 1 0 0 0 199 1061 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 679 1 0 0 0 199 1063 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 682 1 0 0 0 199 1065 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 685 1 0 0 0 199 1067 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 688 1 0 0 0 199 1069 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 691 1 0 0 0 199 1071 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 694 1 0 0 0 199 1073 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 697 1 0 0 0 199 1075 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 700 1 0 0 0 199 1077 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 703 1 0 0 0 199 1079 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 706 1 0 0 0 199 1081 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 709 1 0 0 0 199 1083 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 712 1 0 0 0 199 1085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 715 1 0 0 0 199 1087 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 718 1 0 0 0 199 1089 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 721 1 0 0 0 199 1091 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 724 1 0 0 0 199 1093 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 727 1 0 0 0 199 1095 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 730 1 0 0 0 199 1097 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 733 1 0 0 0 199 1099 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 736 1 0 0 0 199 1101 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 739 1 0 0 0 199 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 742 1 0 0 602 199 1105 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 745 1 0 0 0 199 1107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 748 1 0 0 0 199 1109 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 751 1 0 0 0 208 1114 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 754 1 0 0 0 208 1116 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 757 1 0 0 0 208 1118 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 760 1 0 0 0 208 1120 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 763 1 0 0 0 208 1122 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 766 1 0 0 0 208 1124 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 769 1 0 0 0 208 1126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 772 1 0 0 0 208 1128 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 775 1 0 0 0 208 1130 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 778 1 0 0 0 208 1132 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 781 1 0 0 0 208 1134 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 784 1 0 0 0 208 1136 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 787 1 0 0 0 208 1138 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 790 1 0 0 0 208 1140 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 793 1 0 0 0 208 1142 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 796 1 0 0 0 217 1147 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 799 1 0 0 0 217 1149 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 802 1 0 0 0 217 1151 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 805 1 0 0 0 217 1153 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 808 1 0 0 0 217 1155 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 811 1 0 0 0 217 1157 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 814 1 0 0 0 217 1159 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 817 1 0 0 0 217 1161 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 820 1 0 0 0 217 1163 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 823 1 0 0 0 217 1165 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 826 1 0 0 0 217 1167 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 829 1 0 0 0 217 1169 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 832 1 0 0 0 217 1171 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 835 1 0 0 0 217 1173 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 838 1 0 0 0 217 1175 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 841 1 0 0 0 217 1177 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 844 1 0 0 0 217 1179 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 847 1 0 0 0 217 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 850 1 0 0 0 217 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 853 1 0 0 0 217 1185 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 856 1 0 0 0 217 1187 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 859 1 0 0 0 217 1189 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 862 1 0 0 0 217 1191 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 865 1 0 0 0 217 1193 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 868 1 0 0 0 217 1195 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 871 1 0 0 0 217 1197 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 874 1 0 0 0 217 1199 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 877 1 0 0 0 217 1201 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 880 1 0 0 0 226 1206 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 883 1 0 0 0 226 1208 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 886 1 0 0 0 226 1210 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 889 1 0 0 0 226 1212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 892 1 0 0 0 226 1214 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 895 1 0 0 0 226 1216 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 898 1 0 0 0 226 1218 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 901 1 0 0 0 226 1220 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 904 1 0 0 0 226 1222 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 907 1 0 0 0 226 1224 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 910 1 0 0 0 235 1229 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 913 1 0 0 0 235 1231 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 916 1 0 0 0 235 1233 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 919 1 0 0 0 235 1235 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 922 1 0 0 0 235 1237 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 925 1 0 0 0 235 1239 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 928 1 0 0 0 235 1241 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 931 1 0 0 721 244 1246 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 934 1 0 0 724 244 1248 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 937 1 0 0 727 244 1250 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 940 1 0 0 730 244 1252 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 943 1 0 0 733 244 1254 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 946 1 0 0 736 244 1256 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 949 1 0 0 390 253 1261 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 952 1 0 0 0 262 1266 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 955 1 0 0 0 262 1268 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 958 1 0 0 0 271 1273 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 961 1 0 0 0 271 1275 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 964 1 0 0 0 280 1280 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 967 1 0 0 0 280 1282 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1005 2 0 0 0 7 1313 0 0 0 1005 0 0 0 0 0 0 0 0 0 0 0
+A 1006 2 0 0 0 7 1314 0 0 0 1006 0 0 0 0 0 0 0 0 0 0 0
+A 1009 1 0 1 0 355 1317 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1015 1 0 3 0 361 1339 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1021 1 0 3 0 367 1341 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1025 1 0 5 0 373 1343 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1563 2 0 0 0 7 1504 0 0 0 1563 0 0 0 0 0 0 0 0 0 0 0
+A 1566 2 0 0 0 7 1507 0 0 0 1566 0 0 0 0 0 0 0 0 0 0 0
+A 2128 2 0 0 0 7 1526 0 0 0 2128 0 0 0 0 0 0 0 0 0 0 0
+A 4414 2 0 0 4174 18 11383 0 0 0 4414 0 0 0 0 0 0 0 0 0 0 0
+A 7070 2 0 0 6889 18 21408 0 0 0 7070 0 0 0 0 0 0 0 0 0 0 0
+A 7142 2 0 0 7000 7 21418 0 0 0 7142 0 0 0 0 0 0 0 0 0 0 0
+A 7841 2 0 0 2092 22 21710 0 0 0 7841 0 0 0 0 0 0 0 0 0 0 0
+A 8008 2 0 0 2713 10 22472 0 0 0 8008 0 0 0 0 0 0 0 0 0 0 0
+A 8011 2 0 0 7915 10 22475 0 0 0 8011 0 0 0 0 0 0 0 0 0 0 0
+A 8014 2 0 0 7916 10 22478 0 0 0 8014 0 0 0 0 0 0 0 0 0 0 0
+A 8016 2 0 0 0 10 22480 0 0 0 8016 0 0 0 0 0 0 0 0 0 0 0
+A 8019 2 0 0 2824 10 620 0 0 0 8019 0 0 0 0 0 0 0 0 0 0 0
+A 8022 2 0 0 2724 7 22484 0 0 0 8022 0 0 0 0 0 0 0 0 0 0 0
+A 8024 2 0 0 7921 10 22486 0 0 0 8024 0 0 0 0 0 0 0 0 0 0 0
+A 8025 2 0 0 7918 10 22487 0 0 0 8025 0 0 0 0 0 0 0 0 0 0 0
+A 8026 2 0 0 7920 10 22488 0 0 0 8026 0 0 0 0 0 0 0 0 0 0 0
+A 8027 2 0 0 2725 10 22489 0 0 0 8027 0 0 0 0 0 0 0 0 0 0 0
+A 8028 2 0 0 2727 10 22490 0 0 0 8028 0 0 0 0 0 0 0 0 0 0 0
+A 8029 2 0 0 0 10 22491 0 0 0 8029 0 0 0 0 0 0 0 0 0 0 0
+A 8030 2 0 0 5409 10 22492 0 0 0 8030 0 0 0 0 0 0 0 0 0 0 0
+A 8031 2 0 0 0 10 22493 0 0 0 8031 0 0 0 0 0 0 0 0 0 0 0
+A 8032 2 0 0 7923 10 22494 0 0 0 8032 0 0 0 0 0 0 0 0 0 0 0
+A 8033 2 0 0 7925 10 22495 0 0 0 8033 0 0 0 0 0 0 0 0 0 0 0
+A 8034 2 0 0 7922 10 22496 0 0 0 8034 0 0 0 0 0 0 0 0 0 0 0
+A 8035 2 0 0 7924 10 22497 0 0 0 8035 0 0 0 0 0 0 0 0 0 0 0
+A 8036 2 0 0 4911 10 22498 0 0 0 8036 0 0 0 0 0 0 0 0 0 0 0
+A 8037 2 0 0 2731 10 22499 0 0 0 8037 0 0 0 0 0 0 0 0 0 0 0
+A 8038 2 0 0 0 10 22500 0 0 0 8038 0 0 0 0 0 0 0 0 0 0 0
+A 8039 2 0 0 0 10 22501 0 0 0 8039 0 0 0 0 0 0 0 0 0 0 0
+A 8040 2 0 0 5411 10 22502 0 0 0 8040 0 0 0 0 0 0 0 0 0 0 0
+A 8041 2 0 0 1705 10 22503 0 0 0 8041 0 0 0 0 0 0 0 0 0 0 0
+A 8042 15 0 0 0 10 22485 88 8043 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8043 15 0 0 0 10 22485 8024 8044 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8044 15 0 0 0 10 22485 8025 8045 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8045 15 0 0 0 10 22485 8026 8046 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8046 15 0 0 0 10 22485 8027 8047 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8047 15 0 0 0 10 22485 8028 8048 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8048 15 0 0 0 10 22485 8029 8049 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8049 15 0 0 0 10 22485 8030 8050 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8050 15 0 0 0 10 22485 8031 8051 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8051 15 0 0 0 10 22485 8032 8052 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8052 15 0 0 0 10 22485 8033 8053 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8053 15 0 0 0 10 22485 8034 8054 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8054 15 0 0 0 10 22485 8035 8055 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8055 15 0 0 0 10 22485 8036 8056 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8056 15 0 0 0 10 22485 8037 8057 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8057 15 0 0 0 10 22485 8038 8058 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8058 15 0 0 0 10 22485 8039 8059 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8059 15 0 0 0 10 22485 8040 8060 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8060 15 0 0 0 10 22485 8041 8061 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8061 15 0 0 0 10 22485 8019 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8062 15 0 0 0 8693 22485 8042 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8063 1 0 31 5424 8690 22504 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8064 2 0 0 7926 7 22506 0 0 0 8064 0 0 0 0 0 0 0 0 0 0 0
+A 8065 2 0 0 7928 7 22507 0 0 0 8065 0 0 0 0 0 0 0 0 0 0 0
+A 8066 2 0 0 2733 7 22508 0 0 0 8066 0 0 0 0 0 0 0 0 0 0 0
+A 8067 2 0 0 2735 7 22509 0 0 0 8067 0 0 0 0 0 0 0 0 0 0 0
+A 8068 2 0 0 2738 7 22510 0 0 0 8068 0 0 0 0 0 0 0 0 0 0 0
+A 8073 1 0 0 2838 7 22536 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8074 1 0 0 2833 7 22534 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8075 1 0 0 2840 7 22537 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8076 1 0 0 2835 7 22535 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8077 1 0 0 1897 7 22540 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8078 1 0 0 5445 7 22538 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8079 1 0 0 4955 7 22541 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8080 1 0 0 2839 7 22539 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8081 1 0 0 7957 7 22546 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8082 1 0 0 7953 7 22542 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8083 1 0 0 7958 7 22547 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8084 1 0 0 7955 7 22544 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8085 1 0 0 7954 7 22543 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8086 1 0 0 7682 7 22548 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8087 1 0 0 7956 7 22545 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8088 1 0 0 33 7 22557 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8089 1 0 0 29 7 22555 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8090 1 0 0 5449 7 22558 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8091 1 0 0 7690 7 22556 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8092 1 0 0 7973 7 22561 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8093 1 0 0 38 7 22559 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8094 1 0 0 7974 7 22562 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8095 1 0 0 7972 7 22560 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8096 1 0 0 68 7 22574 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8097 1 0 0 7706 7 22572 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8098 1 0 0 70 7 22575 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8099 1 0 0 66 7 22573 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8100 1 0 0 7714 7 22580 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8101 1 0 0 2842 7 22576 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8102 1 0 0 82 7 22581 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8103 1 0 0 4960 7 22578 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8104 1 0 0 5452 7 22577 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8105 1 0 0 5453 7 22582 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8106 1 0 0 4961 7 22579 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8107 1 0 0 5454 7 22587 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8108 1 0 0 2846 7 22583 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8109 1 0 0 7722 7 22588 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8110 1 0 0 2845 7 22585 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8111 1 0 0 2848 7 22584 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8112 1 0 0 98 7 22589 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8113 1 0 0 2847 7 22586 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8114 1 0 0 5455 7 22592 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8115 1 0 0 2850 7 22590 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8116 1 0 0 7986 7 22593 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8117 1 0 0 2852 7 22591 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8118 1 0 0 7730 7 22596 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8119 1 0 0 7987 7 22594 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8120 1 0 0 5456 7 22597 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8121 1 0 0 2296 7 22595 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8122 1 0 0 7991 7 22600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8123 1 0 0 2856 7 22598 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8124 1 0 0 7992 7 22601 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8125 1 0 0 7990 7 22599 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8126 1 0 0 7996 7 22606 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8127 1 0 0 5457 7 22602 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8128 1 0 0 7997 7 22607 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8129 1 0 0 7738 7 22604 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8130 1 0 0 0 7 22603 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8131 1 0 0 7998 7 22608 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8132 1 0 0 7995 7 22605 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8133 1 0 0 8003 7 22617 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8134 1 0 0 0 7 22615 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8135 1 0 0 8004 7 22618 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8136 1 0 0 8002 7 22616 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8137 1 0 0 5460 7 22621 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8138 1 0 0 8005 7 22619 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8139 1 0 0 0 7 22622 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8140 1 0 0 8006 7 22620 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8141 1 0 0 4971 7 22627 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8142 1 0 0 0 7 22623 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8143 1 0 0 7762 7 22628 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8144 1 0 0 4969 7 22625 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8145 1 0 0 4968 7 22624 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8146 1 0 0 0 7 22629 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8147 1 0 0 5461 7 22626 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8148 1 0 0 2873 7 22639 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8149 1 0 0 2874 7 22637 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8150 1 0 0 2875 7 22640 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8151 1 0 0 2876 7 22638 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8152 1 0 0 0 7 22645 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8153 1 0 0 5464 7 22641 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8154 1 0 0 0 7 22646 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8155 1 0 0 2877 7 22643 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8156 1 0 0 2880 7 22642 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8157 1 0 0 0 7 22647 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8158 1 0 0 7778 7 22644 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8159 1 0 0 5465 7 22650 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8160 1 0 0 0 7 22648 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8161 1 0 0 0 7 22651 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8162 1 0 0 7783 7 22649 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8163 1 0 0 4972 7 22654 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8164 1 0 0 2882 7 22652 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8165 1 0 0 5466 7 22655 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8166 1 0 0 2885 7 22653 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8167 1 0 0 2886 7 22658 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8168 1 0 0 2881 7 22656 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8169 1 0 0 2889 7 22659 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8170 1 0 0 7791 7 22657 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8171 1 0 0 0 7 22667 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8172 1 0 0 5468 7 22665 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8173 1 0 0 0 7 22668 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8174 1 0 0 0 7 22666 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8175 1 0 0 0 7 22671 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8176 1 0 0 0 7 22669 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8177 1 0 0 0 7 22672 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8178 1 0 0 5469 7 22670 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8179 1 0 0 2901 7 22677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8180 1 0 0 2896 7 22673 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8181 1 0 0 2904 7 22678 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8182 1 0 0 5470 7 22675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8183 1 0 0 2899 7 22674 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8184 1 0 0 2895 7 22679 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8185 1 0 0 4975 7 22676 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8186 1 0 0 2911 7 22687 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8187 1 0 0 2908 7 22685 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8188 1 0 0 4976 7 22688 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8189 1 0 0 2912 7 22686 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8190 1 0 0 2910 7 22691 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8191 1 0 0 5472 7 22689 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8192 1 0 0 2913 7 22692 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8193 1 0 0 2907 7 22690 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8194 1 0 0 0 7 22697 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8195 1 0 0 16 7 22693 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8196 1 0 0 0 7 22698 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8197 1 0 0 0 7 22695 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8198 1 0 0 5473 7 22694 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8199 1 0 0 5474 7 22699 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8200 1 0 0 0 7 22696 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8201 1 0 0 2924 7 22706 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8202 1 0 0 5475 7 22704 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8203 1 0 0 2927 7 22707 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8204 1 0 0 4981 7 22705 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8205 1 0 0 7846 7 22712 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8206 1 0 0 2915 7 22708 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8207 1 0 0 2929 7 22713 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8208 1 0 0 2920 7 22710 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8209 1 0 0 5476 7 22709 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8210 1 0 0 5477 7 22714 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8211 1 0 0 2923 7 22711 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8212 1 0 0 2933 7 22723 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8213 1 0 0 5478 7 22719 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8214 1 0 0 2936 7 22724 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8215 1 0 0 4985 7 22721 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8216 1 0 0 4984 7 22720 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8217 1 0 0 7859 7 22725 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8218 1 0 0 2930 7 22722 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8219 2 0 0 8098 7 22730 0 0 0 8219 0 0 0 0 0 0 0 0 0 0 0
+A 8220 1 0 0 2950 7 22739 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8221 1 0 0 2944 7 22735 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8222 1 0 0 2954 7 22740 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8223 1 0 0 2947 7 22737 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8224 1 0 0 2948 7 22736 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8225 1 0 0 7875 7 22741 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8226 1 0 0 5481 7 22738 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8227 1 0 0 4988 7 22746 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8228 1 0 0 2956 7 22742 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8229 1 0 0 4989 7 22747 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8230 1 0 0 2943 7 22744 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8231 1 0 0 5482 7 22743 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8232 1 0 0 5483 7 22748 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8233 1 0 0 7331 7 22745 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8234 1 0 0 7891 7 22757 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8235 1 0 0 5484 7 22753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8236 1 0 0 5485 7 22758 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8237 1 0 0 2966 7 22755 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8238 1 0 0 2967 7 22754 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8239 1 0 0 2957 7 22759 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8240 1 0 0 2970 7 22756 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8241 1 0 0 47 7 22771 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8242 1 0 0 43 7 22769 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8243 1 0 0 5487 7 22772 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8244 1 0 0 45 7 22770 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8245 1 0 0 5488 7 22777 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8246 1 0 0 2978 7 22773 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8247 1 0 0 2983 7 22778 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8248 1 0 0 2981 7 22775 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8249 1 0 0 2977 7 22774 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8250 1 0 0 2987 7 22779 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8251 1 0 0 2980 7 22776 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8252 1 0 0 5489 7 22782 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8253 1 0 0 4996 7 22780 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8254 1 0 0 4999 7 22783 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8255 1 0 0 4997 7 22781 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8256 1 0 0 2979 7 22786 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8257 1 0 0 5000 7 22784 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8258 1 0 0 5490 7 22787 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8259 1 0 0 5001 7 22785 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8260 1 0 0 2991 7 22790 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8261 1 0 0 2985 7 22788 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8262 1 0 0 2994 7 22791 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8263 1 0 0 2988 7 22789 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8264 1 0 0 3003 7 22796 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8265 1 0 0 5491 7 22792 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8266 1 0 0 5492 7 22797 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8267 1 0 0 3000 7 22794 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8268 1 0 0 2996 7 22793 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8269 1 0 0 3006 7 22798 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8270 1 0 0 2999 7 22795 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8271 1 0 0 5004 7 22801 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8272 1 0 0 5002 7 22799 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8273 1 0 0 5005 7 22802 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 8274 1 0 0 5003 7 22800 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Z
+J 133 1 1
+V 179 85 7 0
+S 0 85 0 0 0
+A 0 6 0 0 1 2 0
+J 134 1 1
+V 182 94 7 0
+S 0 94 0 0 0
+A 0 6 0 0 1 2 0
+J 53 1 1
+V 252 124 7 0
+S 0 124 0 0 0
+A 0 103 0 0 1 179 0
+J 21 1 1
+V 628 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 255 0
+J 21 1 1
+V 631 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 259 0
+J 21 1 1
+V 634 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 263 0
+J 21 1 1
+V 637 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 267 0
+J 21 1 1
+V 640 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 271 0
+J 32 1 1
+V 643 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 3 0
+J 32 1 1
+V 646 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 127 0
+J 32 1 1
+V 649 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 208 0
+J 41 1 1
+V 652 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 3 0
+J 41 1 1
+V 655 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 127 0
+J 41 1 1
+V 658 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 13 0
+J 41 1 1
+V 661 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 213 0
+J 41 1 1
+V 664 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 223 0
+J 41 1 1
+V 667 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 225 0
+J 41 1 1
+V 670 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 227 0
+J 41 1 1
+V 673 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 219 0
+J 41 1 1
+V 676 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 221 0
+J 41 1 1
+V 679 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 231 0
+J 41 1 1
+V 682 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 233 0
+J 41 1 1
+V 685 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 235 0
+J 41 1 1
+V 688 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 237 0
+J 41 1 1
+V 691 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 253 0
+J 41 1 1
+V 694 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 326 0
+J 41 1 1
+V 697 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 330 0
+J 41 1 1
+V 700 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 334 0
+J 41 1 1
+V 703 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 338 0
+J 41 1 1
+V 706 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 342 0
+J 41 1 1
+V 709 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 346 0
+J 41 1 1
+V 712 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 350 0
+J 41 1 1
+V 715 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 354 0
+J 41 1 1
+V 718 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 358 0
+J 41 1 1
+V 721 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 362 0
+J 41 1 1
+V 724 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 366 0
+J 41 1 1
+V 727 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 370 0
+J 41 1 1
+V 730 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 374 0
+J 41 1 1
+V 733 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 378 0
+J 41 1 1
+V 736 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 208 0
+J 41 1 1
+V 739 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 198 0
+J 41 1 1
+V 742 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 189 0
+J 41 1 1
+V 745 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 210 0
+J 41 1 1
+V 748 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 394 0
+J 82 1 1
+V 751 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 2 0
+J 82 1 1
+V 754 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 3 0
+J 82 1 1
+V 757 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 208 0
+J 82 1 1
+V 760 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 210 0
+J 82 1 1
+V 763 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 13 0
+J 82 1 1
+V 766 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 225 0
+J 82 1 1
+V 769 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 229 0
+J 82 1 1
+V 772 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 191 0
+J 82 1 1
+V 775 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 193 0
+J 82 1 1
+V 778 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 200 0
+J 82 1 1
+V 781 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 202 0
+J 82 1 1
+V 784 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 204 0
+J 82 1 1
+V 787 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 206 0
+J 82 1 1
+V 790 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 215 0
+J 82 1 1
+V 793 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 217 0
+J 123 1 1
+V 796 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 127 0
+J 123 1 1
+V 799 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 189 0
+J 123 1 1
+V 802 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 191 0
+J 123 1 1
+V 805 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 193 0
+J 123 1 1
+V 808 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 2 0
+J 123 1 1
+V 811 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 15 0
+J 123 1 1
+V 814 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 3 0
+J 123 1 1
+V 817 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 198 0
+J 123 1 1
+V 820 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 200 0
+J 123 1 1
+V 823 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 202 0
+J 123 1 1
+V 826 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 204 0
+J 123 1 1
+V 829 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 206 0
+J 123 1 1
+V 832 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 208 0
+J 123 1 1
+V 835 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 210 0
+J 123 1 1
+V 838 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 13 0
+J 123 1 1
+V 841 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 213 0
+J 123 1 1
+V 844 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 215 0
+J 123 1 1
+V 847 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 217 0
+J 123 1 1
+V 850 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 219 0
+J 123 1 1
+V 853 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 221 0
+J 123 1 1
+V 856 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 223 0
+J 123 1 1
+V 859 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 225 0
+J 123 1 1
+V 862 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 227 0
+J 123 1 1
+V 865 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 229 0
+J 123 1 1
+V 868 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 231 0
+J 123 1 1
+V 871 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 233 0
+J 123 1 1
+V 874 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 235 0
+J 123 1 1
+V 877 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 237 0
+J 157 1 1
+V 880 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 3 0
+J 157 1 1
+V 883 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 530 0
+J 157 1 1
+V 886 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 534 0
+J 157 1 1
+V 889 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 538 0
+J 157 1 1
+V 892 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 15 0
+J 157 1 1
+V 895 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 200 0
+J 157 1 1
+V 898 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 548 0
+J 157 1 1
+V 901 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 552 0
+J 157 1 1
+V 904 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 556 0
+J 157 1 1
+V 907 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 560 0
+J 173 1 1
+V 910 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 2 0
+J 173 1 1
+V 913 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 3 0
+J 173 1 1
+V 916 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 127 0
+J 173 1 1
+V 919 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 208 0
+J 173 1 1
+V 922 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 15 0
+J 173 1 1
+V 925 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 198 0
+J 173 1 1
+V 928 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 189 0
+J 193 1 1
+V 931 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 2 0
+J 193 1 1
+V 934 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 3 0
+J 193 1 1
+V 937 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 127 0
+J 193 1 1
+V 940 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 208 0
+J 193 1 1
+V 943 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 15 0
+J 193 1 1
+V 946 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 198 0
+J 211 1 1
+V 949 253 7 0
+S 0 253 0 0 0
+A 0 6 0 0 1 2 0
+J 219 1 1
+V 952 262 7 0
+S 0 262 0 0 0
+A 0 6 0 0 1 2 0
+J 219 1 1
+V 955 262 7 0
+S 0 262 0 0 0
+A 0 6 0 0 1 3 0
+J 227 1 1
+V 958 271 7 0
+S 0 271 0 0 0
+A 0 6 0 0 1 2 0
+J 227 1 1
+V 961 271 7 0
+S 0 271 0 0 0
+A 0 6 0 0 1 3 0
+J 235 1 1
+V 964 280 7 0
+S 0 280 0 0 0
+A 0 6 0 0 1 2 0
+J 235 1 1
+V 967 280 7 0
+S 0 280 0 0 0
+A 0 6 0 0 1 3 0
+J 29 1 1
+V 1009 355 7 0
+R 0 358 0 0
+A 0 6 0 0 1 3 0
+J 75 1 1
+V 1015 361 7 0
+R 0 364 0 0
+A 0 6 0 0 1 3 1
+A 0 6 0 0 1 127 1
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+J 77 1 1
+V 1021 367 7 0
+R 0 370 0 0
+A 0 6 0 0 1 3 1
+A 0 6 0 0 1 127 1
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+J 80 1 1
+V 1025 373 7 0
+R 0 376 0 0
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+J 36 1 1
+V 8063 8690 7 0
+R 0 8693 0 0
+A 0 10 0 0 1 88 1
+A 0 10 0 0 1 8024 1
+A 0 10 0 0 1 8025 1
+A 0 10 0 0 1 8026 1
+A 0 10 0 0 1 8027 1
+A 0 10 0 0 1 8028 1
+A 0 10 0 0 1 8029 1
+A 0 10 0 0 1 8030 1
+A 0 10 0 0 1 8031 1
+A 0 10 0 0 1 8032 1
+A 0 10 0 0 1 8033 1
+A 0 10 0 0 1 8034 1
+A 0 10 0 0 1 8035 1
+A 0 10 0 0 1 8036 1
+A 0 10 0 0 1 8037 1
+A 0 10 0 0 1 8038 1
+A 0 10 0 0 1 8039 1
+A 0 10 0 0 1 8040 1
+A 0 10 0 0 1 8041 1
+A 0 10 0 0 1 8019 0
+T 2177 627 0 3 0 0
+R 2182 633 0 0
+A 0 7 0 1566 1 10 0
+T 21423 7407 0 3 0 0
+A 21427 18 0 0 1 4414 1
+A 21428 18 0 0 1 4414 1
+A 21429 6 0 0 1 2 1
+A 21430 6 0 0 1 3 1
+A 21431 6 0 0 1 3 1
+A 21445 6 0 0 1 127 1
+A 21446 6 0 0 1 2 1
+R 21447 7425 0 1
+A 0 6 0 1563 1 2 0
+R 21448 7428 0 0
+A 0 6 0 1563 1 2 0
+T 21713 7728 0 3 0 0
+A 21714 6 0 0 1 2 1
+A 21715 6 0 0 1 2 1
+A 21716 6 0 0 1 2 1
+A 21717 6 0 0 1 2 1
+A 21718 6 0 0 1 2 1
+A 21719 6 0 0 1 2 1
+A 21720 18 0 0 1 4414 1
+A 21721 18 0 0 1 4414 1
+A 21722 6 0 0 1 2 1
+A 21723 6 0 0 1 127 1
+A 21724 6 0 0 1 127 1
+A 21725 6 0 0 1 127 1
+A 21726 6 0 0 1 3 1
+A 21727 6 0 0 1 3 1
+A 21728 6 0 0 1 3 1
+A 21729 6 0 0 1 2 1
+A 21730 6 0 0 1 2 1
+A 21731 6 0 0 1 2 1
+A 21751 6 0 0 1 2 1
+A 21752 6 0 0 1 2 1
+A 21753 6 0 0 1 2 1
+A 21754 6 0 0 1 2 1
+A 21958 6 0 0 1 2 1
+A 21959 6 0 0 1 2 1
+A 21960 6 0 0 1 2 1
+A 22033 18 0 0 1 4414 1
+A 22034 18 0 0 1 7070 1
+A 22035 22 0 0 1 7841 1
+A 22036 22 0 0 1 7841 1
+A 22063 6 0 0 1 200 1
+A 22064 6 0 0 1 15 1
+A 22065 6 0 0 1 200 0
+T 22203 8285 0 3 0 0
+A 22247 6 0 0 1 2 1
+A 22248 6 0 0 1 2 1
+A 22249 6 0 0 1 2 1
+A 22250 6 0 0 1 2 1
+A 22251 6 0 0 1 2 1
+A 22252 6 0 0 1 2 1
+A 22253 6 0 0 1 2 1
+A 22254 6 0 0 1 2 1
+A 22255 6 0 0 1 2 1
+A 22256 6 0 0 1 3 1
+A 22257 6 0 0 1 2 0
+Z

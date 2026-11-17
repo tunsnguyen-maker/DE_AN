@@ -1,0 +1,845 @@
+V35 :0x24 self_energy_storage
+23 self_energy_storage.f90 S624 0
+11/11/2026  20:55:50
+use energies_gww private
+use times_gw private
+use input_gw private
+use kinds private
+enduse
+D 85 26 644 1336 643 7
+D 91 23 14 3 50 48 0 1 0 0 1
+ 24 28 42 24 28 26
+ 30 34 44 30 34 32
+ 36 40 46 36 40 38
+D 94 23 7 1 0 21 0 0 0 0 0
+ 0 21 0 11 21 0
+D 97 23 14 4 80 79 0 1 0 0 1
+ 57 60 74 57 60 58
+ 61 64 75 61 64 62
+ 65 68 76 65 68 66
+ 69 73 78 69 73 71
+D 100 23 7 1 0 55 0 0 0 0 0
+ 0 55 0 11 55 0
+D 103 23 14 3 101 100 0 1 0 0 1
+ 85 88 97 85 88 86
+ 89 92 98 89 92 90
+ 93 96 99 93 96 94
+D 106 23 7 1 0 21 0 0 0 0 0
+ 0 21 0 11 21 0
+D 109 23 14 4 128 127 0 1 0 0 1
+ 107 110 123 107 110 108
+ 111 114 124 111 114 112
+ 115 118 125 115 118 116
+ 119 122 126 119 122 120
+D 112 23 7 1 0 55 0 0 0 0 0
+ 0 55 0 11 55 0
+D 115 23 10 2 143 142 0 1 0 0 1
+ 132 135 140 132 135 133
+ 136 139 141 136 139 137
+D 118 23 7 1 0 35 0 0 0 0 0
+ 0 35 0 11 35 0
+D 121 23 7 1 0 11 0 0 0 0 0
+ 0 11 0 11 11 0
+D 124 26 714 424 713 7
+D 130 23 14 1 152 151 0 1 0 0 1
+ 146 149 150 146 149 147
+D 133 23 7 1 0 29 0 0 0 0 0
+ 0 29 0 11 29 0
+D 136 23 14 3 173 172 0 1 0 0 1
+ 157 160 169 157 160 158
+ 161 164 170 161 164 162
+ 165 168 171 165 168 166
+D 139 23 7 1 0 21 0 0 0 0 0
+ 0 21 0 11 21 0
+D 142 23 7 1 0 11 0 0 0 0 0
+ 0 11 0 11 11 0
+D 145 26 765 976 764 7
+D 151 20 174
+D 155 20 175
+D 157 23 10 1 11 177 0 0 0 0 0
+ 0 177 11 11 177 177
+D 167 26 765 976 764 7
+D 173 26 893 2136 892 7
+D 279 26 893 2136 892 7
+D 285 26 1015 2760 1014 7
+D 378 20 174
+D 380 20 175
+D 391 26 1015 2760 1014 7
+S 624 24 0 0 0 9 1 0 4986 10005 8000 A 0 0 0 0 B 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 self_energy_storage
+S 626 23 0 0 0 9 629 624 5012 4 0 A 0 0 0 0 B 400000 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dp
+S 628 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 629 16 1 kinds dp
+S 643 25 0 0 0 85 1 624 5185 10000004 800014 A 0 0 0 0 B 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 712 0 0 0 624 0 0 0 0 self_storage
+S 644 5 0 0 0 18 645 624 5198 800004 0 A 0 0 0 0 B 0 20 0 0 0 0 0 0 85 0 0 0 0 0 0 0 0 0 0 0 1 644 0 624 0 0 0 0 ontime
+S 645 5 0 0 0 18 646 624 5205 800004 0 A 0 0 0 0 B 0 21 0 0 0 4 0 0 85 0 0 0 0 0 0 0 0 0 0 0 644 645 0 624 0 0 0 0 whole_s
+S 646 5 0 0 0 6 647 624 5213 800004 0 A 0 0 0 0 B 0 22 0 0 0 8 0 0 85 0 0 0 0 0 0 0 0 0 0 0 645 646 0 624 0 0 0 0 n
+S 647 5 0 0 0 6 648 624 5215 800004 0 A 0 0 0 0 B 0 23 0 0 0 12 0 0 85 0 0 0 0 0 0 0 0 0 0 0 646 647 0 624 0 0 0 0 n_grid_fit
+S 648 5 0 0 0 6 649 624 5226 800004 0 A 0 0 0 0 B 0 24 0 0 0 16 0 0 85 0 0 0 0 0 0 0 0 0 0 0 647 648 0 624 0 0 0 0 max_i
+S 649 5 0 0 0 6 650 624 5232 800004 0 A 0 0 0 0 B 0 25 0 0 0 20 0 0 85 0 0 0 0 0 0 0 0 0 0 0 648 649 0 624 0 0 0 0 i_min
+S 650 5 0 0 0 6 651 624 5238 800004 0 A 0 0 0 0 B 0 26 0 0 0 24 0 0 85 0 0 0 0 0 0 0 0 0 0 0 649 650 0 624 0 0 0 0 i_max
+S 651 5 0 0 0 6 652 624 5244 800004 0 A 0 0 0 0 B 0 27 0 0 0 28 0 0 85 0 0 0 0 0 0 0 0 0 0 0 650 651 0 624 0 0 0 0 nspin
+S 652 5 0 0 0 10 656 624 5250 800004 0 A 0 0 0 0 B 0 28 0 0 0 32 0 0 85 0 0 0 0 0 0 0 0 0 0 0 651 652 0 624 0 0 0 0 tau
+S 653 6 4 0 0 7 654 624 5254 40800006 0 A 0 0 0 0 B 0 29 0 0 0 0 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_0
+S 654 6 4 0 0 7 655 624 5260 40800006 0 A 0 0 0 0 B 0 29 0 0 0 8 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_1
+S 655 6 4 0 0 7 674 624 5266 40800006 0 A 0 0 0 0 B 0 29 0 0 0 16 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_2
+S 656 5 6 0 0 91 659 624 5272 10a00004 14 A 0 0 0 0 B 0 29 0 0 0 40 659 0 85 0 661 0 0 0 0 0 0 0 0 658 652 656 660 624 0 0 0 0 diag
+S 657 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 658 5 1 0 0 94 678 624 5277 40822004 1020 A 0 0 0 0 B 0 29 0 0 0 56 0 0 85 0 0 0 0 0 0 0 0 0 0 0 660 658 0 624 0 0 0 0 diag$sd
+S 659 5 0 0 0 7 660 624 5285 40802001 1020 A 0 0 0 0 B 0 29 0 0 0 40 0 0 85 0 0 0 0 0 0 0 0 0 0 0 656 659 0 624 0 0 0 0 diag$p
+S 660 5 0 0 0 7 658 624 5292 40802000 1020 A 0 0 0 0 B 0 29 0 0 0 48 0 0 85 0 0 0 0 0 0 0 0 0 0 0 659 660 0 624 0 0 0 0 diag$o
+S 661 22 1 0 0 9 1 624 5299 40000000 1000 A 0 0 0 0 B 0 29 0 0 0 0 0 656 0 0 0 0 658 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 diag$arrdsc
+S 662 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 663 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 665 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 666 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 667 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 668 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 669 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 670 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 671 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 672 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 673 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 674 6 4 0 0 7 675 624 5311 40800006 0 A 0 0 0 0 B 0 30 0 0 0 24 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_3
+S 675 6 4 0 0 7 676 624 5317 40800006 0 A 0 0 0 0 B 0 30 0 0 0 32 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_4
+S 676 6 4 0 0 7 677 624 5323 40800006 0 A 0 0 0 0 B 0 30 0 0 0 40 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_5
+S 677 6 4 0 0 7 686 624 5329 40800006 0 A 0 0 0 0 B 0 30 0 0 0 48 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_6
+S 678 5 6 0 0 97 681 624 5335 10a00004 14 A 0 0 0 0 B 0 30 0 0 0 288 681 0 85 0 683 0 0 0 0 0 0 0 0 680 656 678 682 624 0 0 0 0 whole
+S 679 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 680 5 1 0 0 100 689 624 5341 40822004 1020 A 0 0 0 0 B 0 30 0 0 0 304 0 0 85 0 0 0 0 0 0 0 0 0 0 0 682 680 0 624 0 0 0 0 whole$sd
+S 681 5 0 0 0 7 682 624 5350 40802001 1020 A 0 0 0 0 B 0 30 0 0 0 288 0 0 85 0 0 0 0 0 0 0 0 0 0 0 678 681 0 624 0 0 0 0 whole$p
+S 682 5 0 0 0 7 680 624 5358 40802000 1020 A 0 0 0 0 B 0 30 0 0 0 296 0 0 85 0 0 0 0 0 0 0 0 0 0 0 681 682 0 624 0 0 0 0 whole$o
+S 683 22 1 0 0 9 1 624 5366 40000000 1000 A 0 0 0 0 B 0 30 0 0 0 0 0 678 0 0 0 0 680 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 whole$arrdsc
+S 684 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 685 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 33 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 686 6 4 0 0 7 687 624 5379 40800006 0 A 0 0 0 0 B 0 31 0 0 0 56 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_7
+S 687 6 4 0 0 7 688 624 5385 40800006 0 A 0 0 0 0 B 0 31 0 0 0 64 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_8
+S 688 6 4 0 0 7 694 624 5391 40800006 0 A 0 0 0 0 B 0 31 0 0 0 72 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_9
+S 689 5 6 0 0 103 691 624 5397 10a00004 14 A 0 0 0 0 B 0 31 0 0 0 584 691 0 85 0 693 0 0 0 0 0 0 0 0 690 678 689 692 624 0 0 0 0 diag_freq_fit
+S 690 5 1 0 0 106 698 624 5411 40822004 1020 A 0 0 0 0 B 0 31 0 0 0 600 0 0 85 0 0 0 0 0 0 0 0 0 0 0 692 690 0 624 0 0 0 0 diag_freq_fit$sd
+S 691 5 0 0 0 7 692 624 5428 40802001 1020 A 0 0 0 0 B 0 31 0 0 0 584 0 0 85 0 0 0 0 0 0 0 0 0 0 0 689 691 0 624 0 0 0 0 diag_freq_fit$p
+S 692 5 0 0 0 7 690 624 5444 40802000 1020 A 0 0 0 0 B 0 31 0 0 0 592 0 0 85 0 0 0 0 0 0 0 0 0 0 0 691 692 0 624 0 0 0 0 diag_freq_fit$o
+S 693 22 1 0 0 9 1 624 5460 40000000 1000 A 0 0 0 0 B 0 31 0 0 0 0 0 689 0 0 0 0 690 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 diag_freq_fit$arrdsc
+S 694 6 4 0 0 7 695 624 5481 40800006 0 A 0 0 0 0 B 0 32 0 0 0 80 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_10
+S 695 6 4 0 0 7 696 624 5488 40800006 0 A 0 0 0 0 B 0 32 0 0 0 88 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_11
+S 696 6 4 0 0 7 697 624 5495 40800006 0 A 0 0 0 0 B 0 32 0 0 0 96 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_12
+S 697 6 4 0 0 7 703 624 5502 40800006 0 A 0 0 0 0 B 0 32 0 0 0 104 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_13
+S 698 5 6 0 0 109 700 624 5509 10a00004 14 A 0 0 0 0 B 0 32 0 0 0 832 700 0 85 0 702 0 0 0 0 0 0 0 0 699 689 698 701 624 0 0 0 0 whole_freq_fit
+S 699 5 1 0 0 112 705 624 5524 40822004 1020 A 0 0 0 0 B 0 32 0 0 0 848 0 0 85 0 0 0 0 0 0 0 0 0 0 0 701 699 0 624 0 0 0 0 whole_freq_fit$sd
+S 700 5 0 0 0 7 701 624 5542 40802001 1020 A 0 0 0 0 B 0 32 0 0 0 832 0 0 85 0 0 0 0 0 0 0 0 0 0 0 698 700 0 624 0 0 0 0 whole_freq_fit$p
+S 701 5 0 0 0 7 699 624 5559 40802000 1020 A 0 0 0 0 B 0 32 0 0 0 840 0 0 85 0 0 0 0 0 0 0 0 0 0 0 700 701 0 624 0 0 0 0 whole_freq_fit$o
+S 702 22 1 0 0 9 1 624 5576 40000000 1000 A 0 0 0 0 B 0 32 0 0 0 0 0 698 0 0 0 0 699 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 whole_freq_fit$arrdsc
+S 703 6 4 0 0 7 704 624 5598 40800006 0 A 0 0 0 0 B 0 33 0 0 0 112 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_14
+S 704 6 4 0 0 7 719 624 5605 40800006 0 A 0 0 0 0 B 0 33 0 0 0 120 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_15
+S 705 5 6 0 0 115 707 624 5612 10a00004 14 A 0 0 0 0 B 0 33 0 0 0 1128 707 0 85 0 709 0 0 0 0 0 0 0 0 706 698 705 708 624 0 0 0 0 ene_remainder
+S 706 5 1 0 0 118 710 624 5626 40822004 1020 A 0 0 0 0 B 0 33 0 0 0 1144 0 0 85 0 0 0 0 0 0 0 0 0 0 0 708 706 0 624 0 0 0 0 ene_remainder$sd
+S 707 5 0 0 0 7 708 624 5643 40802001 1020 A 0 0 0 0 B 0 33 0 0 0 1128 0 0 85 0 0 0 0 0 0 0 0 0 0 0 705 707 0 624 0 0 0 0 ene_remainder$p
+S 708 5 0 0 0 7 706 624 5659 40802000 1020 A 0 0 0 0 B 0 33 0 0 0 1136 0 0 85 0 0 0 0 0 0 0 0 0 0 0 707 708 0 624 0 0 0 0 ene_remainder$o
+S 709 22 1 0 0 9 1 624 5675 40000000 1000 A 0 0 0 0 B 0 33 0 0 0 0 0 705 0 0 0 0 706 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ene_remainder$arrdsc
+S 710 5 0 0 0 6 711 624 5696 800004 0 A 0 0 0 0 B 0 34 0 0 0 1328 0 0 85 0 0 0 0 0 0 0 0 0 0 0 705 710 0 624 0 0 0 0 i_min_whole
+S 711 5 0 0 0 6 1 624 5708 800004 0 A 0 0 0 0 B 0 35 0 0 0 1332 0 0 85 0 0 0 0 0 0 0 0 0 0 0 710 711 0 624 0 0 0 0 i_max_whole
+S 712 8 5 0 0 121 1 624 5720 40822004 1220 A 0 0 0 0 B 0 36 0 0 0 0 0 85 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 self_energy_storage$$$self_storage$$td
+S 713 25 0 0 0 124 1 624 5759 10000004 800014 A 0 0 0 0 B 0 39 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 733 0 0 0 624 0 0 0 0 self_on_real
+S 714 5 0 0 0 6 715 624 5213 800004 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 124 0 0 0 0 0 0 0 0 0 0 0 1 714 0 624 0 0 0 0 n
+S 715 5 0 0 0 6 716 624 5226 800004 0 A 0 0 0 0 B 0 0 0 0 0 4 0 0 124 0 0 0 0 0 0 0 0 0 0 0 714 715 0 624 0 0 0 0 max_i
+S 716 5 0 0 0 6 717 624 5232 800004 0 A 0 0 0 0 B 0 0 0 0 0 8 0 0 124 0 0 0 0 0 0 0 0 0 0 0 715 716 0 624 0 0 0 0 i_min
+S 717 5 0 0 0 6 718 624 5238 800004 0 A 0 0 0 0 B 0 0 0 0 0 12 0 0 124 0 0 0 0 0 0 0 0 0 0 0 716 717 0 624 0 0 0 0 i_max
+S 718 5 0 0 0 6 720 624 5244 800004 0 A 0 0 0 0 B 0 0 0 0 0 16 0 0 124 0 0 0 0 0 0 0 0 0 0 0 717 718 0 624 0 0 0 0 nspin
+S 719 6 4 0 0 7 725 624 5772 40800006 0 A 0 0 0 0 B 0 47 0 0 0 128 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_16
+S 720 5 6 0 0 130 722 624 5779 10a00004 14 A 0 0 0 0 B 0 47 0 0 0 24 722 0 124 0 724 0 0 0 0 0 0 0 0 721 718 720 723 624 0 0 0 0 grid
+S 721 5 1 0 0 133 728 624 5784 40822004 1020 A 0 0 0 0 B 0 47 0 0 0 40 0 0 124 0 0 0 0 0 0 0 0 0 0 0 723 721 0 624 0 0 0 0 grid$sd
+S 722 5 0 0 0 7 723 624 5792 40802001 1020 A 0 0 0 0 B 0 47 0 0 0 24 0 0 124 0 0 0 0 0 0 0 0 0 0 0 720 722 0 624 0 0 0 0 grid$p
+S 723 5 0 0 0 7 721 624 5799 40802000 1020 A 0 0 0 0 B 0 47 0 0 0 32 0 0 124 0 0 0 0 0 0 0 0 0 0 0 722 723 0 624 0 0 0 0 grid$o
+S 724 22 1 0 0 9 1 624 5806 40000000 1000 A 0 0 0 0 B 0 47 0 0 0 0 0 720 0 0 0 0 721 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 grid$arrdsc
+S 725 6 4 0 0 7 726 624 5818 40800006 0 A 0 0 0 0 B 0 48 0 0 0 136 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_17
+S 726 6 4 0 0 7 727 624 5825 40800006 0 A 0 0 0 0 B 0 48 0 0 0 144 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_18
+S 727 6 4 0 0 7 1 624 5832 40800006 0 A 0 0 0 0 B 0 48 0 0 0 152 0 0 0 0 0 0 734 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_19
+S 728 5 6 0 0 136 730 624 5272 10a00004 14 A 0 0 0 0 B 0 0 0 0 0 176 730 0 124 0 732 0 0 0 0 0 0 0 0 729 720 728 731 624 0 0 0 0 diag
+S 729 5 1 0 0 139 1 624 5277 40822004 1020 A 0 0 0 0 B 0 48 0 0 0 192 0 0 124 0 0 0 0 0 0 0 0 0 0 0 731 729 0 624 0 0 0 0 diag$sd
+S 730 5 0 0 0 7 731 624 5285 40802001 1020 A 0 0 0 0 B 0 48 0 0 0 176 0 0 124 0 0 0 0 0 0 0 0 0 0 0 728 730 0 624 0 0 0 0 diag$p
+S 731 5 0 0 0 7 729 624 5292 40802000 1020 A 0 0 0 0 B 0 48 0 0 0 184 0 0 124 0 0 0 0 0 0 0 0 0 0 0 730 731 0 624 0 0 0 0 diag$o
+S 732 22 1 0 0 9 1 624 5839 40000000 1000 A 0 0 0 0 B 0 48 0 0 0 0 0 728 0 0 0 0 729 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 diag$arrdsc1
+S 733 8 5 0 0 142 1 624 5852 40822004 1220 A 0 0 0 0 B 0 49 0 0 0 0 0 124 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 self_energy_storage$$$self_on_real$$$td
+S 734 11 0 0 0 9 1 624 5892 40800000 805000 A 0 0 0 0 B 0 51 0 0 0 160 0 0 653 727 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _self_energy_storage$2
+S 735 23 5 0 0 0 737 624 5915 0 0 A 0 0 0 0 B 0 53 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initialize_self_on_real
+S 736 1 3 0 0 124 1 735 5939 4 3000 A 0 0 0 0 B 0 53 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 737 14 5 0 0 0 1 735 5915 0 400000 A 0 0 0 0 B 0 53 0 0 0 0 0 4 1 0 0 0 0 0 0 0 0 0 0 0 0 53 0 624 0 0 0 0 initialize_self_on_real initialize_self_on_real 
+F 737 1 736
+S 738 23 5 0 0 0 740 624 5942 0 0 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 free_memory_self_on_real
+S 739 1 3 0 0 124 1 738 5939 4 3000 A 0 0 0 0 B 0 61 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 740 14 5 0 0 0 1 738 5942 0 400000 A 0 0 0 0 B 0 61 0 0 0 0 0 6 1 0 0 0 0 0 0 0 0 0 0 0 0 61 0 624 0 0 0 0 free_memory_self_on_real free_memory_self_on_real 
+F 740 1 739
+S 741 23 5 0 0 0 743 624 5967 0 0 A 0 0 0 0 B 0 71 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initialize_self_storage
+S 742 1 3 0 0 85 1 741 5991 4 3000 A 0 0 0 0 B 0 71 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 743 14 5 0 0 0 1 741 5967 0 400000 A 0 0 0 0 B 0 71 0 0 0 0 0 8 1 0 0 0 0 0 0 0 0 0 0 0 0 71 0 624 0 0 0 0 initialize_self_storage initialize_self_storage 
+F 743 1 742
+S 745 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+S 746 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 747 3 0 0 0 378 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 6003 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 6 70 72 65 66 69 78
+S 749 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 750 3 0 0 0 380 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 6010 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 2 2e 2f
+S 751 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 50 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 752 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1055193269 -1998362383 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 753 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 754 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 755 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+S 756 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 757 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 758 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 100 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 759 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 760 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 761 3 0 0 0 9 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1082130432 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9
+S 762 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 764 25 2 input_gw input_options
+R 765 5 3 input_gw n input_options
+R 766 5 4 input_gw tau input_options
+R 767 5 5 input_gw whole_s input_options
+R 768 5 6 input_gw max_i input_options
+R 769 5 7 input_gw prefix input_options
+R 770 5 8 input_gw outdir input_options
+R 771 5 9 input_gw num_rows input_options
+R 772 5 10 input_gw xc_together input_options
+R 773 5 11 input_gw debug input_options
+R 774 5 12 input_gw n_multipoles input_options
+R 775 5 13 input_gw fit_dt input_options
+R 776 5 14 input_gw fit_thres input_options
+R 777 5 15 input_gw fit_ma_0 input_options
+R 778 5 16 input_gw fit_ma input_options
+R 779 5 17 input_gw fit_mb input_options
+R 780 5 18 input_gw fit_frice input_options
+R 781 5 19 input_gw fit_maxiter input_options
+R 782 5 20 input_gw starting_point input_options
+R 783 5 21 input_gw ending_point input_options
+R 784 5 22 input_gw use_contractions input_options
+R 785 5 23 input_gw lnonorthogonal input_options
+R 786 5 24 input_gw l_hf_energies input_options
+R 787 5 25 input_gw n_fit input_options
+R 788 5 26 input_gw lconduction input_options
+R 789 5 27 input_gw l_contraction_single_state input_options
+R 790 5 28 input_gw l_fft_timefreq input_options
+R 791 5 29 input_gw grid_time input_options
+R 792 5 30 input_gw grid_freq input_options
+R 793 5 31 input_gw omega input_options
+R 794 5 32 input_gw l_fourier_fit_time input_options
+R 795 5 33 input_gw l_fourier_fit_freq input_options
+R 796 5 34 input_gw r_tau input_options
+R 797 5 35 input_gw r_omega input_options
+R 798 5 36 input_gw g_tau input_options
+R 799 5 37 input_gw g_omega input_options
+R 800 5 38 input_gw grid_fit input_options
+R 801 5 39 input_gw omega_fit input_options
+R 802 5 40 input_gw n_grid_fit input_options
+R 803 5 41 input_gw i_min input_options
+R 804 5 42 input_gw i_max input_options
+R 805 5 43 input_gw n_max_minpack input_options
+R 806 5 44 input_gw cyc_minpack input_options
+R 807 5 45 input_gw l_lda_hartree input_options
+R 808 5 46 input_gw l_lda_exchange input_options
+R 809 5 47 input_gw l_read_exchange input_options
+R 810 5 48 input_gw l_symm_epsilon input_options
+R 811 5 49 input_gw l_head_epsilon input_options
+R 812 5 50 input_gw w_divergence input_options
+R 813 5 51 input_gw l_wing_epsilon input_options
+R 814 5 52 input_gw offset_fit input_options
+R 815 5 53 input_gw lcprim_file input_options
+R 816 5 54 input_gw lvcprim_file input_options
+R 817 5 55 input_gw l_dft_xc_file input_options
+R 818 5 56 input_gw lpola_file input_options
+R 819 5 57 input_gw l_self_from_pola input_options
+R 820 5 58 input_gw l_pola_beta input_options
+R 821 5 59 input_gw l_self_beta input_options
+R 822 5 60 input_gw l_pola_upper input_options
+R 823 5 61 input_gw l_self_upper input_options
+R 824 5 62 input_gw l_pola_lanczos input_options
+R 825 5 63 input_gw l_self_lanczos input_options
+R 826 5 64 input_gw l_lanczos_conv input_options
+R 827 5 65 input_gw n_set input_options
+R 828 5 66 input_gw n_set_ii input_options
+R 829 5 67 input_gw n_set_pola input_options
+R 830 5 68 input_gw n_set_self input_options
+R 831 5 69 input_gw l_yet_pola input_options
+R 832 5 70 input_gw l_reduce_io input_options
+R 833 5 71 input_gw second_grid_n input_options
+R 834 5 72 input_gw second_grid_i input_options
+R 835 5 73 input_gw grid_levels input_options
+R 836 5 74 input_gw l_t_wannier input_options
+R 837 5 75 input_gw l_truncated_coulomb input_options
+R 838 5 76 input_gw l_self_time input_options
+R 839 5 77 input_gw l_g_grid input_options
+R 840 5 78 input_gw grid_freq_g input_options
+R 841 5 79 input_gw n_g input_options
+R 842 5 80 input_gw second_grid_n_g input_options
+R 843 5 81 input_gw second_grid_i_g input_options
+R 844 5 82 input_gw omega_g input_options
+R 845 5 83 input_gw i_min_whole input_options
+R 846 5 84 input_gw i_max_whole input_options
+R 847 5 85 input_gw nspin input_options
+R 848 5 86 input_gw l_frac_occ input_options
+R 849 5 87 input_gw l_semicore input_options
+R 850 5 88 input_gw l_order input_options
+R 851 5 89 input_gw l_verbose input_options
+R 852 5 90 input_gw real_energy_min input_options
+R 853 5 91 input_gw real_energy_max input_options
+R 854 5 92 input_gw n_real_axis input_options
+R 855 5 93 input_gw l_big_system input_options
+R 856 5 94 input_gw l_list input_options
+R 857 5 95 input_gw l_full input_options
+R 858 5 96 input_gw n_full input_options
+R 859 5 97 input_gw l_scissor input_options
+R 860 5 98 input_gw scissor input_options
+S 867 23 5 0 0 0 870 624 7109 0 0 A 0 0 0 0 B 0 86 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_self_on_real
+S 868 1 3 0 0 167 1 867 7129 4 3000 A 0 0 0 0 B 0 86 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 869 1 3 0 0 124 1 867 5939 4 3000 A 0 0 0 0 B 0 86 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 870 14 5 0 0 0 1 867 7109 0 400000 A 0 0 0 0 B 0 86 0 0 0 0 0 12 2 0 0 0 0 0 0 0 0 0 0 0 0 86 0 624 0 0 0 0 create_self_on_real create_self_on_real 
+F 870 2 868 869
+S 871 23 5 0 0 0 874 624 7137 0 0 A 0 0 0 0 B 0 133 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_self_storage_ondisk
+S 872 1 3 0 0 85 1 871 5991 4 3000 A 0 0 0 0 B 0 133 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 873 1 3 0 0 145 1 871 7129 4 3000 A 0 0 0 0 B 0 133 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 874 14 5 0 0 0 1 871 7137 0 400000 A 0 0 0 0 B 0 133 0 0 0 0 0 15 2 0 0 0 0 0 0 0 0 0 0 0 0 133 0 624 0 0 0 0 write_self_storage_ondisk write_self_storage_ondisk 
+F 874 2 872 873
+S 875 23 5 0 0 0 878 624 7163 0 0 A 0 0 0 0 B 0 188 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_self_storage_ondisk
+S 876 1 3 0 0 85 1 875 5991 4 3000 A 0 0 0 0 B 0 188 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 877 1 3 0 0 145 1 875 7129 4 3000 A 0 0 0 0 B 0 188 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 878 14 5 0 0 0 1 875 7163 0 400000 A 0 0 0 0 B 0 188 0 0 0 0 0 18 2 0 0 0 0 0 0 0 0 0 0 0 0 188 0 624 0 0 0 0 read_self_storage_ondisk read_self_storage_ondisk 
+F 878 2 876 877
+S 879 23 5 0 0 0 881 624 7188 0 0 A 0 0 0 0 B 0 309 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 free_memory_self_storage
+S 880 1 3 0 0 85 1 879 5991 4 3000 A 0 0 0 0 B 0 309 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 881 14 5 0 0 0 1 879 7188 0 400000 A 0 0 0 0 B 0 309 0 0 0 0 0 21 1 0 0 0 0 0 0 0 0 0 0 0 0 309 0 624 0 0 0 0 free_memory_self_storage free_memory_self_storage 
+F 881 1 880
+S 882 23 5 0 0 0 885 624 7213 0 0 A 0 0 0 0 B 0 327 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_self_on_real
+S 883 1 3 1 0 124 1 882 5939 4 3000 A 0 0 0 0 B 0 327 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 884 1 3 1 0 6 1 882 7232 4 3000 A 0 0 0 0 B 0 327 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ifile
+S 885 14 5 0 0 0 1 882 7213 0 400000 A 0 0 0 0 B 0 327 0 0 0 0 0 23 2 0 0 0 0 0 0 0 0 0 0 0 0 327 0 624 0 0 0 0 write_self_on_real write_self_on_real 
+F 885 2 883 884
+S 886 23 5 0 0 0 889 624 7238 0 0 A 0 0 0 0 B 0 363 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_self_on_real
+S 887 1 3 2 0 124 1 886 5939 4 3000 A 0 0 0 0 B 0 363 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 888 1 3 1 0 6 1 886 7232 4 3000 A 0 0 0 0 B 0 363 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ifile
+S 889 14 5 0 0 0 1 886 7238 0 400000 A 0 0 0 0 B 0 363 0 0 0 0 0 26 2 0 0 0 0 0 0 0 0 0 0 0 0 363 0 624 0 0 0 0 read_self_on_real read_self_on_real 
+F 889 2 887 888
+R 892 25 2 times_gw times_freqs
+R 893 5 3 times_gw grid_time times_freqs
+R 894 5 4 times_gw grid_freq times_freqs
+R 895 5 5 times_gw n times_freqs
+R 896 5 6 times_gw tau times_freqs
+R 897 5 7 times_gw omega times_freqs
+R 898 5 8 times_gw times times_freqs
+R 900 5 10 times_gw times$sd times_freqs
+R 901 5 11 times_gw times$p times_freqs
+R 902 5 12 times_gw times$o times_freqs
+R 904 5 14 times_gw weights_time times_freqs
+R 906 5 16 times_gw weights_time$sd times_freqs
+R 907 5 17 times_gw weights_time$p times_freqs
+R 908 5 18 times_gw weights_time$o times_freqs
+R 910 5 20 times_gw freqs times_freqs
+R 912 5 22 times_gw freqs$sd times_freqs
+R 913 5 23 times_gw freqs$p times_freqs
+R 914 5 24 times_gw freqs$o times_freqs
+R 916 5 26 times_gw weights_freq times_freqs
+R 918 5 28 times_gw weights_freq$sd times_freqs
+R 919 5 29 times_gw weights_freq$p times_freqs
+R 920 5 30 times_gw weights_freq$o times_freqs
+R 922 5 32 times_gw l_fft_timefreq times_freqs
+R 923 5 33 times_gw l_fourier_fit_time times_freqs
+R 924 5 34 times_gw l_fourier_fit_freq times_freqs
+R 925 5 35 times_gw r_tau times_freqs
+R 926 5 36 times_gw r_omega times_freqs
+R 927 5 37 times_gw g_tau times_freqs
+R 928 5 38 times_gw g_omega times_freqs
+R 929 5 39 times_gw grid_fit times_freqs
+R 930 5 40 times_gw omega_fit times_freqs
+R 931 5 41 times_gw n_grid_fit times_freqs
+R 932 5 42 times_gw freqs_fit times_freqs
+R 934 5 44 times_gw freqs_fit$sd times_freqs
+R 935 5 45 times_gw freqs_fit$p times_freqs
+R 936 5 46 times_gw freqs_fit$o times_freqs
+R 938 5 48 times_gw whois_freq times_freqs
+R 940 5 50 times_gw whois_freq$sd times_freqs
+R 941 5 51 times_gw whois_freq$p times_freqs
+R 942 5 52 times_gw whois_freq$o times_freqs
+R 944 5 54 times_gw relative_weight times_freqs
+R 946 5 56 times_gw relative_weight$sd times_freqs
+R 947 5 57 times_gw relative_weight$p times_freqs
+R 948 5 58 times_gw relative_weight$o times_freqs
+R 950 5 60 times_gw second_grid_n times_freqs
+R 951 5 61 times_gw second_grid_i times_freqs
+R 952 5 62 times_gw l_g_grid times_freqs
+R 953 5 63 times_gw omega_g times_freqs
+R 954 5 64 times_gw n_g times_freqs
+R 955 5 65 times_gw freqs_g times_freqs
+R 957 5 67 times_gw freqs_g$sd times_freqs
+R 958 5 68 times_gw freqs_g$p times_freqs
+R 959 5 69 times_gw freqs_g$o times_freqs
+R 961 5 71 times_gw weights_freq_g times_freqs
+R 963 5 73 times_gw weights_freq_g$sd times_freqs
+R 964 5 74 times_gw weights_freq_g$p times_freqs
+R 965 5 75 times_gw weights_freq_g$o times_freqs
+R 967 5 77 times_gw relative_weight_g times_freqs
+R 969 5 79 times_gw relative_weight_g$sd times_freqs
+R 970 5 80 times_gw relative_weight_g$p times_freqs
+R 971 5 81 times_gw relative_weight_g$o times_freqs
+R 973 5 83 times_gw grid_freq_g times_freqs
+R 974 5 84 times_gw second_grid_n_g times_freqs
+R 975 5 85 times_gw second_grid_i_g times_freqs
+R 976 5 86 times_gw whois_freq_g times_freqs
+R 978 5 88 times_gw whois_freq_g$sd times_freqs
+R 979 5 89 times_gw whois_freq_g$p times_freqs
+R 980 5 90 times_gw whois_freq_g$o times_freqs
+R 982 5 92 times_gw freqs_eff times_freqs
+R 984 5 94 times_gw freqs_eff$sd times_freqs
+R 985 5 95 times_gw freqs_eff$p times_freqs
+R 986 5 96 times_gw freqs_eff$o times_freqs
+R 988 5 98 times_gw freqs_g_eff times_freqs
+R 990 5 100 times_gw freqs_g_eff$sd times_freqs
+R 991 5 101 times_gw freqs_g_eff$p times_freqs
+R 992 5 102 times_gw freqs_g_eff$o times_freqs
+R 994 5 104 times_gw grid_levels times_freqs
+S 1006 23 5 0 0 0 1011 624 8306 0 0 A 0 0 0 0 B 0 410 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 do_self_on_real
+S 1007 1 3 0 0 145 1 1006 7129 4 3000 A 0 0 0 0 B 0 410 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1008 1 3 0 0 279 1 1006 8288 4 3000 A 0 0 0 0 B 0 410 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1009 1 3 0 0 85 1 1006 5991 4 3000 A 0 0 0 0 B 0 410 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1010 1 3 0 0 124 1 1006 5939 4 3000 A 0 0 0 0 B 0 410 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 1011 14 5 0 0 0 1 1006 8306 0 400000 A 0 0 0 0 B 0 410 0 0 0 0 0 34 4 0 0 0 0 0 0 0 0 0 0 0 0 410 0 624 0 0 0 0 do_self_on_real do_self_on_real 
+F 1011 4 1007 1008 1009 1010
+R 1014 25 2 energies_gww quasi_particles
+R 1015 5 3 energies_gww max_i quasi_particles
+R 1016 5 4 energies_gww nspin quasi_particles
+R 1017 5 5 energies_gww whole_s quasi_particles
+R 1020 5 8 energies_gww ene_dft_ks quasi_particles
+R 1021 5 9 energies_gww ene_dft_ks$sd quasi_particles
+R 1022 5 10 energies_gww ene_dft_ks$p quasi_particles
+R 1023 5 11 energies_gww ene_dft_ks$o quasi_particles
+R 1027 5 15 energies_gww ene_dft_xc quasi_particles
+R 1028 5 16 energies_gww ene_dft_xc$sd quasi_particles
+R 1029 5 17 energies_gww ene_dft_xc$p quasi_particles
+R 1030 5 18 energies_gww ene_dft_xc$o quasi_particles
+R 1034 5 22 energies_gww ene_dft_h quasi_particles
+R 1035 5 23 energies_gww ene_dft_h$sd quasi_particles
+R 1036 5 24 energies_gww ene_dft_h$p quasi_particles
+R 1037 5 25 energies_gww ene_dft_h$o quasi_particles
+R 1041 5 29 energies_gww ene_x quasi_particles
+R 1042 5 30 energies_gww ene_x$sd quasi_particles
+R 1043 5 31 energies_gww ene_x$p quasi_particles
+R 1044 5 32 energies_gww ene_x$o quasi_particles
+R 1048 5 36 energies_gww ene_h quasi_particles
+R 1049 5 37 energies_gww ene_h$sd quasi_particles
+R 1050 5 38 energies_gww ene_h$p quasi_particles
+R 1051 5 39 energies_gww ene_h$o quasi_particles
+R 1055 5 43 energies_gww ene_gw quasi_particles
+R 1056 5 44 energies_gww ene_gw$sd quasi_particles
+R 1057 5 45 energies_gww ene_gw$p quasi_particles
+R 1058 5 46 energies_gww ene_gw$o quasi_particles
+R 1062 5 50 energies_gww ene_gw_pert quasi_particles
+R 1063 5 51 energies_gww ene_gw_pert$sd quasi_particles
+R 1064 5 52 energies_gww ene_gw_pert$p quasi_particles
+R 1065 5 53 energies_gww ene_gw_pert$o quasi_particles
+R 1069 5 57 energies_gww ene_hf quasi_particles
+R 1070 5 58 energies_gww ene_hf$sd quasi_particles
+R 1071 5 59 energies_gww ene_hf$p quasi_particles
+R 1072 5 60 energies_gww ene_hf$o quasi_particles
+R 1076 5 64 energies_gww ene_remainder quasi_particles
+R 1077 5 65 energies_gww ene_remainder$sd quasi_particles
+R 1078 5 66 energies_gww ene_remainder$p quasi_particles
+R 1079 5 67 energies_gww ene_remainder$o quasi_particles
+R 1083 5 71 energies_gww ene_gw_off quasi_particles
+R 1084 5 72 energies_gww ene_gw_off$sd quasi_particles
+R 1085 5 73 energies_gww ene_gw_off$p quasi_particles
+R 1086 5 74 energies_gww ene_gw_off$o quasi_particles
+R 1091 5 79 energies_gww eigen_gw_off quasi_particles
+R 1092 5 80 energies_gww eigen_gw_off$sd quasi_particles
+R 1093 5 81 energies_gww eigen_gw_off$p quasi_particles
+R 1094 5 82 energies_gww eigen_gw_off$o quasi_particles
+R 1099 5 87 energies_gww ene_dft_xc_off quasi_particles
+R 1100 5 88 energies_gww ene_dft_xc_off$sd quasi_particles
+R 1101 5 89 energies_gww ene_dft_xc_off$p quasi_particles
+R 1102 5 90 energies_gww ene_dft_xc_off$o quasi_particles
+R 1107 5 95 energies_gww ene_x_off quasi_particles
+R 1108 5 96 energies_gww ene_x_off$sd quasi_particles
+R 1109 5 97 energies_gww ene_x_off$p quasi_particles
+R 1110 5 98 energies_gww ene_x_off$o quasi_particles
+S 1136 23 5 0 0 0 1139 624 9393 0 0 A 0 0 0 0 B 0 465 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 set_remainder
+S 1137 1 3 0 0 85 1 1136 5991 4 3000 A 0 0 0 0 B 0 465 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1138 1 3 0 0 391 1 1136 9249 4 3000 A 0 0 0 0 B 0 465 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 qp
+S 1139 14 5 0 0 0 1 1136 9393 0 400000 A 0 0 0 0 B 0 465 0 0 0 0 0 55 2 0 0 0 0 0 0 0 0 0 0 0 0 465 0 624 0 0 0 0 set_remainder set_remainder 
+F 1139 2 1137 1138
+S 1140 23 5 0 0 0 1145 624 9407 0 0 A 0 0 0 0 B 0 482 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 create_self_ontime
+S 1141 1 3 1 0 173 1 1140 8288 4 3000 A 0 0 0 0 B 0 482 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1142 1 3 0 0 85 1 1140 5991 4 3000 A 0 0 0 0 B 0 482 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1143 1 3 1 0 145 1 1140 7129 4 3000 A 0 0 0 0 B 0 482 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1144 1 3 1 0 285 1 1140 9249 4 3000 A 0 0 0 0 B 0 482 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 qp
+S 1145 14 5 0 0 0 1 1140 9407 0 400000 A 0 0 0 0 B 0 482 0 0 0 0 0 58 4 0 0 0 0 0 0 0 0 0 0 0 0 482 0 624 0 0 0 0 create_self_ontime create_self_ontime 
+F 1145 4 1141 1142 1143 1144
+S 1146 23 5 0 0 0 1149 624 9426 0 0 A 0 0 0 0 B 0 781 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_storage
+S 1147 1 3 1 0 173 1 1146 8288 4 3000 A 0 0 0 0 B 0 781 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1148 1 3 1 0 85 1 1146 5991 4 3000 A 0 0 0 0 B 0 781 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1149 14 5 0 0 0 1 1146 9426 0 400000 A 0 0 0 0 B 0 781 0 0 0 0 0 63 2 0 0 0 0 0 0 0 0 0 0 0 0 781 0 624 0 0 0 0 write_storage write_storage 
+F 1149 2 1147 1148
+S 1150 23 5 0 0 0 1153 624 9440 0 0 A 0 0 0 0 B 0 848 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 fft_storage_grid
+S 1151 1 3 1 0 173 1 1150 8288 4 3000 A 0 0 0 0 B 0 848 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1152 1 3 3 0 85 1 1150 5991 4 3000 A 0 0 0 0 B 0 848 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1153 14 5 0 0 0 1 1150 9440 0 400000 A 0 0 0 0 B 0 848 0 0 0 0 0 66 2 0 0 0 0 0 0 0 0 0 0 0 0 848 0 624 0 0 0 0 fft_storage_grid fft_storage_grid 
+F 1153 2 1151 1152
+S 1154 23 5 0 0 0 1156 624 9457 0 0 A 0 0 0 0 B 0 1004 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 fft_storage
+S 1155 1 3 0 0 85 1 1154 5991 4 3000 A 0 0 0 0 B 0 1004 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1156 14 5 0 0 0 1 1154 9457 0 400000 A 0 0 0 0 B 0 1004 0 0 0 0 0 69 1 0 0 0 0 0 0 0 0 0 0 0 0 1004 0 624 0 0 0 0 fft_storage fft_storage 
+F 1156 1 1155
+S 1157 23 5 0 0 0 1159 624 9469 0 0 A 0 0 0 0 B 0 1114 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 test_fft
+S 1158 1 3 1 0 173 1 1157 8288 4 3000 A 0 0 0 0 B 0 1114 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1159 14 5 0 0 0 1 1157 9469 0 400000 A 0 0 0 0 B 0 1114 0 0 0 0 0 71 1 0 0 0 0 0 0 0 0 0 0 0 0 1114 0 624 0 0 0 0 test_fft test_fft 
+F 1159 1 1158
+S 1160 23 5 0 0 0 1163 624 9478 0 0 A 0 0 0 0 B 0 1159 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 addconduction_self_ontime
+S 1161 1 3 0 0 85 1 1160 5991 4 3000 A 0 0 0 0 B 0 1159 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1162 1 3 0 0 145 1 1160 7129 4 3000 A 0 0 0 0 B 0 1159 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1163 14 5 0 0 0 1 1160 9478 0 400000 A 0 0 0 0 B 0 1159 0 0 0 0 0 73 2 0 0 0 0 0 0 0 0 0 0 0 0 1159 0 624 0 0 0 0 addconduction_self_ontime addconduction_self_ontime 
+F 1163 2 1161 1162
+S 1164 23 5 0 0 0 1167 624 9504 0 0 A 0 0 0 0 B 0 1409 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 fft_storage_grid_fit
+S 1165 1 3 1 0 173 1 1164 8288 4 3000 A 0 0 0 0 B 0 1409 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1166 1 3 3 0 85 1 1164 5991 4 3000 A 0 0 0 0 B 0 1409 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1167 14 5 0 0 0 1 1164 9504 0 400000 A 0 0 0 0 B 0 1409 0 0 0 0 0 76 2 0 0 0 0 0 0 0 0 0 0 0 0 1409 0 624 0 0 0 0 fft_storage_grid_fit fft_storage_grid_fit 
+F 1167 2 1165 1166
+S 1168 23 5 0 0 0 1172 624 9525 0 0 A 0 0 0 0 B 0 1549 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 addconduction_self_ontime_file
+S 1169 1 3 0 0 85 1 1168 5991 4 3000 A 0 0 0 0 B 0 1549 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1170 1 3 1 0 173 1 1168 8288 4 3000 A 0 0 0 0 B 0 1549 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1171 1 3 0 0 145 1 1168 7129 4 3000 A 0 0 0 0 B 0 1549 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1172 14 5 0 0 0 1 1168 9525 0 400000 A 0 0 0 0 B 0 1549 0 0 0 0 0 79 3 0 0 0 0 0 0 0 0 0 0 0 0 1549 0 624 0 0 0 0 addconduction_self_ontime_file addconduction_self_ontime_file 
+F 1172 3 1169 1170 1171
+S 1173 23 5 0 0 0 1177 624 9556 0 0 A 0 0 0 0 B 0 1766 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 selfenergy_ontime_file
+S 1174 1 3 0 0 85 1 1173 5991 4 3000 A 0 0 0 0 B 0 1766 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1175 1 3 1 0 173 1 1173 8288 4 3000 A 0 0 0 0 B 0 1766 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1176 1 3 0 0 145 1 1173 7129 4 3000 A 0 0 0 0 B 0 1766 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1177 14 5 0 0 0 1 1173 9556 0 400000 A 0 0 0 0 B 0 1766 0 0 0 0 0 83 3 0 0 0 0 0 0 0 0 0 0 0 0 1766 0 624 0 0 0 0 selfenergy_ontime_file selfenergy_ontime_file 
+F 1177 3 1174 1175 1176
+S 1178 23 5 0 0 0 1182 624 9579 0 0 A 0 0 0 0 B 0 2085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 selfenergy_ontime_upper
+S 1179 1 3 0 0 85 1 1178 5991 4 3000 A 0 0 0 0 B 0 2085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ss
+S 1180 1 3 1 0 173 1 1178 8288 4 3000 A 0 0 0 0 B 0 2085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 tf
+S 1181 1 3 0 0 145 1 1178 7129 4 3000 A 0 0 0 0 B 0 2085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 options
+S 1182 14 5 0 0 0 1 1178 9579 0 400000 A 0 0 0 0 B 0 2085 0 0 0 0 0 87 3 0 0 0 0 0 0 0 0 0 0 0 0 2085 0 624 0 0 0 0 selfenergy_ontime_upper selfenergy_ontime_upper 
+F 1182 3 1179 1180 1181
+S 1183 23 5 0 0 0 1185 624 9603 0 0 A 0 0 0 0 B 0 2348 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 self_on_real_print
+S 1184 1 3 0 0 124 1 1183 5939 4 3000 A 0 0 0 0 B 0 2348 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 1185 14 5 0 0 0 1 1183 9603 0 400000 A 0 0 0 0 B 0 2348 0 0 0 0 0 91 1 0 0 0 0 0 0 0 0 0 0 0 0 2348 0 624 0 0 0 0 self_on_real_print self_on_real_print 
+F 1185 1 1184
+S 1186 23 5 0 0 0 1193 624 9622 0 0 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 self_on_real_value
+S 1187 1 3 0 0 124 1 1186 5939 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 sr
+S 1188 1 3 1 0 6 1 1186 9641 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ii
+S 1189 1 3 1 0 6 1 1186 9644 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ispin
+S 1190 1 3 1 0 14 1 1186 9650 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 energy
+S 1191 1 3 2 0 14 1 1186 9657 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 value
+S 1192 1 3 2 0 6 1 1186 9663 4 3000 A 0 0 0 0 B 0 2388 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ierr
+S 1193 14 5 0 0 0 1 1186 9622 0 400000 A 0 0 0 0 B 0 2388 0 0 0 0 0 93 6 0 0 0 0 0 0 0 0 0 0 0 0 2388 0 624 0 0 0 0 self_on_real_value self_on_real_value 
+F 1193 6 1187 1188 1189 1190 1191 1192
+A 15 2 0 0 0 6 628 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0
+A 21 2 0 0 0 7 657 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0
+A 22 2 0 0 0 7 662 0 0 0 22 0 0 0 0 0 0 0 0 0 0 0
+A 23 1 0 1 0 94 658 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 24 10 0 0 0 7 23 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 25 2 0 0 0 7 663 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0
+A 26 10 0 0 24 7 23 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 27 4 0 0 0 7 26 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 28 4 0 0 0 7 24 0 27 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 29 2 0 0 0 7 665 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0
+A 30 10 0 0 26 7 23 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 31 2 0 0 0 7 666 0 0 0 31 0 0 0 0 0 0 0 0 0 0 0
+A 32 10 0 0 30 7 23 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 33 4 0 0 0 7 32 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 34 4 0 0 0 7 30 0 33 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 35 2 0 0 0 7 667 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0
+A 36 10 0 0 32 7 23 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 35
+A 37 2 0 0 0 7 668 0 0 0 37 0 0 0 0 0 0 0 0 0 0 0
+A 38 10 0 0 36 7 23 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 37
+A 39 4 0 0 0 7 38 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 40 4 0 0 0 7 36 0 39 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 41 2 0 0 0 7 669 0 0 0 41 0 0 0 0 0 0 0 0 0 0 0
+A 42 10 0 0 38 7 23 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 43 2 0 0 0 7 670 0 0 0 43 0 0 0 0 0 0 0 0 0 0 0
+A 44 10 0 0 42 7 23 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 45 2 0 0 0 7 671 0 0 0 45 0 0 0 0 0 0 0 0 0 0 0
+A 46 10 0 0 44 7 23 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 45
+A 47 2 0 0 0 7 672 0 0 0 47 0 0 0 0 0 0 0 0 0 0 0
+A 48 10 0 0 46 7 23 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 49 2 0 0 0 7 673 0 0 0 49 0 0 0 0 0 0 0 0 0 0 0
+A 50 10 0 0 48 7 23 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 55 2 0 0 0 7 679 0 0 0 55 0 0 0 0 0 0 0 0 0 0 0
+A 56 1 0 3 0 100 680 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 57 10 0 0 0 7 56 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 58 10 0 0 57 7 56 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 59 4 0 0 0 7 58 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 60 4 0 0 0 7 57 0 59 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 61 10 0 0 58 7 56 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 62 10 0 0 61 7 56 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 63 4 0 0 0 7 62 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 64 4 0 0 0 7 61 0 63 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 65 10 0 0 62 7 56 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 35
+A 66 10 0 0 65 7 56 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 37
+A 67 4 0 0 0 7 66 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 68 4 0 0 0 7 65 0 67 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 69 10 0 0 66 7 56 34 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 21
+A 70 2 0 0 0 7 684 0 0 0 70 0 0 0 0 0 0 0 0 0 0 0
+A 71 10 0 0 69 7 56 37 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 70
+A 72 4 0 0 0 7 71 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 73 4 0 0 0 7 69 0 72 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 74 10 0 0 71 7 56 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 75 10 0 0 74 7 56 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 76 10 0 0 75 7 56 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 45
+A 77 2 0 0 0 7 685 0 0 0 77 0 0 0 0 0 0 0 0 0 0 0
+A 78 10 0 0 76 7 56 40 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 77
+A 79 10 0 0 78 7 56 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 80 10 0 0 79 7 56 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 84 1 0 1 0 106 690 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 85 10 0 0 0 7 84 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 86 10 0 0 85 7 84 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 87 4 0 0 0 7 86 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 88 4 0 0 0 7 85 0 87 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 89 10 0 0 86 7 84 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 90 10 0 0 89 7 84 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 91 4 0 0 0 7 90 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 92 4 0 0 0 7 89 0 91 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 93 10 0 0 90 7 84 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 35
+A 94 10 0 0 93 7 84 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 37
+A 95 4 0 0 0 7 94 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 96 4 0 0 0 7 93 0 95 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 97 10 0 0 94 7 84 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 98 10 0 0 97 7 84 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 99 10 0 0 98 7 84 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 45
+A 100 10 0 0 99 7 84 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 101 10 0 0 100 7 84 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 106 1 0 3 0 112 699 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 107 10 0 0 0 7 106 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 108 10 0 0 107 7 106 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 109 4 0 0 0 7 108 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 110 4 0 0 0 7 107 0 109 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 111 10 0 0 108 7 106 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 112 10 0 0 111 7 106 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 113 4 0 0 0 7 112 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 114 4 0 0 0 7 111 0 113 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 115 10 0 0 112 7 106 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 35
+A 116 10 0 0 115 7 106 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 37
+A 117 4 0 0 0 7 116 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 118 4 0 0 0 7 115 0 117 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 119 10 0 0 116 7 106 34 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 21
+A 120 10 0 0 119 7 106 37 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 70
+A 121 4 0 0 0 7 120 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 122 4 0 0 0 7 119 0 121 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 123 10 0 0 120 7 106 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 124 10 0 0 123 7 106 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 125 10 0 0 124 7 106 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 45
+A 126 10 0 0 125 7 106 40 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 77
+A 127 10 0 0 126 7 106 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 128 10 0 0 127 7 106 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 131 1 0 5 0 118 706 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 132 10 0 0 0 7 131 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 133 10 0 0 132 7 131 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 134 4 0 0 0 7 133 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 135 4 0 0 0 7 132 0 134 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 136 10 0 0 133 7 131 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 137 10 0 0 136 7 131 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 138 4 0 0 0 7 137 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 139 4 0 0 0 7 136 0 138 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 140 10 0 0 137 7 131 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 141 10 0 0 140 7 131 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 142 10 0 0 141 7 131 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 143 10 0 0 142 7 131 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 145 1 0 7 0 133 721 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 146 10 0 0 0 7 145 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 147 10 0 0 146 7 145 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 148 4 0 0 0 7 147 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 149 4 0 0 0 7 146 0 148 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 150 10 0 0 147 7 145 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 151 10 0 0 150 7 145 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 152 10 0 0 151 7 145 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 156 1 0 1 0 139 729 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 157 10 0 0 0 7 156 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 158 10 0 0 157 7 156 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 25
+A 159 4 0 0 0 7 158 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 160 4 0 0 0 7 157 0 159 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 161 10 0 0 158 7 156 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 29
+A 162 10 0 0 161 7 156 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 31
+A 163 4 0 0 0 7 162 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 164 4 0 0 0 7 161 0 163 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 165 10 0 0 162 7 156 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 35
+A 166 10 0 0 165 7 156 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 37
+A 167 4 0 0 0 7 166 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 168 4 0 0 0 7 165 0 167 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 169 10 0 0 166 7 156 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 41
+A 170 10 0 0 169 7 156 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 43
+A 171 10 0 0 170 7 156 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 45
+A 172 10 0 0 171 7 156 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 47
+A 173 10 0 0 172 7 156 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 174 2 0 0 0 6 746 0 0 0 174 0 0 0 0 0 0 0 0 0 0 0
+A 175 2 0 0 0 6 749 0 0 0 175 0 0 0 0 0 0 0 0 0 0 0
+A 177 2 0 0 0 7 762 0 0 0 177 0 0 0 0 0 0 0 0 0 0 0
+A 178 2 0 0 0 10 617 0 0 0 178 0 0 0 0 0 0 0 0 0 0 0
+A 179 2 0 0 0 18 745 0 0 0 179 0 0 0 0 0 0 0 0 0 0 0
+A 180 2 0 0 0 151 747 0 0 0 180 0 0 0 0 0 0 0 0 0 0 0
+A 181 2 0 0 0 155 750 0 0 0 181 0 0 0 0 0 0 0 0 0 0 0
+A 182 2 0 0 0 6 751 0 0 0 182 0 0 0 0 0 0 0 0 0 0 0
+A 183 2 0 0 0 10 752 0 0 0 183 0 0 0 0 0 0 0 0 0 0 0
+A 184 2 0 0 0 6 753 0 0 0 184 0 0 0 0 0 0 0 0 0 0 0
+A 185 2 0 0 0 6 754 0 0 0 185 0 0 0 0 0 0 0 0 0 0 0
+A 186 2 0 0 0 18 755 0 0 0 186 0 0 0 0 0 0 0 0 0 0 0
+A 187 2 0 0 0 6 756 0 0 0 187 0 0 0 0 0 0 0 0 0 0 0
+A 188 2 0 0 0 6 757 0 0 0 188 0 0 0 0 0 0 0 0 0 0 0
+A 189 2 0 0 0 6 758 0 0 0 189 0 0 0 0 0 0 0 0 0 0 0
+A 190 2 0 0 0 6 759 0 0 0 190 0 0 0 0 0 0 0 0 0 0 0
+A 191 2 0 0 0 6 760 0 0 0 191 0 0 0 0 0 0 0 0 0 0 0
+A 192 2 0 0 0 9 614 0 0 0 192 0 0 0 0 0 0 0 0 0 0 0
+A 193 2 0 0 0 9 761 0 0 0 193 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 764 145 0 3 0 0
+A 766 10 0 0 1 178 1
+A 767 18 0 0 1 179 1
+A 769 151 0 0 1 180 1
+A 770 155 0 0 1 181 1
+A 771 6 0 0 1 182 1
+A 772 18 0 0 1 179 1
+A 773 18 0 0 1 179 1
+A 774 6 0 0 1 175 1
+A 776 10 0 0 1 183 1
+A 781 6 0 0 1 184 1
+A 782 6 0 0 1 3 1
+A 783 6 0 0 1 185 1
+A 784 18 0 0 1 179 1
+A 785 18 0 0 1 179 1
+A 786 18 0 0 1 179 1
+A 788 18 0 0 1 186 1
+A 789 18 0 0 1 186 1
+A 790 18 0 0 1 179 1
+A 791 6 0 0 1 187 1
+A 792 6 0 0 1 187 1
+A 794 18 0 0 1 179 1
+A 795 18 0 0 1 179 1
+A 796 10 0 0 1 178 1
+A 797 10 0 0 1 178 1
+A 798 10 0 0 1 178 1
+A 799 10 0 0 1 178 1
+A 800 6 0 0 1 3 1
+A 805 6 0 0 1 188 1
+A 806 6 0 0 1 3 1
+A 807 18 0 0 1 186 1
+A 808 18 0 0 1 186 1
+A 809 18 0 0 1 179 1
+A 810 18 0 0 1 186 1
+A 811 18 0 0 1 186 1
+A 813 18 0 0 1 186 1
+A 814 6 0 0 1 175 1
+A 815 18 0 0 1 179 1
+A 816 18 0 0 1 186 1
+A 817 18 0 0 1 179 1
+A 818 18 0 0 1 186 1
+A 819 18 0 0 1 179 1
+A 820 18 0 0 1 179 1
+A 821 18 0 0 1 179 1
+A 822 18 0 0 1 179 1
+A 823 18 0 0 1 179 1
+A 824 18 0 0 1 186 1
+A 825 18 0 0 1 186 1
+A 826 18 0 0 1 186 1
+A 827 6 0 0 1 189 1
+A 828 6 0 0 1 190 1
+A 829 6 0 0 1 15 1
+A 830 6 0 0 1 3 1
+A 831 18 0 0 1 179 1
+A 832 18 0 0 1 186 1
+A 833 6 0 0 1 191 1
+A 834 6 0 0 1 3 1
+A 835 6 0 0 1 3 1
+A 836 18 0 0 1 186 1
+A 837 18 0 0 1 186 1
+A 838 18 0 0 1 186 1
+A 839 18 0 0 1 179 1
+A 840 6 0 0 1 187 1
+A 842 6 0 0 1 191 1
+A 843 6 0 0 1 3 1
+A 845 6 0 0 1 2 1
+A 846 6 0 0 1 2 1
+A 847 6 0 0 1 3 1
+A 848 18 0 0 1 179 1
+A 849 18 0 0 1 179 1
+A 850 18 0 0 1 179 1
+A 851 18 0 0 1 179 1
+A 852 9 0 0 1 193 1
+A 853 9 0 0 1 192 1
+A 854 6 0 0 1 2 1
+A 855 18 0 0 1 179 1
+A 856 18 0 0 1 179 1
+A 857 18 0 0 1 179 1
+A 858 6 0 0 1 2 1
+A 859 18 0 0 1 179 1
+R 860 157 0 0
+A 0 10 0 177 1 178 0
+T 892 173 0 3 0 0
+A 950 6 0 0 1 191 1
+A 951 6 0 0 1 3 0
+Z

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_xml.a CMakeFiles/qe_xml.dir/xmltools.f90.o CMakeFiles/qe_xml.dir/dom.f90.o CMakeFiles/qe_xml.dir/wxml.f90.o
+/usr/bin/ranlib ../lib/libqe_xml.a

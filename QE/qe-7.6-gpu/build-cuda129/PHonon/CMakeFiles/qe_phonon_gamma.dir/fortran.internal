@@ -1,0 +1,12 @@
+# The fortran modules provided by this target.
+provides
+ aa.mod
+ cgcom.mod
+ cgconv.mod
+ dielectric.mod
+ diffs.mod
+ flags.mod
+ modes1.mod
+ phon.mod
+ phunits.mod
+ symmetry.mod

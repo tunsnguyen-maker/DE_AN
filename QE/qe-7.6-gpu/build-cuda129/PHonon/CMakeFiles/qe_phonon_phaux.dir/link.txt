@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_phonon_phaux.a CMakeFiles/qe_phonon_phaux.dir/PH/write_eigenvectors.f90.o
+/usr/bin/ranlib ../lib/libqe_phonon_phaux.a

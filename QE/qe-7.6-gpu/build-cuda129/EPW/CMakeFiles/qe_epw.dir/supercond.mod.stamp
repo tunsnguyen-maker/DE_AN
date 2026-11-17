@@ -1,0 +1,386 @@
+V35 :0x24 supercond
+13 supercond.f90 S624 0
+11/11/2026  20:58:52
+use sparse_ir private
+enduse
+D 85 26 926 2520 920 7
+D 169 22 7
+D 171 22 7
+D 173 22 7
+D 175 22 7
+D 177 22 7
+D 179 22 7
+D 181 22 7
+D 183 22 7
+D 185 22 7
+D 187 22 7
+D 189 22 7
+D 191 22 7
+D 193 22 7
+D 198 26 1022 1520 921 7
+D 252 22 7
+D 254 22 7
+D 256 22 7
+D 258 22 7
+D 260 22 7
+D 262 22 7
+D 264 22 7
+D 266 22 7
+D 271 26 1079 10216 922 7
+D 583 26 1079 10216 922 7
+D 589 23 10 2 1094 1098 0 0 1 0 0
+ 0 1096 11 11 1097 1097
+ 0 1096 1097 11 1097 1097
+S 624 24 0 0 0 9 1 0 4986 10005 8000 A 0 0 0 0 B 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 supercond
+S 625 23 5 0 0 0 626 624 4996 0 0 A 0 0 0 0 B 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 eliashberg_init
+S 626 14 5 0 0 0 1 625 4996 0 400000 A 0 0 0 0 B 0 23 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 23 0 624 0 0 0 0 eliashberg_init eliashberg_init 
+F 626 0
+S 627 23 5 0 0 0 628 624 5012 0 0 A 0 0 0 0 B 0 280 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 eliashberg_grid
+S 628 14 5 0 0 0 1 627 5012 0 400000 A 0 0 0 0 B 0 280 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 280 0 624 0 0 0 0 eliashberg_grid eliashberg_grid 
+F 628 0
+S 629 23 5 0 0 0 630 624 5028 0 0 A 0 0 0 0 B 0 392 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 evaluate_a2f_lambda
+S 630 14 5 0 0 0 1 629 5028 0 400000 A 0 0 0 0 B 0 392 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 392 0 624 0 0 0 0 evaluate_a2f_lambda evaluate_a2f_lambda 
+F 630 0
+S 631 23 5 0 0 0 632 624 5048 0 0 A 0 0 0 0 B 0 954 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 estimate_tc_gap
+S 632 14 5 0 0 0 1 631 5048 0 400000 A 0 0 0 0 B 0 954 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 954 0 624 0 0 0 0 estimate_tc_gap estimate_tc_gap 
+F 632 0
+S 633 23 5 0 0 0 634 624 5064 0 0 A 0 0 0 0 B 0 1117 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 find_a2f
+S 634 14 5 0 0 0 1 633 5064 0 400000 A 0 0 0 0 B 0 1117 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0 0 1117 0 624 0 0 0 0 find_a2f find_a2f 
+F 634 0
+S 635 23 5 0 0 0 636 624 5073 0 0 A 0 0 0 0 B 0 1169 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gen_freqgrid_raxis
+S 636 14 5 0 0 0 1 635 5073 0 400000 A 0 0 0 0 B 0 1169 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 1169 0 624 0 0 0 0 gen_freqgrid_raxis gen_freqgrid_raxis 
+F 636 0
+S 863 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 866 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 920 25 49 sparse_ir decomposedmatrix_z
+R 921 25 50 sparse_ir decomposedmatrix_d
+R 922 25 51 sparse_ir ir
+R 926 5 55 sparse_ir a decomposedmatrix_z
+R 929 5 58 sparse_ir a$sd decomposedmatrix_z
+R 930 5 59 sparse_ir a$p decomposedmatrix_z
+R 931 5 60 sparse_ir a$o decomposedmatrix_z
+R 933 5 62 sparse_ir a_real decomposedmatrix_z
+R 936 5 65 sparse_ir a_real$sd decomposedmatrix_z
+R 937 5 66 sparse_ir a_real$p decomposedmatrix_z
+R 938 5 67 sparse_ir a_real$o decomposedmatrix_z
+R 940 5 69 sparse_ir a_imag decomposedmatrix_z
+R 943 5 72 sparse_ir a_imag$sd decomposedmatrix_z
+R 944 5 73 sparse_ir a_imag$p decomposedmatrix_z
+R 945 5 74 sparse_ir a_imag$o decomposedmatrix_z
+R 947 5 76 sparse_ir a_odd decomposedmatrix_z
+R 950 5 79 sparse_ir a_odd$sd decomposedmatrix_z
+R 951 5 80 sparse_ir a_odd$p decomposedmatrix_z
+R 952 5 81 sparse_ir a_odd$o decomposedmatrix_z
+R 954 5 83 sparse_ir a_even decomposedmatrix_z
+R 957 5 86 sparse_ir a_even$sd decomposedmatrix_z
+R 958 5 87 sparse_ir a_even$p decomposedmatrix_z
+R 959 5 88 sparse_ir a_even$o decomposedmatrix_z
+R 961 5 90 sparse_ir inv_s_dl decomposedmatrix_z
+R 963 5 92 sparse_ir inv_s_dl$sd decomposedmatrix_z
+R 964 5 93 sparse_ir inv_s_dl$p decomposedmatrix_z
+R 965 5 94 sparse_ir inv_s_dl$o decomposedmatrix_z
+R 967 5 96 sparse_ir inv_s decomposedmatrix_z
+R 969 5 98 sparse_ir inv_s$sd decomposedmatrix_z
+R 970 5 99 sparse_ir inv_s$p decomposedmatrix_z
+R 971 5 100 sparse_ir inv_s$o decomposedmatrix_z
+R 973 5 102 sparse_ir ut decomposedmatrix_z
+R 976 5 105 sparse_ir ut$sd decomposedmatrix_z
+R 977 5 106 sparse_ir ut$p decomposedmatrix_z
+R 978 5 107 sparse_ir ut$o decomposedmatrix_z
+R 980 5 109 sparse_ir v decomposedmatrix_z
+R 983 5 112 sparse_ir v$sd decomposedmatrix_z
+R 984 5 113 sparse_ir v$p decomposedmatrix_z
+R 985 5 114 sparse_ir v$o decomposedmatrix_z
+R 987 5 116 sparse_ir ut_real decomposedmatrix_z
+R 990 5 119 sparse_ir ut_real$sd decomposedmatrix_z
+R 991 5 120 sparse_ir ut_real$p decomposedmatrix_z
+R 992 5 121 sparse_ir ut_real$o decomposedmatrix_z
+R 994 5 123 sparse_ir ut_imag decomposedmatrix_z
+R 997 5 126 sparse_ir ut_imag$sd decomposedmatrix_z
+R 998 5 127 sparse_ir ut_imag$p decomposedmatrix_z
+R 999 5 128 sparse_ir ut_imag$o decomposedmatrix_z
+R 1001 5 130 sparse_ir v_real decomposedmatrix_z
+R 1004 5 133 sparse_ir v_real$sd decomposedmatrix_z
+R 1005 5 134 sparse_ir v_real$p decomposedmatrix_z
+R 1006 5 135 sparse_ir v_real$o decomposedmatrix_z
+R 1008 5 137 sparse_ir v_imag decomposedmatrix_z
+R 1011 5 140 sparse_ir v_imag$sd decomposedmatrix_z
+R 1012 5 141 sparse_ir v_imag$p decomposedmatrix_z
+R 1013 5 142 sparse_ir v_imag$o decomposedmatrix_z
+R 1015 5 144 sparse_ir m decomposedmatrix_z
+R 1016 5 145 sparse_ir n decomposedmatrix_z
+R 1017 5 146 sparse_ir ns decomposedmatrix_z
+R 1022 5 151 sparse_ir a decomposedmatrix_d
+R 1023 5 152 sparse_ir a$sd decomposedmatrix_d
+R 1024 5 153 sparse_ir a$p decomposedmatrix_d
+R 1025 5 154 sparse_ir a$o decomposedmatrix_d
+R 1029 5 158 sparse_ir a_real decomposedmatrix_d
+R 1030 5 159 sparse_ir a_real$sd decomposedmatrix_d
+R 1031 5 160 sparse_ir a_real$p decomposedmatrix_d
+R 1032 5 161 sparse_ir a_real$o decomposedmatrix_d
+R 1035 5 164 sparse_ir inv_s_dl decomposedmatrix_d
+R 1036 5 165 sparse_ir inv_s_dl$sd decomposedmatrix_d
+R 1037 5 166 sparse_ir inv_s_dl$p decomposedmatrix_d
+R 1038 5 167 sparse_ir inv_s_dl$o decomposedmatrix_d
+R 1041 5 170 sparse_ir inv_s decomposedmatrix_d
+R 1042 5 171 sparse_ir inv_s$sd decomposedmatrix_d
+R 1043 5 172 sparse_ir inv_s$p decomposedmatrix_d
+R 1044 5 173 sparse_ir inv_s$o decomposedmatrix_d
+R 1048 5 177 sparse_ir ut decomposedmatrix_d
+R 1049 5 178 sparse_ir ut$sd decomposedmatrix_d
+R 1050 5 179 sparse_ir ut$p decomposedmatrix_d
+R 1051 5 180 sparse_ir ut$o decomposedmatrix_d
+R 1055 5 184 sparse_ir v decomposedmatrix_d
+R 1056 5 185 sparse_ir v$sd decomposedmatrix_d
+R 1057 5 186 sparse_ir v$p decomposedmatrix_d
+R 1058 5 187 sparse_ir v$o decomposedmatrix_d
+R 1062 5 191 sparse_ir ut_real decomposedmatrix_d
+R 1063 5 192 sparse_ir ut_real$sd decomposedmatrix_d
+R 1064 5 193 sparse_ir ut_real$p decomposedmatrix_d
+R 1065 5 194 sparse_ir ut_real$o decomposedmatrix_d
+R 1069 5 198 sparse_ir v_real decomposedmatrix_d
+R 1070 5 199 sparse_ir v_real$sd decomposedmatrix_d
+R 1071 5 200 sparse_ir v_real$p decomposedmatrix_d
+R 1072 5 201 sparse_ir v_real$o decomposedmatrix_d
+R 1074 5 203 sparse_ir m decomposedmatrix_d
+R 1075 5 204 sparse_ir n decomposedmatrix_d
+R 1076 5 205 sparse_ir ns decomposedmatrix_d
+R 1079 5 208 sparse_ir size ir
+R 1080 5 209 sparse_ir ntau ir
+R 1081 5 210 sparse_ir nfreq_f ir
+R 1082 5 211 sparse_ir nfreq_b ir
+R 1083 5 212 sparse_ir nomega ir
+R 1084 5 213 sparse_ir beta ir
+R 1085 5 214 sparse_ir lambda ir
+R 1086 5 215 sparse_ir wmax ir
+R 1087 5 216 sparse_ir eps ir
+R 1088 5 217 sparse_ir eps_svd ir
+R 1089 5 218 sparse_ir s ir
+R 1091 5 220 sparse_ir s$sd ir
+R 1092 5 221 sparse_ir s$p ir
+R 1093 5 222 sparse_ir s$o ir
+R 1095 5 224 sparse_ir tau ir
+R 1097 5 226 sparse_ir tau$sd ir
+R 1098 5 227 sparse_ir tau$p ir
+R 1099 5 228 sparse_ir tau$o ir
+R 1101 5 230 sparse_ir x ir
+R 1103 5 232 sparse_ir x$sd ir
+R 1104 5 233 sparse_ir x$p ir
+R 1105 5 234 sparse_ir x$o ir
+R 1107 5 236 sparse_ir omega ir
+R 1109 5 238 sparse_ir omega$sd ir
+R 1110 5 239 sparse_ir omega$p ir
+R 1111 5 240 sparse_ir omega$o ir
+R 1113 5 242 sparse_ir y ir
+R 1115 5 244 sparse_ir y$sd ir
+R 1116 5 245 sparse_ir y$p ir
+R 1117 5 246 sparse_ir y$o ir
+R 1119 5 248 sparse_ir freq_f ir
+R 1121 5 250 sparse_ir freq_f$sd ir
+R 1122 5 251 sparse_ir freq_f$p ir
+R 1123 5 252 sparse_ir freq_f$o ir
+R 1125 5 254 sparse_ir freq_b ir
+R 1127 5 256 sparse_ir freq_b$sd ir
+R 1128 5 257 sparse_ir freq_b$p ir
+R 1129 5 258 sparse_ir freq_b$o ir
+R 1131 5 260 sparse_ir u_data ir
+R 1134 5 263 sparse_ir u_data$sd ir
+R 1135 5 264 sparse_ir u_data$p ir
+R 1136 5 265 sparse_ir u_data$o ir
+R 1138 5 267 sparse_ir uhat_f_data ir
+R 1141 5 270 sparse_ir uhat_f_data$sd ir
+R 1142 5 271 sparse_ir uhat_f_data$p ir
+R 1143 5 272 sparse_ir uhat_f_data$o ir
+R 1145 5 274 sparse_ir uhat_b_data ir
+R 1148 5 277 sparse_ir uhat_b_data$sd ir
+R 1149 5 278 sparse_ir uhat_b_data$p ir
+R 1150 5 279 sparse_ir uhat_b_data$o ir
+R 1152 5 281 sparse_ir v_data ir
+R 1155 5 284 sparse_ir v_data$sd ir
+R 1156 5 285 sparse_ir v_data$p ir
+R 1157 5 286 sparse_ir v_data$o ir
+R 1159 5 288 sparse_ir dlr_data ir
+R 1162 5 291 sparse_ir dlr_data$sd ir
+R 1163 5 292 sparse_ir dlr_data$p ir
+R 1164 5 293 sparse_ir dlr_data$o ir
+R 1166 5 295 sparse_ir u ir
+R 1167 5 296 sparse_ir uhat_f ir
+R 1168 5 297 sparse_ir uhat_b ir
+R 1169 5 298 sparse_ir dlr ir
+R 1170 5 299 sparse_ir positive_only ir
+S 1874 23 5 0 0 0 1877 624 10454 0 0 A 0 0 0 0 B 0 1200 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gen_freqgrid_iaxis
+S 1875 1 3 1 0 6 1 1874 10473 4 3000 A 0 0 0 0 B 0 1200 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 itemp
+S 1876 1 3 1 0 583 1 1874 10479 80000004 3000 A 0 0 0 0 B 0 1200 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ir_obj
+S 1877 14 5 0 0 0 1 1874 10454 0 400000 A 0 0 0 0 B 0 1200 0 0 0 0 0 169 2 0 0 0 0 0 0 0 0 0 0 0 0 1200 0 624 0 0 0 0 gen_freqgrid_iaxis gen_freqgrid_iaxis 
+F 1877 2 1875 1876
+S 1878 23 5 0 0 0 1884 624 10486 0 0 A 0 0 0 0 B 0 1461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 gamma_acont
+S 1879 1 3 1 0 10 1 1878 8156 4 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 omega
+S 1880 1 3 1 0 10 1 1878 10498 4 3000 A 0 0 0 0 B 0 1461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 omegap
+S 1881 1 3 1 0 10 1 1878 10505 4 3000 A 0 0 0 0 B 0 1461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 temp
+S 1882 1 3 2 0 10 1 1878 10510 4 3000 A 0 0 0 0 B 0 1461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rgammap
+S 1883 1 3 2 0 10 1 1878 10518 4 3000 A 0 0 0 0 B 0 1461 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 rgammam
+S 1884 14 5 0 0 0 1 1878 10486 0 400000 A 0 0 0 0 B 0 1461 0 0 0 0 0 172 5 0 0 0 0 0 0 0 0 0 0 0 0 1461 0 624 0 0 0 0 gamma_acont gamma_acont 
+F 1884 5 1879 1880 1881 1882 1883
+S 1885 23 5 0 0 0 1887 624 10526 0 0 A 0 0 0 0 B 0 1505 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 dos_quasiparticle
+S 1886 1 3 1 0 6 1 1885 10473 4 3000 A 0 0 0 0 B 0 1505 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 itemp
+S 1887 14 5 0 0 0 1 1885 10526 0 400000 A 0 0 0 0 B 0 1505 0 0 0 0 0 178 1 0 0 0 0 0 0 0 0 0 0 0 0 1505 0 624 0 0 0 0 dos_quasiparticle dos_quasiparticle 
+F 1887 1 1886
+S 1888 23 5 0 0 0 1893 624 10544 0 0 A 0 0 0 0 B 0 1619 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 crit_temp_solver
+S 1889 6 3 1 0 6 1 1888 10561 800004 3000 A 0 0 0 0 B 0 1619 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 adim
+S 1890 7 3 1 0 589 1 1888 6954 800204 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 a
+S 1891 1 3 2 0 10 1 1888 10566 4 3000 A 0 0 0 0 B 0 1619 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 eigen
+S 1892 1 3 2 0 6 1 1888 10572 4 3000 A 0 0 0 0 B 0 1619 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 niter
+S 1893 14 5 0 0 0 1 1888 10544 200 400000 A 0 0 0 0 B 0 1619 0 0 0 0 0 180 4 0 0 0 0 0 0 0 0 0 0 0 0 1619 0 624 0 0 0 0 crit_temp_solver crit_temp_solver 
+F 1893 4 1889 1890 1891 1892
+S 1894 6 1 0 0 7 1 1888 10578 40800006 3000 A 0 0 0 0 B 0 1637 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_1247
+S 1895 6 1 0 0 7 1 1888 10587 40800006 3000 A 0 0 0 0 B 0 1637 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_1249
+S 1896 6 1 0 0 7 1 1888 10596 40800006 3000 A 0 0 0 0 B 0 1637 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 z_e_1251
+S 1897 23 5 0 0 0 1899 624 10605 0 0 A 0 0 0 0 B 0 1776 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 write_matsubara_freq
+S 1898 1 3 0 0 6 1 1897 10473 4 3000 A 0 0 0 0 B 0 1776 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 itemp
+S 1899 14 5 0 0 0 1 1897 10605 0 400000 A 0 0 0 0 B 0 1776 0 0 0 0 0 185 1 0 0 0 0 0 0 0 0 0 0 0 0 1776 0 624 0 0 0 0 write_matsubara_freq write_matsubara_freq 
+F 1899 1 1898
+S 1900 23 5 0 0 0 1901 624 10626 0 0 A 0 0 0 0 B 0 1827 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 deallocate_eliashberg_elphon
+S 1901 14 5 0 0 0 1 1900 10626 0 400000 A 0 0 0 0 B 0 1827 0 0 0 0 0 187 0 0 0 0 0 0 0 0 0 0 0 0 0 1827 0 624 0 0 0 0 deallocate_eliashberg_elphon deallocate_eliashberg_elphon 
+F 1901 0
+A 211 2 0 0 22 7 863 0 0 0 211 0 0 0 0 0 0 0 0 0 0 0
+A 223 2 0 0 28 7 866 0 0 0 223 0 0 0 0 0 0 0 0 0 0 0
+A 1094 1 0 0 0 7 1896 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1095 1 0 0 0 6 1889 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1096 7 0 0 0 7 1095 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1097 1 0 0 0 7 1894 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1098 1 0 0 0 7 1895 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 920 85 0 0 0 0
+A 930 7 169 0 1 2 1
+A 929 7 0 211 1 10 1
+A 937 7 171 0 1 2 1
+A 936 7 0 211 1 10 1
+A 944 7 173 0 1 2 1
+A 943 7 0 211 1 10 1
+A 951 7 175 0 1 2 1
+A 950 7 0 211 1 10 1
+A 958 7 177 0 1 2 1
+A 957 7 0 211 1 10 1
+A 964 7 179 0 1 2 1
+A 963 7 0 223 1 10 1
+A 970 7 181 0 1 2 1
+A 969 7 0 223 1 10 1
+A 977 7 183 0 1 2 1
+A 976 7 0 211 1 10 1
+A 984 7 185 0 1 2 1
+A 983 7 0 211 1 10 1
+A 991 7 187 0 1 2 1
+A 990 7 0 211 1 10 1
+A 998 7 189 0 1 2 1
+A 997 7 0 211 1 10 1
+A 1005 7 191 0 1 2 1
+A 1004 7 0 211 1 10 1
+A 1012 7 193 0 1 2 1
+A 1011 7 0 211 1 10 0
+T 921 198 0 0 0 0
+A 1024 7 252 0 1 2 1
+A 1023 7 0 211 1 10 1
+A 1031 7 254 0 1 2 1
+A 1030 7 0 211 1 10 1
+A 1037 7 256 0 1 2 1
+A 1036 7 0 223 1 10 1
+A 1043 7 258 0 1 2 1
+A 1042 7 0 223 1 10 1
+A 1050 7 260 0 1 2 1
+A 1049 7 0 211 1 10 1
+A 1057 7 262 0 1 2 1
+A 1056 7 0 211 1 10 1
+A 1064 7 264 0 1 2 1
+A 1063 7 0 211 1 10 1
+A 1071 7 266 0 1 2 1
+A 1070 7 0 211 1 10 0
+T 922 271 0 3 0 0
+T 1166 198 0 3 0 1
+A 1024 7 252 0 1 2 1
+A 1023 7 0 211 1 10 1
+A 1031 7 254 0 1 2 1
+A 1030 7 0 211 1 10 1
+A 1037 7 256 0 1 2 1
+A 1036 7 0 223 1 10 1
+A 1043 7 258 0 1 2 1
+A 1042 7 0 223 1 10 1
+A 1050 7 260 0 1 2 1
+A 1049 7 0 211 1 10 1
+A 1057 7 262 0 1 2 1
+A 1056 7 0 211 1 10 1
+A 1064 7 264 0 1 2 1
+A 1063 7 0 211 1 10 1
+A 1071 7 266 0 1 2 1
+A 1070 7 0 211 1 10 0
+T 1167 85 0 3 0 1
+A 930 7 169 0 1 2 1
+A 929 7 0 211 1 10 1
+A 937 7 171 0 1 2 1
+A 936 7 0 211 1 10 1
+A 944 7 173 0 1 2 1
+A 943 7 0 211 1 10 1
+A 951 7 175 0 1 2 1
+A 950 7 0 211 1 10 1
+A 958 7 177 0 1 2 1
+A 957 7 0 211 1 10 1
+A 964 7 179 0 1 2 1
+A 963 7 0 223 1 10 1
+A 970 7 181 0 1 2 1
+A 969 7 0 223 1 10 1
+A 977 7 183 0 1 2 1
+A 976 7 0 211 1 10 1
+A 984 7 185 0 1 2 1
+A 983 7 0 211 1 10 1
+A 991 7 187 0 1 2 1
+A 990 7 0 211 1 10 1
+A 998 7 189 0 1 2 1
+A 997 7 0 211 1 10 1
+A 1005 7 191 0 1 2 1
+A 1004 7 0 211 1 10 1
+A 1012 7 193 0 1 2 1
+A 1011 7 0 211 1 10 0
+T 1168 85 0 3 0 1
+A 930 7 169 0 1 2 1
+A 929 7 0 211 1 10 1
+A 937 7 171 0 1 2 1
+A 936 7 0 211 1 10 1
+A 944 7 173 0 1 2 1
+A 943 7 0 211 1 10 1
+A 951 7 175 0 1 2 1
+A 950 7 0 211 1 10 1
+A 958 7 177 0 1 2 1
+A 957 7 0 211 1 10 1
+A 964 7 179 0 1 2 1
+A 963 7 0 223 1 10 1
+A 970 7 181 0 1 2 1
+A 969 7 0 223 1 10 1
+A 977 7 183 0 1 2 1
+A 976 7 0 211 1 10 1
+A 984 7 185 0 1 2 1
+A 983 7 0 211 1 10 1
+A 991 7 187 0 1 2 1
+A 990 7 0 211 1 10 1
+A 998 7 189 0 1 2 1
+A 997 7 0 211 1 10 1
+A 1005 7 191 0 1 2 1
+A 1004 7 0 211 1 10 1
+A 1012 7 193 0 1 2 1
+A 1011 7 0 211 1 10 0
+T 1169 198 0 3 0 0
+A 1024 7 252 0 1 2 1
+A 1023 7 0 211 1 10 1
+A 1031 7 254 0 1 2 1
+A 1030 7 0 211 1 10 1
+A 1037 7 256 0 1 2 1
+A 1036 7 0 223 1 10 1
+A 1043 7 258 0 1 2 1
+A 1042 7 0 223 1 10 1
+A 1050 7 260 0 1 2 1
+A 1049 7 0 211 1 10 1
+A 1057 7 262 0 1 2 1
+A 1056 7 0 211 1 10 1
+A 1064 7 264 0 1 2 1
+A 1063 7 0 211 1 10 1
+A 1071 7 266 0 1 2 1
+A 1070 7 0 211 1 10 0
+Z

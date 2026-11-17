@@ -1,0 +1,989 @@
+V35 :0x24 trpmd_base
+14 trpmd_base.f90 S624 0
+11/11/2026  20:57:56
+use cuda_runtime_api private
+use iso_fortran_env private
+use cutensor_v2_types private
+use basic_algebra_routines private
+use gpu_reductions private
+use nvf_acc_common private
+use iso_c_binding private
+use mp_world private
+use mp private
+use io_global private
+use ring_io_units_module private
+use constants private
+use kinds private
+enduse
+D 85 26 801 8 800 7
+D 94 26 804 8 803 7
+D 103 26 801 8 800 7
+D 124 26 895 8 894 7
+D 181 26 1034 4 1033 3
+D 190 26 1047 4 1046 3
+D 199 26 1056 4 1055 3
+D 208 26 1125 4 1124 3
+D 217 26 1158 4 1157 3
+D 226 26 1217 4 1216 3
+D 235 26 1240 4 1239 3
+D 244 26 1257 4 1256 3
+D 253 26 1272 4 1271 3
+D 262 26 1277 4 1276 3
+D 271 26 1284 4 1283 3
+D 280 26 1291 4 1290 3
+D 355 23 6 1 11 11 0 0 0 0 0
+ 0 11 11 11 11 11
+D 358 23 6 1 11 11 0 0 0 0 0
+ 0 11 11 11 11 11
+D 361 23 6 1 11 1013 0 0 0 0 0
+ 0 1013 11 11 1013 1013
+D 364 23 6 1 11 1013 0 0 0 0 0
+ 0 1013 11 11 1013 1013
+D 367 23 6 1 11 1013 0 0 0 0 0
+ 0 1013 11 11 1013 1013
+D 370 23 6 1 11 1013 0 0 0 0 0
+ 0 1013 11 11 1013 1013
+D 373 23 6 1 11 1014 0 0 0 0 0
+ 0 1014 11 11 1014 1014
+D 376 23 6 1 11 1014 0 0 0 0 0
+ 0 1014 11 11 1014 1014
+D 627 26 2192 88 2191 7
+D 633 23 7 1 11 1574 0 0 0 0 0
+ 0 1574 11 11 1574 1574
+S 624 24 0 0 0 9 1 0 4986 10015 8000 A 0 0 0 0 B 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 trpmd_base
+S 626 23 0 0 0 9 645 624 5003 14 0 A 0 0 0 0 B 400000 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dp
+S 628 23 0 0 0 9 752 624 5016 14 0 A 0 0 0 0 B 400000 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 eps32
+S 629 23 0 0 0 9 710 624 5022 14 0 A 0 0 0 0 B 400000 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pi
+S 630 23 0 0 0 9 730 624 5025 14 0 A 0 0 0 0 B 400000 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 autoev
+S 631 23 0 0 0 9 757 624 5032 14 0 A 0 0 0 0 B 400000 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 bohr_radius_angs
+S 632 23 0 0 0 9 740 624 5049 14 0 A 0 0 0 0 B 400000 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ev_to_kelvin
+S 634 23 0 0 0 6 766 624 5083 14 0 A 0 0 0 0 B 400000 26 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 iunpath
+S 636 23 0 0 0 6 781 624 5101 14 0 A 0 0 0 0 B 400000 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 meta_ionode
+S 637 23 0 0 0 6 782 624 5113 14 0 A 0 0 0 0 B 400000 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 meta_ionode_id
+S 639 23 0 0 0 6 18462 624 5131 14 0 A 0 0 0 0 B 400000 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 mp_bcast
+S 641 23 0 0 0 9 21413 624 5149 14 0 A 0 0 0 0 B 400000 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 world_comm
+S 643 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 644 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 645 16 1 kinds dp
+R 710 16 2 constants pi
+R 730 16 22 constants autoev
+R 740 16 32 constants ev_to_kelvin
+R 752 16 44 constants eps32
+R 757 16 49 constants bohr_radius_angs
+R 766 6 1 ring_io_units_module iunpath
+S 772 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 773 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 774 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 781 6 6 io_global meta_ionode
+R 782 6 7 io_global meta_ionode_id
+S 785 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 800 25 7 iso_c_binding c_ptr
+R 801 5 8 iso_c_binding val c_ptr
+R 803 25 10 iso_c_binding c_funptr
+R 804 5 11 iso_c_binding val c_funptr
+R 838 6 45 iso_c_binding c_null_ptr$ac
+R 840 6 47 iso_c_binding c_null_funptr$ac
+R 841 26 48 iso_c_binding ==
+R 843 26 50 iso_c_binding !=
+S 869 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 870 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 871 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 872 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 873 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 874 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 875 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 876 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 877 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 878 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 879 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 880 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 881 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 882 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 883 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 884 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 885 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 886 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 887 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 26 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 888 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 894 25 6 nvf_acc_common c_devptr
+R 895 5 7 nvf_acc_common cptr c_devptr
+R 901 6 13 nvf_acc_common c_null_devptr$ac
+R 939 26 51 nvf_acc_common =
+S 999 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1000 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1001 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1002 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1003 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1004 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1005 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1006 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1007 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1008 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1009 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 33 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1010 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 34 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1011 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1012 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 36 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1013 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 37 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1014 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 38 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1015 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 39 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1016 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 40 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1017 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 41 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1018 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 42 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1019 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1020 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 1024 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1021 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4096 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1022 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8192 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1023 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 64 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1024 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 256 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1025 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 128 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1026 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 512 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+R 1033 25 1 cutensor_v2_types cutensoralgo
+R 1034 5 2 cutensor_v2_types algo cutensoralgo
+R 1037 6 5 cutensor_v2_types cutensor_algo_default_patient$ac
+R 1039 6 7 cutensor_v2_types cutensor_algo_gett$ac
+R 1041 6 9 cutensor_v2_types cutensor_algo_tgett$ac
+R 1043 6 11 cutensor_v2_types cutensor_algo_ttgt$ac
+R 1045 6 13 cutensor_v2_types cutensor_algo_default$ac
+R 1046 25 14 cutensor_v2_types cutensorworksizepreference
+R 1047 5 15 cutensor_v2_types wksp cutensorworksizepreference
+R 1050 6 18 cutensor_v2_types cutensor_workspace_min$ac
+R 1052 6 20 cutensor_v2_types cutensor_workspace_default$ac
+R 1054 6 22 cutensor_v2_types cutensor_workspace_max$ac
+R 1055 25 23 cutensor_v2_types cutensoroperator
+R 1056 5 24 cutensor_v2_types opno cutensoroperator
+R 1059 6 27 cutensor_v2_types cutensor_op_identity$ac
+R 1061 6 29 cutensor_v2_types cutensor_op_sqrt$ac
+R 1063 6 31 cutensor_v2_types cutensor_op_relu$ac
+R 1065 6 33 cutensor_v2_types cutensor_op_conj$ac
+R 1067 6 35 cutensor_v2_types cutensor_op_rcp$ac
+R 1069 6 37 cutensor_v2_types cutensor_op_sigmoid$ac
+R 1071 6 39 cutensor_v2_types cutensor_op_tanh$ac
+R 1073 6 41 cutensor_v2_types cutensor_op_exp$ac
+R 1075 6 43 cutensor_v2_types cutensor_op_log$ac
+R 1077 6 45 cutensor_v2_types cutensor_op_abs$ac
+R 1079 6 47 cutensor_v2_types cutensor_op_neg$ac
+R 1081 6 49 cutensor_v2_types cutensor_op_sin$ac
+R 1083 6 51 cutensor_v2_types cutensor_op_cos$ac
+R 1085 6 53 cutensor_v2_types cutensor_op_tan$ac
+R 1087 6 55 cutensor_v2_types cutensor_op_sinh$ac
+R 1089 6 57 cutensor_v2_types cutensor_op_cosh$ac
+R 1091 6 59 cutensor_v2_types cutensor_op_asin$ac
+R 1093 6 61 cutensor_v2_types cutensor_op_acos$ac
+R 1095 6 63 cutensor_v2_types cutensor_op_atan$ac
+R 1097 6 65 cutensor_v2_types cutensor_op_asinh$ac
+R 1099 6 67 cutensor_v2_types cutensor_op_acosh$ac
+R 1101 6 69 cutensor_v2_types cutensor_op_atanh$ac
+R 1103 6 71 cutensor_v2_types cutensor_op_ceil$ac
+R 1105 6 73 cutensor_v2_types cutensor_op_floor$ac
+R 1107 6 75 cutensor_v2_types cutensor_op_mish$ac
+R 1109 6 77 cutensor_v2_types cutensor_op_swish$ac
+R 1111 6 79 cutensor_v2_types cutensor_op_soft_plus$ac
+R 1113 6 81 cutensor_v2_types cutensor_op_soft_sign$ac
+R 1115 6 83 cutensor_v2_types cutensor_op_add$ac
+R 1117 6 85 cutensor_v2_types cutensor_op_mul$ac
+R 1119 6 87 cutensor_v2_types cutensor_op_max$ac
+R 1121 6 89 cutensor_v2_types cutensor_op_min$ac
+R 1123 6 91 cutensor_v2_types cutensor_op_unknown$ac
+R 1124 25 92 cutensor_v2_types cutensorstatus
+R 1125 5 93 cutensor_v2_types stat cutensorstatus
+R 1128 6 96 cutensor_v2_types cutensor_status_success$ac
+R 1130 6 98 cutensor_v2_types cutensor_status_not_initialized$ac
+R 1132 6 100 cutensor_v2_types cutensor_status_alloc_failed$ac
+R 1134 6 102 cutensor_v2_types cutensor_status_invalid_value$ac
+R 1136 6 104 cutensor_v2_types cutensor_status_arch_mismatch$ac
+R 1138 6 106 cutensor_v2_types cutensor_status_mapping_error$ac
+R 1140 6 108 cutensor_v2_types cutensor_status_execution_failed$ac
+R 1142 6 110 cutensor_v2_types cutensor_status_internal_error$ac
+R 1144 6 112 cutensor_v2_types cutensor_status_not_supported$ac
+R 1146 6 114 cutensor_v2_types cutensor_status_license_error$ac
+R 1148 6 116 cutensor_v2_types cutensor_status_cublas_error$ac
+R 1150 6 118 cutensor_v2_types cutensor_status_cuda_error$ac
+R 1152 6 120 cutensor_v2_types cutensor_status_insufficient_workspace$ac
+R 1154 6 122 cutensor_v2_types cutensor_status_insufficient_driver$ac
+R 1156 6 124 cutensor_v2_types cutensor_status_io_error$ac
+R 1157 25 125 cutensor_v2_types cutensordatatype
+R 1158 5 126 cutensor_v2_types cudadatatype cutensordatatype
+R 1161 6 129 cutensor_v2_types cutensor_r_16f$ac
+R 1163 6 131 cutensor_v2_types cutensor_c_16f$ac
+R 1165 6 133 cutensor_v2_types cutensor_r_16bf$ac
+R 1167 6 135 cutensor_v2_types cutensor_c_16bf$ac
+R 1169 6 137 cutensor_v2_types cutensor_r_32f$ac
+R 1171 6 139 cutensor_v2_types cutensor_c_32f$ac
+R 1173 6 141 cutensor_v2_types cutensor_r_64f$ac
+R 1175 6 143 cutensor_v2_types cutensor_c_64f$ac
+R 1177 6 145 cutensor_v2_types cutensor_r_4i$ac
+R 1179 6 147 cutensor_v2_types cutensor_c_4i$ac
+R 1181 6 149 cutensor_v2_types cutensor_r_4u$ac
+R 1183 6 151 cutensor_v2_types cutensor_c_4u$ac
+R 1185 6 153 cutensor_v2_types cutensor_r_8i$ac
+R 1187 6 155 cutensor_v2_types cutensor_c_8i$ac
+R 1189 6 157 cutensor_v2_types cutensor_r_8u$ac
+R 1191 6 159 cutensor_v2_types cutensor_c_8u$ac
+R 1193 6 161 cutensor_v2_types cutensor_r_16i$ac
+R 1195 6 163 cutensor_v2_types cutensor_c_16i$ac
+R 1197 6 165 cutensor_v2_types cutensor_r_16u$ac
+R 1199 6 167 cutensor_v2_types cutensor_c_16u$ac
+R 1201 6 169 cutensor_v2_types cutensor_r_32i$ac
+R 1203 6 171 cutensor_v2_types cutensor_c_32i$ac
+R 1205 6 173 cutensor_v2_types cutensor_r_32u$ac
+R 1207 6 175 cutensor_v2_types cutensor_c_32u$ac
+R 1209 6 177 cutensor_v2_types cutensor_r_64i$ac
+R 1211 6 179 cutensor_v2_types cutensor_c_64i$ac
+R 1213 6 181 cutensor_v2_types cutensor_r_64u$ac
+R 1215 6 183 cutensor_v2_types cutensor_c_64u$ac
+R 1216 25 184 cutensor_v2_types cutensorcomputetype
+R 1217 5 185 cutensor_v2_types type cutensorcomputetype
+R 1220 6 188 cutensor_v2_types cutensor_compute_16f$ac
+R 1222 6 190 cutensor_v2_types cutensor_compute_16bf$ac
+R 1224 6 192 cutensor_v2_types cutensor_compute_tf32$ac
+R 1226 6 194 cutensor_v2_types cutensor_compute_3xtf32$ac
+R 1228 6 196 cutensor_v2_types cutensor_compute_32f$ac
+R 1230 6 198 cutensor_v2_types cutensor_compute_64f$ac
+R 1232 6 200 cutensor_v2_types cutensor_compute_8u$ac
+R 1234 6 202 cutensor_v2_types cutensor_compute_8i$ac
+R 1236 6 204 cutensor_v2_types cutensor_compute_32u$ac
+R 1238 6 206 cutensor_v2_types cutensor_compute_32i$ac
+R 1239 25 207 cutensor_v2_types cutensoroperationdescriptorattribute
+R 1240 5 208 cutensor_v2_types attr cutensoroperationdescriptorattribute
+R 1243 6 211 cutensor_v2_types cutensor_operation_descriptor_tag$ac
+R 1245 6 213 cutensor_v2_types cutensor_operation_descriptor_scalar_type$ac
+R 1247 6 215 cutensor_v2_types cutensor_operation_descriptor_flops$ac
+R 1249 6 217 cutensor_v2_types cutensor_operation_descriptor_moved_bytes$ac
+R 1251 6 219 cutensor_v2_types cutensor_operation_descriptor_padding_left$ac
+R 1253 6 221 cutensor_v2_types cutensor_operation_descriptor_padding_right$ac
+R 1255 6 223 cutensor_v2_types cutensor_operation_descriptor_padding_value$ac
+R 1256 25 224 cutensor_v2_types cutensorplanpreferenceattribute
+R 1257 5 225 cutensor_v2_types attr cutensorplanpreferenceattribute
+R 1260 6 228 cutensor_v2_types cutensor_plan_preference_autotune_mode$ac
+R 1262 6 230 cutensor_v2_types cutensor_plan_preference_cache_mode$ac
+R 1264 6 232 cutensor_v2_types cutensor_plan_preference_incremental_count$ac
+R 1266 6 234 cutensor_v2_types cutensor_plan_preference_algo$ac
+R 1268 6 236 cutensor_v2_types cutensor_plan_preference_kernel_rank$ac
+R 1270 6 238 cutensor_v2_types cutensor_plan_preference_jit$ac
+R 1271 25 239 cutensor_v2_types cutensorplanattribute
+R 1272 5 240 cutensor_v2_types attr cutensorplanattribute
+R 1275 6 243 cutensor_v2_types cutensor_plan_required_workspace$ac
+R 1276 25 244 cutensor_v2_types cutensorautotunemode
+R 1277 5 245 cutensor_v2_types mode cutensorautotunemode
+R 1280 6 248 cutensor_v2_types cutensor_autotune_mode_none$ac
+R 1282 6 250 cutensor_v2_types cutensor_autotune_mode_incremental$ac
+R 1283 25 251 cutensor_v2_types cutensorjitmode
+R 1284 5 252 cutensor_v2_types mode cutensorjitmode
+R 1287 6 255 cutensor_v2_types cutensor_jit_mode_none$ac
+R 1289 6 257 cutensor_v2_types cutensor_jit_mode_default$ac
+R 1290 25 258 cutensor_v2_types cutensorcachemode
+R 1291 5 259 cutensor_v2_types mode cutensorcachemode
+R 1294 6 262 cutensor_v2_types cutensor_cache_mode_none$ac
+R 1296 6 264 cutensor_v2_types cutensor_cache_mode_pedantic$ac
+S 1327 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1328 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 1331 7 3 iso_fortran_env character_kinds$ac
+R 1353 7 25 iso_fortran_env integer_kinds$ac
+R 1355 7 27 iso_fortran_env logical_kinds$ac
+R 1357 7 29 iso_fortran_env real_kinds$ac
+S 1521 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 2191 25 626 cuda_runtime_api cudapointerattributes
+R 2192 5 627 cuda_runtime_api type cudapointerattributes
+R 2193 5 628 cuda_runtime_api device cudapointerattributes
+R 2194 5 629 cuda_runtime_api devptr cudapointerattributes
+R 2195 5 630 cuda_runtime_api hostptr cudapointerattributes
+R 2196 5 631 cuda_runtime_api reserved cudapointerattributes
+R 9327 26 436 gpu_reductions *
+R 18462 19 12 mp mp_bcast
+R 21413 6 15 mp_world world_comm
+R 21425 26 2 basic_algebra_routines dot
+R 21427 26 4 basic_algebra_routines ext
+R 21429 26 6 basic_algebra_routines times
+S 21526 6 4 0 0 6 21527 624 113808 0 1000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 21528 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 initialize_polymer
+S 21527 6 4 0 0 9 1 624 113827 0 1000 A 0 0 0 0 B 0 36 0 0 0 4 0 0 0 0 0 0 21528 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 explore_phasespace
+S 21528 11 0 0 0 9 21418 624 113846 40800000 805000 A 0 0 0 0 B 0 38 0 0 0 8 0 0 21526 21527 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _trpmd_base$0
+S 21529 23 5 0 0 0 21530 624 113808 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initialize_polymer
+S 21530 14 5 0 0 0 1 21529 113808 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11631 0 0 0 0 0 0 0 0 0 0 0 0 0 43 0 624 0 0 0 0 initialize_polymer initialize_polymer 
+F 21530 0
+S 21531 23 5 0 0 0 21532 624 113860 10 0 A 0 0 0 0 B 0 174 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 initial_guess
+S 21532 14 5 0 0 0 1 21531 113860 10 400000 A 0 0 0 0 B 0 174 0 0 0 0 0 11632 0 0 0 0 0 0 0 0 0 0 0 0 0 174 0 624 0 0 0 0 initial_guess initial_guess 
+F 21532 0
+S 21533 23 5 0 0 0 21535 624 113874 10 0 A 0 0 0 0 B 0 206 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 born_oppenheimer_pes
+S 21534 1 3 2 0 18 1 21533 9483 14 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 stat
+S 21535 14 5 0 0 0 1 21533 113874 10 400000 A 0 0 0 0 B 0 206 0 0 0 0 0 11633 1 0 0 0 0 0 0 0 0 0 0 0 0 206 0 624 0 0 0 0 born_oppenheimer_pes born_oppenheimer_pes 
+F 21535 1 21534
+S 21536 23 5 0 0 0 21537 624 113827 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 explore_phasespace
+S 21537 14 5 0 0 0 1 21536 113827 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 11635 0 0 0 0 0 0 0 0 0 0 0 0 0 236 0 624 0 0 0 0 explore_phasespace explore_phasespace 
+F 21537 0
+S 21538 23 5 0 0 0 21539 624 113895 10 0 A 0 0 0 0 B 0 381 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 explore_phasespace_init
+S 21539 14 5 0 0 0 1 21538 113895 10 400000 A 0 0 0 0 B 0 381 0 0 0 0 0 11636 0 0 0 0 0 0 0 0 0 0 0 0 0 381 0 624 0 0 0 0 explore_phasespace_init explore_phasespace_init 
+F 21539 0
+A 13 2 0 0 0 6 643 0 0 0 13 0 0 0 0 0 0 0 0 0 0 0
+A 15 2 0 0 0 6 644 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0
+A 126 2 0 0 0 6 772 0 0 0 126 0 0 0 0 0 0 0 0 0 0 0
+A 127 2 0 0 0 6 773 0 0 0 127 0 0 0 0 0 0 0 0 0 0 0
+A 129 2 0 0 0 6 774 0 0 0 129 0 0 0 0 0 0 0 0 0 0 0
+A 138 2 0 0 0 6 785 0 0 0 138 0 0 0 0 0 0 0 0 0 0 0
+A 190 1 0 0 0 85 838 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 193 1 0 0 0 94 840 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 201 2 0 0 26 6 869 0 0 0 201 0 0 0 0 0 0 0 0 0 0 0
+A 203 2 0 0 28 6 870 0 0 0 203 0 0 0 0 0 0 0 0 0 0 0
+A 209 2 0 0 30 6 871 0 0 0 209 0 0 0 0 0 0 0 0 0 0 0
+A 211 2 0 0 32 6 872 0 0 0 211 0 0 0 0 0 0 0 0 0 0 0
+A 213 2 0 0 34 6 873 0 0 0 213 0 0 0 0 0 0 0 0 0 0 0
+A 215 2 0 0 36 6 874 0 0 0 215 0 0 0 0 0 0 0 0 0 0 0
+A 217 2 0 0 37 6 875 0 0 0 217 0 0 0 0 0 0 0 0 0 0 0
+A 219 2 0 0 39 6 876 0 0 0 219 0 0 0 0 0 0 0 0 0 0 0
+A 223 2 0 0 41 6 877 0 0 0 223 0 0 0 0 0 0 0 0 0 0 0
+A 225 2 0 0 43 6 878 0 0 0 225 0 0 0 0 0 0 0 0 0 0 0
+A 227 2 0 0 45 6 879 0 0 0 227 0 0 0 0 0 0 0 0 0 0 0
+A 229 2 0 0 47 6 880 0 0 0 229 0 0 0 0 0 0 0 0 0 0 0
+A 231 2 0 0 49 6 881 0 0 0 231 0 0 0 0 0 0 0 0 0 0 0
+A 233 2 0 0 51 6 882 0 0 0 233 0 0 0 0 0 0 0 0 0 0 0
+A 235 2 0 0 53 6 883 0 0 0 235 0 0 0 0 0 0 0 0 0 0 0
+A 237 2 0 0 55 6 884 0 0 0 237 0 0 0 0 0 0 0 0 0 0 0
+A 239 2 0 0 57 6 885 0 0 0 239 0 0 0 0 0 0 0 0 0 0 0
+A 241 2 0 0 59 6 886 0 0 0 241 0 0 0 0 0 0 0 0 0 0 0
+A 243 2 0 0 61 6 887 0 0 0 243 0 0 0 0 0 0 0 0 0 0 0
+A 245 2 0 0 63 6 888 0 0 0 245 0 0 0 0 0 0 0 0 0 0 0
+A 260 1 0 0 0 124 901 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 261 2 0 0 0 6 1004 0 0 0 261 0 0 0 0 0 0 0 0 0 0 0
+A 263 2 0 0 0 6 999 0 0 0 263 0 0 0 0 0 0 0 0 0 0 0
+A 267 2 0 0 0 6 1000 0 0 0 267 0 0 0 0 0 0 0 0 0 0 0
+A 271 2 0 0 0 6 1001 0 0 0 271 0 0 0 0 0 0 0 0 0 0 0
+A 275 2 0 0 0 6 1002 0 0 0 275 0 0 0 0 0 0 0 0 0 0 0
+A 279 2 0 0 0 6 1003 0 0 0 279 0 0 0 0 0 0 0 0 0 0 0
+A 334 2 0 0 0 6 1005 0 0 0 334 0 0 0 0 0 0 0 0 0 0 0
+A 338 2 0 0 0 6 1006 0 0 0 338 0 0 0 0 0 0 0 0 0 0 0
+A 342 2 0 0 0 6 1007 0 0 0 342 0 0 0 0 0 0 0 0 0 0 0
+A 346 2 0 0 0 6 1008 0 0 0 346 0 0 0 0 0 0 0 0 0 0 0
+A 350 2 0 0 0 6 1009 0 0 0 350 0 0 0 0 0 0 0 0 0 0 0
+A 354 2 0 0 0 6 1010 0 0 0 354 0 0 0 0 0 0 0 0 0 0 0
+A 358 2 0 0 0 6 1011 0 0 0 358 0 0 0 0 0 0 0 0 0 0 0
+A 362 2 0 0 0 6 1012 0 0 0 362 0 0 0 0 0 0 0 0 0 0 0
+A 366 2 0 0 0 6 1013 0 0 0 366 0 0 0 0 0 0 0 0 0 0 0
+A 370 2 0 0 0 6 1014 0 0 0 370 0 0 0 0 0 0 0 0 0 0 0
+A 374 2 0 0 0 6 1015 0 0 0 374 0 0 0 0 0 0 0 0 0 0 0
+A 378 2 0 0 0 6 1016 0 0 0 378 0 0 0 0 0 0 0 0 0 0 0
+A 382 2 0 0 0 6 1017 0 0 0 382 0 0 0 0 0 0 0 0 0 0 0
+A 386 2 0 0 0 6 1018 0 0 0 386 0 0 0 0 0 0 0 0 0 0 0
+A 402 2 0 0 0 6 1019 0 0 0 402 0 0 0 0 0 0 0 0 0 0 0
+A 538 2 0 0 0 6 1020 0 0 0 538 0 0 0 0 0 0 0 0 0 0 0
+A 542 2 0 0 0 6 1021 0 0 0 542 0 0 0 0 0 0 0 0 0 0 0
+A 546 2 0 0 0 6 1022 0 0 0 546 0 0 0 0 0 0 0 0 0 0 0
+A 556 2 0 0 0 6 1023 0 0 0 556 0 0 0 0 0 0 0 0 0 0 0
+A 560 2 0 0 0 6 1024 0 0 0 560 0 0 0 0 0 0 0 0 0 0 0
+A 564 2 0 0 0 6 1025 0 0 0 564 0 0 0 0 0 0 0 0 0 0 0
+A 568 2 0 0 0 6 1026 0 0 0 568 0 0 0 0 0 0 0 0 0 0 0
+A 636 1 0 0 0 181 1037 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 639 1 0 0 0 181 1039 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 642 1 0 0 0 181 1041 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 645 1 0 0 0 181 1043 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 648 1 0 0 0 181 1045 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 651 1 0 0 0 190 1050 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 654 1 0 0 0 190 1052 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 657 1 0 0 0 190 1054 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 660 1 0 0 0 199 1059 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 663 1 0 0 0 199 1061 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 666 1 0 0 0 199 1063 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 669 1 0 0 0 199 1065 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 672 1 0 0 0 199 1067 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 675 1 0 0 0 199 1069 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 678 1 0 0 0 199 1071 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 681 1 0 0 0 199 1073 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 684 1 0 0 0 199 1075 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 687 1 0 0 0 199 1077 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 690 1 0 0 0 199 1079 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 693 1 0 0 0 199 1081 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 696 1 0 0 0 199 1083 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 699 1 0 0 0 199 1085 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 702 1 0 0 0 199 1087 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 705 1 0 0 0 199 1089 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 708 1 0 0 0 199 1091 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 711 1 0 0 0 199 1093 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 714 1 0 0 0 199 1095 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 717 1 0 0 0 199 1097 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 720 1 0 0 0 199 1099 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 723 1 0 0 0 199 1101 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 726 1 0 0 0 199 1103 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 729 1 0 0 0 199 1105 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 732 1 0 0 0 199 1107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 735 1 0 0 0 199 1109 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 738 1 0 0 0 199 1111 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 741 1 0 0 0 199 1113 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 744 1 0 0 0 199 1115 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 747 1 0 0 0 199 1117 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 750 1 0 0 610 199 1119 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 753 1 0 0 0 199 1121 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 756 1 0 0 0 199 1123 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 759 1 0 0 0 208 1128 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 762 1 0 0 0 208 1130 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 765 1 0 0 0 208 1132 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 768 1 0 0 0 208 1134 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 771 1 0 0 0 208 1136 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 774 1 0 0 0 208 1138 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 777 1 0 0 0 208 1140 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 780 1 0 0 0 208 1142 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 783 1 0 0 0 208 1144 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 786 1 0 0 0 208 1146 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 789 1 0 0 0 208 1148 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 792 1 0 0 0 208 1150 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 795 1 0 0 0 208 1152 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 798 1 0 0 0 208 1154 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 801 1 0 0 0 208 1156 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 804 1 0 0 0 217 1161 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 807 1 0 0 0 217 1163 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 810 1 0 0 0 217 1165 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 813 1 0 0 0 217 1167 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 816 1 0 0 0 217 1169 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 819 1 0 0 0 217 1171 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 822 1 0 0 0 217 1173 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 825 1 0 0 0 217 1175 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 828 1 0 0 0 217 1177 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 831 1 0 0 0 217 1179 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 834 1 0 0 0 217 1181 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 837 1 0 0 0 217 1183 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 840 1 0 0 0 217 1185 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 843 1 0 0 0 217 1187 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 846 1 0 0 0 217 1189 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 849 1 0 0 0 217 1191 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 852 1 0 0 0 217 1193 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 855 1 0 0 0 217 1195 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 858 1 0 0 0 217 1197 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 861 1 0 0 0 217 1199 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 864 1 0 0 0 217 1201 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 867 1 0 0 0 217 1203 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 870 1 0 0 0 217 1205 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 873 1 0 0 0 217 1207 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 876 1 0 0 0 217 1209 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 879 1 0 0 0 217 1211 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 882 1 0 0 0 217 1213 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 885 1 0 0 0 217 1215 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 888 1 0 0 0 226 1220 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 891 1 0 0 0 226 1222 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 894 1 0 0 0 226 1224 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 897 1 0 0 0 226 1226 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 900 1 0 0 0 226 1228 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 903 1 0 0 0 226 1230 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 906 1 0 0 0 226 1232 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 909 1 0 0 0 226 1234 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 912 1 0 0 0 226 1236 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 915 1 0 0 0 226 1238 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 918 1 0 0 0 235 1243 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 921 1 0 0 0 235 1245 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 924 1 0 0 0 235 1247 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 927 1 0 0 0 235 1249 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 930 1 0 0 0 235 1251 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 933 1 0 0 0 235 1253 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 936 1 0 0 0 235 1255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 939 1 0 0 729 244 1260 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 942 1 0 0 732 244 1262 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 945 1 0 0 735 244 1264 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 948 1 0 0 738 244 1266 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 951 1 0 0 741 244 1268 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 954 1 0 0 744 244 1270 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 957 1 0 0 398 253 1275 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 960 1 0 0 0 262 1280 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 963 1 0 0 0 262 1282 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 966 1 0 0 0 271 1287 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 969 1 0 0 0 271 1289 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 972 1 0 0 0 280 1294 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 975 1 0 0 0 280 1296 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1013 2 0 0 0 7 1327 0 0 0 1013 0 0 0 0 0 0 0 0 0 0 0
+A 1014 2 0 0 0 7 1328 0 0 0 1014 0 0 0 0 0 0 0 0 0 0 0
+A 1017 1 0 1 0 355 1331 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1023 1 0 3 0 361 1353 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1029 1 0 3 0 367 1355 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1033 1 0 5 0 373 1357 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 1574 2 0 0 0 7 1521 0 0 0 1574 0 0 0 0 0 0 0 0 0 0 0
+Z
+J 133 1 1
+V 190 85 7 0
+S 0 85 0 0 0
+A 0 6 0 0 1 2 0
+J 134 1 1
+V 193 94 7 0
+S 0 94 0 0 0
+A 0 6 0 0 1 2 0
+J 53 1 1
+V 260 124 7 0
+S 0 124 0 0 0
+A 0 103 0 0 1 190 0
+J 21 1 1
+V 636 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 263 0
+J 21 1 1
+V 639 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 267 0
+J 21 1 1
+V 642 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 271 0
+J 21 1 1
+V 645 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 275 0
+J 21 1 1
+V 648 181 7 0
+S 0 181 0 0 0
+A 0 6 0 0 1 279 0
+J 32 1 1
+V 651 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 3 0
+J 32 1 1
+V 654 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 138 0
+J 32 1 1
+V 657 190 7 0
+S 0 190 0 0 0
+A 0 6 0 0 1 217 0
+J 41 1 1
+V 660 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 3 0
+J 41 1 1
+V 663 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 138 0
+J 41 1 1
+V 666 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 13 0
+J 41 1 1
+V 669 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 127 0
+J 41 1 1
+V 672 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 231 0
+J 41 1 1
+V 675 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 233 0
+J 41 1 1
+V 678 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 235 0
+J 41 1 1
+V 681 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 227 0
+J 41 1 1
+V 684 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 229 0
+J 41 1 1
+V 687 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 239 0
+J 41 1 1
+V 690 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 241 0
+J 41 1 1
+V 693 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 243 0
+J 41 1 1
+V 696 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 245 0
+J 41 1 1
+V 699 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 261 0
+J 41 1 1
+V 702 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 334 0
+J 41 1 1
+V 705 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 338 0
+J 41 1 1
+V 708 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 342 0
+J 41 1 1
+V 711 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 346 0
+J 41 1 1
+V 714 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 350 0
+J 41 1 1
+V 717 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 354 0
+J 41 1 1
+V 720 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 358 0
+J 41 1 1
+V 723 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 362 0
+J 41 1 1
+V 726 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 366 0
+J 41 1 1
+V 729 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 370 0
+J 41 1 1
+V 732 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 374 0
+J 41 1 1
+V 735 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 378 0
+J 41 1 1
+V 738 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 382 0
+J 41 1 1
+V 741 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 386 0
+J 41 1 1
+V 744 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 217 0
+J 41 1 1
+V 747 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 126 0
+J 41 1 1
+V 750 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 129 0
+J 41 1 1
+V 753 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 219 0
+J 41 1 1
+V 756 199 7 0
+S 0 199 0 0 0
+A 0 6 0 0 1 402 0
+J 82 1 1
+V 759 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 2 0
+J 82 1 1
+V 762 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 3 0
+J 82 1 1
+V 765 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 217 0
+J 82 1 1
+V 768 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 219 0
+J 82 1 1
+V 771 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 13 0
+J 82 1 1
+V 774 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 233 0
+J 82 1 1
+V 777 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 237 0
+J 82 1 1
+V 780 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 201 0
+J 82 1 1
+V 783 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 203 0
+J 82 1 1
+V 786 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 209 0
+J 82 1 1
+V 789 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 211 0
+J 82 1 1
+V 792 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 213 0
+J 82 1 1
+V 795 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 215 0
+J 82 1 1
+V 798 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 223 0
+J 82 1 1
+V 801 208 7 0
+S 0 208 0 0 0
+A 0 6 0 0 1 225 0
+J 123 1 1
+V 804 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 138 0
+J 123 1 1
+V 807 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 129 0
+J 123 1 1
+V 810 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 201 0
+J 123 1 1
+V 813 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 203 0
+J 123 1 1
+V 816 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 2 0
+J 123 1 1
+V 819 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 15 0
+J 123 1 1
+V 822 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 3 0
+J 123 1 1
+V 825 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 126 0
+J 123 1 1
+V 828 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 209 0
+J 123 1 1
+V 831 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 211 0
+J 123 1 1
+V 834 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 213 0
+J 123 1 1
+V 837 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 215 0
+J 123 1 1
+V 840 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 217 0
+J 123 1 1
+V 843 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 219 0
+J 123 1 1
+V 846 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 13 0
+J 123 1 1
+V 849 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 127 0
+J 123 1 1
+V 852 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 223 0
+J 123 1 1
+V 855 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 225 0
+J 123 1 1
+V 858 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 227 0
+J 123 1 1
+V 861 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 229 0
+J 123 1 1
+V 864 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 231 0
+J 123 1 1
+V 867 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 233 0
+J 123 1 1
+V 870 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 235 0
+J 123 1 1
+V 873 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 237 0
+J 123 1 1
+V 876 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 239 0
+J 123 1 1
+V 879 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 241 0
+J 123 1 1
+V 882 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 243 0
+J 123 1 1
+V 885 217 7 0
+S 0 217 0 0 0
+A 0 6 0 0 1 245 0
+J 157 1 1
+V 888 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 3 0
+J 157 1 1
+V 891 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 538 0
+J 157 1 1
+V 894 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 542 0
+J 157 1 1
+V 897 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 546 0
+J 157 1 1
+V 900 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 15 0
+J 157 1 1
+V 903 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 209 0
+J 157 1 1
+V 906 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 556 0
+J 157 1 1
+V 909 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 560 0
+J 157 1 1
+V 912 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 564 0
+J 157 1 1
+V 915 226 7 0
+S 0 226 0 0 0
+A 0 6 0 0 1 568 0
+J 173 1 1
+V 918 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 2 0
+J 173 1 1
+V 921 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 3 0
+J 173 1 1
+V 924 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 138 0
+J 173 1 1
+V 927 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 217 0
+J 173 1 1
+V 930 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 15 0
+J 173 1 1
+V 933 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 126 0
+J 173 1 1
+V 936 235 7 0
+S 0 235 0 0 0
+A 0 6 0 0 1 129 0
+J 193 1 1
+V 939 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 2 0
+J 193 1 1
+V 942 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 3 0
+J 193 1 1
+V 945 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 138 0
+J 193 1 1
+V 948 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 217 0
+J 193 1 1
+V 951 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 15 0
+J 193 1 1
+V 954 244 7 0
+S 0 244 0 0 0
+A 0 6 0 0 1 126 0
+J 211 1 1
+V 957 253 7 0
+S 0 253 0 0 0
+A 0 6 0 0 1 2 0
+J 219 1 1
+V 960 262 7 0
+S 0 262 0 0 0
+A 0 6 0 0 1 2 0
+J 219 1 1
+V 963 262 7 0
+S 0 262 0 0 0
+A 0 6 0 0 1 3 0
+J 227 1 1
+V 966 271 7 0
+S 0 271 0 0 0
+A 0 6 0 0 1 2 0
+J 227 1 1
+V 969 271 7 0
+S 0 271 0 0 0
+A 0 6 0 0 1 3 0
+J 235 1 1
+V 972 280 7 0
+S 0 280 0 0 0
+A 0 6 0 0 1 2 0
+J 235 1 1
+V 975 280 7 0
+S 0 280 0 0 0
+A 0 6 0 0 1 3 0
+J 29 1 1
+V 1017 355 7 0
+R 0 358 0 0
+A 0 6 0 0 1 3 0
+J 75 1 1
+V 1023 361 7 0
+R 0 364 0 0
+A 0 6 0 0 1 3 1
+A 0 6 0 0 1 138 1
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+J 77 1 1
+V 1029 367 7 0
+R 0 370 0 0
+A 0 6 0 0 1 3 1
+A 0 6 0 0 1 138 1
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+J 80 1 1
+V 1033 373 7 0
+R 0 376 0 0
+A 0 6 0 0 1 15 1
+A 0 6 0 0 1 13 0
+T 2191 627 0 3 0 0
+R 2196 633 0 0
+A 0 7 0 1574 1 10 0
+Z

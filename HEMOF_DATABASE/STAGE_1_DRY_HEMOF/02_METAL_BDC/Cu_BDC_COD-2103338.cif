@@ -1,0 +1,111 @@
+#------------------------------------------------------------------------------
+#$Date: 2017-08-07 11:02:13 +0300 (Mon, 07 Aug 2017) $
+#$Revision: 199609 $
+#$URL: file:///home/coder/svn-repositories/_RELOADED_COD/cod-reloaded/cif/2/10/33/2103338.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/. The original data for this entry
+# were provided by IUCr Journals, http://journals.iucr.org/.
+#
+# The file may be used within the scientific community so long as
+# proper attribution is given to the journal article from which the
+# data were obtained.
+#
+data_2103338
+loop_
+_publ_author_name
+'Kaduk, James A.'
+_publ_section_title
+;
+ Terephthalate salts of dipositive cations
+;
+_journal_issue                   5
+_journal_name_full               'Acta Crystallographica Section B'
+_journal_page_first              815
+_journal_page_last               822
+_journal_paper_doi               10.1107/S0108768102009102
+_journal_volume                  58
+_journal_year                    2002
+_chemical_formula_structural     'Cu (C8 H4 O4) (H2 O)3'
+_chemical_formula_sum            'C8 H10 Cu O7'
+_space_group_IT_number           60
+_symmetry_cell_setting           orthorhombic
+_symmetry_space_group_name_Hall  '-P 2n 2ab'
+_symmetry_space_group_name_H-M   'P b c n'
+_cell_angle_alpha                90.0
+_cell_angle_beta                 90.0
+_cell_angle_gamma                90.0
+_cell_formula_units_Z            4
+_cell_length_a                   6.8740(3)
+_cell_length_b                   22.9815(6)
+_cell_length_c                   6.2999(3)
+_cell_volume                     995.23(7)
+_computing_structure_refinement  GSAS
+_refine_ls_goodness_of_fit_all   1.98
+_refine_ls_number_parameters     40
+_refine_ls_number_restraints     9
+_refine_ls_shift/esd_max         0.06
+_refine_ls_shift/esd_mean        0.01
+_reflns_number_observed          1475
+_cod_data_source_file            bk0107.cif
+_cod_data_source_block           Cu
+_cod_depositor_comments
+;
+ Adding the _cell_formula_units_Z, _chemical_formula_sum and
+ _chemical_formula_structural data items after consulting the original
+ publication.
+
+ Antanas Vaitkus,
+ 2017-08-07
+;
+_cod_database_code               2103338
+loop_
+_symmetry_equiv_pos_as_xyz
++x,+y,+z
+-x+1/2,+y+1/2,+z
++x,-y,+z+1/2
+-x+1/2,-y+1/2,+z+1/2
+-x,-y,-z
++x+1/2,-y+1/2,-z
+-x,+y,-z+1/2
++x+1/2,+y+1/2,-z+1/2
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+_atom_site_occupancy
+C1 0.5 0.6701(2) 0.25 0.048(3) Uiso 1.0
+C2 0.4422(11) 0.7005(2) 0.0685(4) 0.048(3) Uiso 0.5
+C3 0.4422(11) 0.7614(2) 0.0685(4) 0.048(3) Uiso 0.5
+C4 0.5 0.7918(2) 0.25 0.048(3) Uiso 1.0
+C5 0.5578(11) 0.7614(2) 0.4315(4) 0.048(3) Uiso 0.5
+C6 0.5578(11) 0.7005(2) 0.4315(4) 0.048(3) Uiso 0.5
+H7 0.4023(19) 0.6796(2) -0.0567(7) 0.05 Uiso 0.5
+H8 0.4023(19) 0.7823(2) -0.0567(7) 0.05 Uiso 0.5
+H9 0.5977(19) 0.7823(2) 0.5567(7) 0.05 Uiso 0.5
+H10 0.4023(19) 0.6796(2) -0.0567(7) 0.05 Uiso 0.5
+C11 0.5 0.6066(4) 0.25 0.005(2) Uiso 1.0
+O12 0.5276(16) 0.58049(18) 0.4277(9) 0.005(2) Uiso 1.0
+C13 0.5 0.8591(4) 0.25 0.005(2) Uiso 1.0
+O14 0.4035(14) 0.8838(2) 0.1023(13) 0.005(2) Uiso 1.0
+Cu15 0.5 0.5 0.5 0.0206(12) Uiso 1.0
+O16 0.7210(14) 0.4824(3) 0.3255(16) 0.025(5) Uiso 1.0
+H17 0.781 0.505 0.267 0.05 Uiso 1.0
+H18 0.772 0.45 0.332 0.05 Uiso 1.0
+O19 0.5 0.9353(3) 0.75 0.016(4) Uiso 1.0
+H20 0.513 0.926 0.642 0.05 Uiso 1.0
+loop_
+_atom_type_symbol
+C
+H
+O
+CU
+loop_
+_diffrn_radiation_type
+_diffrn_radiation_wavelength
+K=07~1~ 1.540629
+K=07~2~ 1.544451

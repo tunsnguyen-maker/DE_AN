@@ -1,0 +1,9 @@
+# The fortran modules provided by this target.
+provides
+ bse_basic_structures.mod
+ bse_wannier.mod
+ contract_w.mod
+ direct_www.mod
+ exciton.mod
+ qpe_exc.mod
+ transitions.mod

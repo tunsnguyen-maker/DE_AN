@@ -1,0 +1,8 @@
+# The fortran modules provided by this target.
+provides
+ convergence_gw.mod
+ exchange_custom.mod
+ fake_cond_mod.mod
+ fft_custom_gwl.mod
+ lanczos.mod
+ mp_wave_parallel.mod

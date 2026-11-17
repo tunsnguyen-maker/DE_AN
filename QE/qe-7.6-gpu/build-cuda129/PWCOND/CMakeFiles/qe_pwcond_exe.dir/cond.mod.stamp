@@ -1,0 +1,15 @@
+V35 :0x24 cond
+11 condcom.f90 S624 0
+11/11/2026  20:57:05
+use geomcell_cond public 0 direct
+use orbcell_cond public 0 direct
+use eigen_cond public 0 direct
+use control_cond public 0 direct
+use scattnl_cond public 0 direct
+use kinds public 0 indirect
+use cb_cond public 0 direct
+use cond_files public 0 direct
+enduse
+S 624 24 0 0 0 9 1 0 4986 5 8000 A 0 0 0 0 B 0 243 0 0 0 0 0 0 0 0 0 0 251 0 0 0 0 0 0 0 0 243 0 0 0 0 0 0 cond
+Z
+Z

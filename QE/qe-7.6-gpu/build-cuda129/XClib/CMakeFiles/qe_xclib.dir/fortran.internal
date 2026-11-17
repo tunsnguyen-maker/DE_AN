@@ -1,0 +1,20 @@
+# The fortran modules provided by this target.
+provides
+ beef_interface.mod
+ constants_l.mod
+ corr_gga.mod
+ corr_lda.mod
+ dft_setting_params.mod
+ dft_setting_routines.mod
+ exch_gga.mod
+ exch_lda.mod
+ kind_l.mod
+ metagga.mod
+ qe_dft_list.mod
+ qe_drivers_d_gga.mod
+ qe_drivers_d_lda_lsda.mod
+ qe_drivers_gga.mod
+ qe_drivers_lda_lsda.mod
+ qe_drivers_mgga.mod
+ xc_lib.mod
+ xclib_utils_and_para.mod

@@ -1,0 +1,15 @@
+# The fortran modules provided by this target.
+provides
+ fcp_opt_routines.mod
+ fcp_variables.mod
+ gcscf_variables.mod
+ path_base.mod
+ path_formats.mod
+ path_input_parameters_module.mod
+ path_io_routines.mod
+ path_io_units_module.mod
+ path_opt_routines.mod
+ path_read_cards_module.mod
+ path_read_namelists_module.mod
+ path_reparametrisation.mod
+ path_variables.mod

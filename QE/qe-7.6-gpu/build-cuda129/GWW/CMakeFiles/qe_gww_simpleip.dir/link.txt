@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_gww_simpleip.a CMakeFiles/qe_gww_simpleip.dir/simple_ip/simple_ip_objects.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/start_end.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/input_simple_ip.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/tetra_mod1.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/interpolation.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/diagonalization.f90.o CMakeFiles/qe_gww_simpleip.dir/simple_ip/dielectric.f90.o
+/usr/bin/ranlib ../lib/libqe_gww_simpleip.a

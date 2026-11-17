@@ -1,0 +1,641 @@
+V35 :0x24 mbd_damping
+15 mbd_damping.F90 S624 0
+11/11/2026  20:54:18
+use mbd_utils private
+use mbd_gradients private
+enduse
+D 58 26 685 1816 684 7
+D 130 22 7
+D 132 22 7
+D 134 22 7
+D 136 22 7
+D 138 22 7
+D 140 22 7
+D 142 22 7
+D 144 22 7
+D 146 22 7
+D 148 22 7
+D 150 22 7
+D 155 26 757 1144 756 7
+D 191 22 7
+D 193 22 7
+D 195 22 7
+D 197 22 7
+D 199 22 7
+D 204 26 801 1392 797 7
+D 246 22 7
+D 248 22 7
+D 250 22 7
+D 252 22 7
+D 254 22 7
+D 256 22 7
+D 261 26 848 224 846 7
+D 300 22 7
+D 302 22 7
+D 304 22 7
+D 306 22 7
+D 308 22 7
+D 310 22 7
+D 312 22 7
+D 314 22 7
+D 316 22 7
+D 318 22 7
+D 323 26 883 52 882 3
+D 332 26 685 1816 684 7
+D 338 22 7
+D 340 22 7
+D 342 22 7
+D 344 22 7
+D 346 22 7
+D 348 22 7
+D 350 22 7
+D 352 22 7
+D 354 22 7
+D 356 22 7
+D 358 22 7
+D 426 26 933 96 932 7
+D 432 29 0 925 1 931 0
+D 438 22 432
+D 443 22 438
+D 448 26 943 204 942 3
+D 454 20 354
+D 458 20 2
+D 465 26 949 3480 948 7
+D 528 26 1014 312 1013 7
+D 546 22 7
+D 548 22 7
+D 553 26 1030 464 1029 7
+D 620 26 1178 864 1176 7
+D 626 20 542
+D 628 23 10 1 552 551 0 1 0 0 1
+ 546 549 550 546 549 547
+D 631 23 7 1 0 61 0 0 0 0 0
+ 0 61 0 11 61 0
+D 634 23 10 1 561 560 0 1 0 0 1
+ 555 558 559 555 558 556
+D 637 23 7 1 0 61 0 0 0 0 0
+ 0 61 0 11 61 0
+D 640 23 10 2 576 575 0 1 0 0 1
+ 565 568 573 565 568 566
+ 569 572 574 569 572 570
+D 643 23 7 1 0 49 0 0 0 0 0
+ 0 49 0 11 49 0
+D 646 23 10 4 603 602 0 1 0 0 1
+ 582 585 598 582 585 583
+ 586 589 599 586 589 587
+ 590 593 600 590 593 591
+ 594 597 601 594 597 595
+D 649 23 7 1 0 182 0 0 0 0 0
+ 0 182 0 11 182 0
+D 660 23 7 1 0 11 0 0 0 0 0
+ 0 11 0 11 11 0
+D 663 23 10 1 11 604 0 0 0 0 0
+ 0 604 11 11 604 604
+D 666 23 10 1 11 604 0 0 0 0 0
+ 0 604 11 11 604 604
+S 624 24 0 0 0 6 1 0 4986 10015 8000 A 0 0 0 0 B 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 mbd_damping
+S 628 23 0 0 0 9 846 624 5039 14 0 A 0 0 0 0 B 400000 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 grad_scalar_t
+S 629 23 0 0 0 9 882 624 5053 14 0 A 0 0 0 0 B 400000 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 grad_request_t
+S 631 23 0 0 0 6 1111 624 5078 14 0 A 0 0 0 0 B 400000 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 lower
+S 632 23 0 0 0 9 942 624 5084 14 0 A 0 0 0 0 B 400000 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 exception_t
+S 661 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1077149696 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 662 3 0 0 0 10 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 1075314688 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10
+S 668 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 669 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 670 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 671 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 672 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 673 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 674 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 675 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 676 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 677 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 678 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 679 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 27 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 680 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 681 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 682 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 33 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 683 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+R 684 25 1 mbd_gradients grad_t
+R 685 5 2 mbd_gradients dcoords grad_t
+R 688 5 5 mbd_gradients dcoords$sd grad_t
+R 689 5 6 mbd_gradients dcoords$p grad_t
+R 690 5 7 mbd_gradients dcoords$o grad_t
+R 692 5 9 mbd_gradients dlattice grad_t
+R 695 5 12 mbd_gradients dlattice$sd grad_t
+R 696 5 13 mbd_gradients dlattice$p grad_t
+R 697 5 14 mbd_gradients dlattice$o grad_t
+R 699 5 16 mbd_gradients dalpha grad_t
+R 701 5 18 mbd_gradients dalpha$sd grad_t
+R 702 5 19 mbd_gradients dalpha$p grad_t
+R 703 5 20 mbd_gradients dalpha$o grad_t
+R 705 5 22 mbd_gradients dalpha_dyn grad_t
+R 708 5 25 mbd_gradients dalpha_dyn$sd grad_t
+R 709 5 26 mbd_gradients dalpha_dyn$p grad_t
+R 710 5 27 mbd_gradients dalpha_dyn$o grad_t
+R 712 5 29 mbd_gradients dc6 grad_t
+R 714 5 31 mbd_gradients dc6$sd grad_t
+R 715 5 32 mbd_gradients dc6$p grad_t
+R 716 5 33 mbd_gradients dc6$o grad_t
+R 718 5 35 mbd_gradients dq grad_t
+R 720 5 37 mbd_gradients dq$sd grad_t
+R 721 5 38 mbd_gradients dq$p grad_t
+R 722 5 39 mbd_gradients dq$o grad_t
+R 724 5 41 mbd_gradients dr_vdw grad_t
+R 726 5 43 mbd_gradients dr_vdw$sd grad_t
+R 727 5 44 mbd_gradients dr_vdw$p grad_t
+R 728 5 45 mbd_gradients dr_vdw$o grad_t
+R 730 5 47 mbd_gradients domega grad_t
+R 732 5 49 mbd_gradients domega$sd grad_t
+R 733 5 50 mbd_gradients domega$p grad_t
+R 734 5 51 mbd_gradients domega$o grad_t
+R 736 5 53 mbd_gradients dv grad_t
+R 738 5 55 mbd_gradients dv$sd grad_t
+R 739 5 56 mbd_gradients dv$p grad_t
+R 740 5 57 mbd_gradients dv$o grad_t
+R 742 5 59 mbd_gradients dv_free grad_t
+R 744 5 61 mbd_gradients dv_free$sd grad_t
+R 745 5 62 mbd_gradients dv_free$p grad_t
+R 746 5 63 mbd_gradients dv_free$o grad_t
+R 748 5 65 mbd_gradients dx_free grad_t
+R 750 5 67 mbd_gradients dx_free$sd grad_t
+R 751 5 68 mbd_gradients dx_free$p grad_t
+R 752 5 69 mbd_gradients dx_free$o grad_t
+R 756 25 73 mbd_gradients grad_matrix_re_t
+R 757 5 74 mbd_gradients dr grad_matrix_re_t
+R 761 5 78 mbd_gradients dr$sd grad_matrix_re_t
+R 762 5 79 mbd_gradients dr$p grad_matrix_re_t
+R 763 5 80 mbd_gradients dr$o grad_matrix_re_t
+R 769 5 86 mbd_gradients dlattice grad_matrix_re_t
+R 770 5 87 mbd_gradients dlattice$sd grad_matrix_re_t
+R 771 5 88 mbd_gradients dlattice$p grad_matrix_re_t
+R 772 5 89 mbd_gradients dlattice$o grad_matrix_re_t
+R 774 5 91 mbd_gradients dvdw grad_matrix_re_t
+R 777 5 94 mbd_gradients dvdw$sd grad_matrix_re_t
+R 778 5 95 mbd_gradients dvdw$p grad_matrix_re_t
+R 779 5 96 mbd_gradients dvdw$o grad_matrix_re_t
+R 781 5 98 mbd_gradients dsigma grad_matrix_re_t
+R 784 5 101 mbd_gradients dsigma$sd grad_matrix_re_t
+R 785 5 102 mbd_gradients dsigma$p grad_matrix_re_t
+R 786 5 103 mbd_gradients dsigma$o grad_matrix_re_t
+R 788 5 105 mbd_gradients dgamma grad_matrix_re_t
+R 791 5 108 mbd_gradients dgamma$sd grad_matrix_re_t
+R 792 5 109 mbd_gradients dgamma$p grad_matrix_re_t
+R 793 5 110 mbd_gradients dgamma$o grad_matrix_re_t
+R 797 25 114 mbd_gradients grad_matrix_cplx_t
+R 801 5 118 mbd_gradients dr grad_matrix_cplx_t
+R 802 5 119 mbd_gradients dr$sd grad_matrix_cplx_t
+R 803 5 120 mbd_gradients dr$p grad_matrix_cplx_t
+R 804 5 121 mbd_gradients dr$o grad_matrix_cplx_t
+R 810 5 127 mbd_gradients dlattice grad_matrix_cplx_t
+R 811 5 128 mbd_gradients dlattice$sd grad_matrix_cplx_t
+R 812 5 129 mbd_gradients dlattice$p grad_matrix_cplx_t
+R 813 5 130 mbd_gradients dlattice$o grad_matrix_cplx_t
+R 818 5 135 mbd_gradients dq grad_matrix_cplx_t
+R 819 5 136 mbd_gradients dq$sd grad_matrix_cplx_t
+R 820 5 137 mbd_gradients dq$p grad_matrix_cplx_t
+R 821 5 138 mbd_gradients dq$o grad_matrix_cplx_t
+R 825 5 142 mbd_gradients dvdw grad_matrix_cplx_t
+R 826 5 143 mbd_gradients dvdw$sd grad_matrix_cplx_t
+R 827 5 144 mbd_gradients dvdw$p grad_matrix_cplx_t
+R 828 5 145 mbd_gradients dvdw$o grad_matrix_cplx_t
+R 832 5 149 mbd_gradients dsigma grad_matrix_cplx_t
+R 833 5 150 mbd_gradients dsigma$sd grad_matrix_cplx_t
+R 834 5 151 mbd_gradients dsigma$p grad_matrix_cplx_t
+R 835 5 152 mbd_gradients dsigma$o grad_matrix_cplx_t
+R 839 5 156 mbd_gradients dgamma grad_matrix_cplx_t
+R 840 5 157 mbd_gradients dgamma$sd grad_matrix_cplx_t
+R 841 5 158 mbd_gradients dgamma$p grad_matrix_cplx_t
+R 842 5 159 mbd_gradients dgamma$o grad_matrix_cplx_t
+R 846 25 163 mbd_gradients grad_scalar_t
+R 848 5 165 mbd_gradients dr grad_scalar_t
+R 849 5 166 mbd_gradients dr$sd grad_scalar_t
+R 850 5 167 mbd_gradients dr$p grad_scalar_t
+R 851 5 168 mbd_gradients dr$o grad_scalar_t
+R 853 5 170 mbd_gradients dr_1 grad_scalar_t
+R 855 5 172 mbd_gradients dr_1$p grad_scalar_t
+R 856 5 173 mbd_gradients dk_1 grad_scalar_t
+R 858 5 175 mbd_gradients dk_1$p grad_scalar_t
+R 859 5 176 mbd_gradients dvdw grad_scalar_t
+R 861 5 178 mbd_gradients dvdw$p grad_scalar_t
+R 862 5 179 mbd_gradients dgamma grad_scalar_t
+R 864 5 181 mbd_gradients dgamma$p grad_scalar_t
+R 865 5 182 mbd_gradients dc6 grad_scalar_t
+R 867 5 184 mbd_gradients dc6$p grad_scalar_t
+R 868 5 185 mbd_gradients dc6i grad_scalar_t
+R 870 5 187 mbd_gradients dc6i$p grad_scalar_t
+R 871 5 188 mbd_gradients dc6j grad_scalar_t
+R 873 5 190 mbd_gradients dc6j$p grad_scalar_t
+R 874 5 191 mbd_gradients da0i grad_scalar_t
+R 876 5 193 mbd_gradients da0i$p grad_scalar_t
+R 877 5 194 mbd_gradients da0j grad_scalar_t
+R 879 5 196 mbd_gradients da0j$p grad_scalar_t
+R 882 25 199 mbd_gradients grad_request_t
+R 883 5 200 mbd_gradients dcoords grad_request_t
+R 884 5 201 mbd_gradients dalpha grad_request_t
+R 885 5 202 mbd_gradients dalpha_dyn grad_request_t
+R 886 5 203 mbd_gradients dc6 grad_request_t
+R 887 5 204 mbd_gradients dr_vdw grad_request_t
+R 888 5 205 mbd_gradients domega grad_request_t
+R 889 5 206 mbd_gradients dsigma grad_request_t
+R 890 5 207 mbd_gradients dgamma grad_request_t
+R 891 5 208 mbd_gradients dq grad_request_t
+R 892 5 209 mbd_gradients dlattice grad_request_t
+R 893 5 210 mbd_gradients dv grad_request_t
+R 894 5 211 mbd_gradients dv_free grad_request_t
+R 895 5 212 mbd_gradients dx_free grad_request_t
+R 896 5 213 mbd_gradients any$tbp$0 grad_request_t
+S 907 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 908 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 909 3 0 0 0 454 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 6985 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 9 28 75 6e 6b 6e 6f 77 6e 29
+S 911 3 0 0 0 458 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 6995 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 0
+S 913 3 0 0 0 18 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18
+R 925 14 10 mbd_utils printer_i
+R 926 5 11 mbd_utils printer logger_t
+S 931 1 3 1 0 30 1 925 7100 2014 43000 A 0 0 0 0 B 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 str
+R 932 25 17 mbd_utils logger_t
+R 933 5 18 mbd_utils level logger_t
+R 934 5 19 mbd_utils printer$sd logger_t
+R 935 5 20 mbd_utils printer$p logger_t
+R 936 5 21 mbd_utils error$tbp$0 logger_t
+R 937 5 22 mbd_utils warn$tbp$1 logger_t
+R 938 5 23 mbd_utils debug$tbp$2 logger_t
+R 939 5 24 mbd_utils info$tbp$3 logger_t
+R 942 25 27 mbd_utils exception_t
+R 943 5 28 mbd_utils code exception_t
+R 944 5 29 mbd_utils origin exception_t
+R 945 5 30 mbd_utils msg exception_t
+R 948 25 33 mbd_utils result_t
+R 949 5 34 mbd_utils energy result_t
+R 950 5 35 mbd_utils de result_t
+R 951 5 36 mbd_utils mode_eigs result_t
+R 953 5 38 mbd_utils mode_eigs$sd result_t
+R 954 5 39 mbd_utils mode_eigs$p result_t
+R 955 5 40 mbd_utils mode_eigs$o result_t
+R 957 5 42 mbd_utils modes result_t
+R 960 5 45 mbd_utils modes$sd result_t
+R 961 5 46 mbd_utils modes$p result_t
+R 962 5 47 mbd_utils modes$o result_t
+R 964 5 49 mbd_utils rpa_orders result_t
+R 966 5 51 mbd_utils rpa_orders$sd result_t
+R 967 5 52 mbd_utils rpa_orders$p result_t
+R 968 5 53 mbd_utils rpa_orders$o result_t
+R 970 5 55 mbd_utils mode_eigs_k result_t
+R 973 5 58 mbd_utils mode_eigs_k$sd result_t
+R 974 5 59 mbd_utils mode_eigs_k$p result_t
+R 975 5 60 mbd_utils mode_eigs_k$o result_t
+R 977 5 62 mbd_utils modes_k result_t
+R 981 5 66 mbd_utils modes_k$sd result_t
+R 982 5 67 mbd_utils modes_k$p result_t
+R 983 5 68 mbd_utils modes_k$o result_t
+R 985 5 70 mbd_utils modes_k_single result_t
+R 988 5 73 mbd_utils modes_k_single$sd result_t
+R 989 5 74 mbd_utils modes_k_single$p result_t
+R 990 5 75 mbd_utils modes_k_single$o result_t
+R 992 5 77 mbd_utils rpa_orders_k result_t
+R 995 5 80 mbd_utils rpa_orders_k$sd result_t
+R 996 5 81 mbd_utils rpa_orders_k$p result_t
+R 997 5 82 mbd_utils rpa_orders_k$o result_t
+R 999 5 84 mbd_utils alpha_0 result_t
+R 1001 5 86 mbd_utils alpha_0$sd result_t
+R 1002 5 87 mbd_utils alpha_0$p result_t
+R 1003 5 88 mbd_utils alpha_0$o result_t
+R 1005 5 90 mbd_utils c6 result_t
+R 1007 5 92 mbd_utils c6$sd result_t
+R 1008 5 93 mbd_utils c6$p result_t
+R 1009 5 94 mbd_utils c6$o result_t
+R 1013 25 98 mbd_utils atom_index_t
+R 1014 5 99 mbd_utils i_atom atom_index_t
+R 1016 5 101 mbd_utils i_atom$sd atom_index_t
+R 1017 5 102 mbd_utils i_atom$p atom_index_t
+R 1018 5 103 mbd_utils i_atom$o atom_index_t
+R 1020 5 105 mbd_utils j_atom atom_index_t
+R 1022 5 107 mbd_utils j_atom$sd atom_index_t
+R 1023 5 108 mbd_utils j_atom$p atom_index_t
+R 1024 5 109 mbd_utils j_atom$o atom_index_t
+R 1026 5 111 mbd_utils n_atoms atom_index_t
+R 1029 25 114 mbd_utils clock_t
+R 1030 5 115 mbd_utils active clock_t
+R 1031 5 116 mbd_utils level clock_t
+R 1032 5 117 mbd_utils timestamps clock_t
+R 1034 5 119 mbd_utils timestamps$sd clock_t
+R 1035 5 120 mbd_utils timestamps$p clock_t
+R 1036 5 121 mbd_utils timestamps$o clock_t
+R 1038 5 123 mbd_utils counts clock_t
+R 1040 5 125 mbd_utils counts$sd clock_t
+R 1041 5 126 mbd_utils counts$p clock_t
+R 1042 5 127 mbd_utils counts$o clock_t
+R 1044 5 129 mbd_utils levels clock_t
+R 1046 5 131 mbd_utils levels$sd clock_t
+R 1047 5 132 mbd_utils levels$p clock_t
+R 1048 5 133 mbd_utils levels$o clock_t
+R 1050 5 135 mbd_utils print$tbp$4 clock_t
+R 1051 5 136 mbd_utils clock$tbp$5 clock_t
+R 1052 5 137 mbd_utils init$tbp$6 clock_t
+R 1111 14 196 mbd_utils lower
+S 1173 27 0 0 0 9 1223 624 8890 0 8000000 A 0 0 0 0 B 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 damping_fermi
+S 1174 27 0 0 0 9 1232 624 8904 0 8000000 A 0 0 0 0 B 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 damping_sqrtfermi
+S 1175 27 0 0 0 9 1238 624 8922 0 8000000 A 0 0 0 0 B 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 op1minus_grad
+S 1176 25 0 0 0 620 1 624 8936 1000000c 800250 A 0 0 0 0 B 0 17 0 0 0 0 0 0 0 0 0 1217 0 0 0 0 0 0 1 1216 0 0 0 624 0 0 0 0 damping_t
+S 1177 3 0 0 0 6 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6
+S 1178 5 0 0 0 626 1179 624 8946 800004 0 A 0 0 0 0 B 0 19 0 0 0 0 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1 1178 0 624 0 0 0 0 version
+S 1179 5 0 0 0 10 1180 624 8954 800004 0 A 0 0 0 0 B 0 20 0 0 0 24 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1178 1179 0 624 0 0 0 0 beta
+S 1180 5 0 0 0 10 1181 624 8963 800004 0 A 0 0 0 0 B 0 21 0 0 0 32 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1179 1180 0 624 0 0 0 0 a
+S 1181 5 0 0 0 10 1182 624 8965 800004 0 A 0 0 0 0 B 0 22 0 0 0 40 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1180 1181 0 624 0 0 0 0 ts_d
+S 1182 5 0 0 0 10 1183 624 8970 800004 0 A 0 0 0 0 B 0 23 0 0 0 48 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1181 1182 0 624 0 0 0 0 ts_sr
+S 1183 5 0 0 0 10 1184 624 8980 800004 0 A 0 0 0 0 B 0 24 0 0 0 56 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1182 1183 0 624 0 0 0 0 mayer_scaling
+S 1184 5 6 0 0 628 1187 624 8998 10a00004 51 A 0 0 0 0 B 0 25 0 0 0 64 1187 0 620 0 1189 0 0 0 0 0 0 0 0 1186 1183 1184 1188 624 0 0 0 0 r_vdw
+S 1185 6 4 0 0 7 1191 624 8635 40800016 0 A 0 0 0 0 B 0 25 0 0 0 0 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_0_2
+S 1186 5 1 0 0 631 1190 624 9004 40822004 1020 A 0 0 0 0 B 0 25 0 0 0 80 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1188 1186 0 624 0 0 0 0 r_vdw$sd
+S 1187 5 0 0 0 7 1188 624 9013 40802001 1020 A 0 0 0 0 B 0 25 0 0 0 64 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1184 1187 0 624 0 0 0 0 r_vdw$p
+S 1188 5 0 0 0 7 1186 624 9021 40802000 1020 A 0 0 0 0 B 0 25 0 0 0 72 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1187 1188 0 624 0 0 0 0 r_vdw$o
+S 1189 22 1 0 0 9 1 624 9029 40000000 1000 A 0 0 0 0 B 0 25 0 0 0 0 0 1184 0 0 0 0 1186 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 r_vdw$arrdsc
+S 1190 5 6 0 0 634 1193 624 9042 10a00004 51 A 0 0 0 0 B 0 26 0 0 0 216 1193 0 620 0 1195 0 0 0 0 0 0 0 0 1192 1184 1190 1194 624 0 0 0 0 sigma
+S 1191 6 4 0 0 7 1197 624 8643 40800016 0 A 0 0 0 0 B 0 26 0 0 0 8 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_1_2
+S 1192 5 1 0 0 637 1196 624 9048 40822004 1020 A 0 0 0 0 B 0 26 0 0 0 232 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1194 1192 0 624 0 0 0 0 sigma$sd
+S 1193 5 0 0 0 7 1194 624 9057 40802001 1020 A 0 0 0 0 B 0 26 0 0 0 216 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1190 1193 0 624 0 0 0 0 sigma$p
+S 1194 5 0 0 0 7 1192 624 9065 40802000 1020 A 0 0 0 0 B 0 26 0 0 0 224 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1193 1194 0 624 0 0 0 0 sigma$o
+S 1195 22 1 0 0 9 1 624 9073 40000000 1000 A 0 0 0 0 B 0 26 0 0 0 0 0 1190 0 0 0 0 1192 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 sigma$arrdsc
+S 1196 5 6 0 0 640 1200 624 9086 10a00004 51 A 0 0 0 0 B 0 27 0 0 0 368 1200 0 620 0 1202 0 0 0 0 0 0 0 0 1199 1190 1196 1201 624 0 0 0 0 damping_custom
+S 1197 6 4 0 0 7 1198 624 8651 40800016 0 A 0 0 0 0 B 0 27 0 0 0 16 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_2_2
+S 1198 6 4 0 0 7 1204 624 8659 40800016 0 A 0 0 0 0 B 0 27 0 0 0 24 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_3_2
+S 1199 5 1 0 0 643 1203 624 9101 40822004 1020 A 0 0 0 0 B 0 27 0 0 0 384 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1201 1199 0 624 0 0 0 0 damping_custom$sd
+S 1200 5 0 0 0 7 1201 624 9119 40802001 1020 A 0 0 0 0 B 0 27 0 0 0 368 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1196 1200 0 624 0 0 0 0 damping_custom$p
+S 1201 5 0 0 0 7 1199 624 9136 40802000 1020 A 0 0 0 0 B 0 27 0 0 0 376 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1200 1201 0 624 0 0 0 0 damping_custom$o
+S 1202 22 1 0 0 9 1 624 9153 40000000 1000 A 0 0 0 0 B 0 27 0 0 0 0 0 1196 0 0 0 0 1199 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 damping_custom$arrdsc
+S 1203 5 6 0 0 646 1209 624 9175 10a00004 51 A 0 0 0 0 B 0 28 0 0 0 568 1209 0 620 0 1211 0 0 0 0 0 0 0 0 1208 1196 1203 1210 624 0 0 0 0 potential_custom
+S 1204 6 4 0 0 7 1205 624 9192 40800016 0 A 0 0 0 0 B 0 28 0 0 0 32 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_4_2
+S 1205 6 4 0 0 7 1206 624 8730 40800016 0 A 0 0 0 0 B 0 28 0 0 0 40 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_5_2
+S 1206 6 4 0 0 7 1207 624 8738 40800016 0 A 0 0 0 0 B 0 28 0 0 0 48 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_6_2
+S 1207 6 4 0 0 7 1 624 8746 40800016 0 A 0 0 0 0 B 0 28 0 0 0 56 0 0 0 0 0 0 1221 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_7_2
+S 1208 5 1 0 0 649 1215 624 9200 40822004 1020 A 0 0 0 0 B 0 28 0 0 0 584 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1210 1208 0 624 0 0 0 0 potential_custom$sd
+S 1209 5 0 0 0 7 1210 624 9220 40802001 1020 A 0 0 0 0 B 0 28 0 0 0 568 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1203 1209 0 624 0 0 0 0 potential_custom$p
+S 1210 5 0 0 0 7 1208 624 9239 40802000 1020 A 0 0 0 0 B 0 28 0 0 0 576 0 0 620 0 0 0 0 0 0 0 0 0 0 0 1209 1210 0 624 0 0 0 0 potential_custom$o
+S 1211 22 1 0 0 9 1 624 9258 40000000 1000 A 0 0 0 0 B 0 28 0 0 0 0 0 1203 0 0 0 0 1208 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 potential_custom$arrdsc
+S 1215 5 0 0 0 448 1 624 9328 800002 2200 A 0 0 0 0 B 0 31 0 0 0 0 0 0 620 0 0 0 0 0 0 1220 0 0 1247 0 0 0 0 0 0 0 0 0 set_params_from_xc$tbp$0
+S 1216 8 5 0 0 660 1 624 9353 40822004 1220 A 0 0 0 0 B 0 31 0 0 0 0 0 620 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 mbd_damping$$damping_t$$td
+S 1217 6 4 0 0 620 1 624 9380 80005e 0 A 0 0 0 0 B 800 31 0 0 0 0 0 0 0 0 0 0 1222 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ._dtInit0620
+S 1220 14 0 0 0 9 1 624 9393 0 200 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 620 0 0 0 624 0 0 0 0 set_params_from_xc$tbp set_params_from_xc$tbp 
+S 1221 11 0 0 0 9 1068 624 9416 40800010 805000 A 0 0 0 0 B 0 33 0 0 0 64 0 0 1185 1207 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _mbd_damping$6
+S 1222 11 0 0 0 9 1221 624 9431 40800010 805000 A 0 0 0 0 B 0 33 0 0 0 864 0 0 1217 1217 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _mbd_damping$12
+S 1223 23 5 0 0 10 1230 624 8890 4 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 damping_fermi
+S 1224 7 3 1 0 663 1 1223 9447 800014 3000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 r
+S 1225 1 3 1 0 10 1 1223 9449 14 3000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 s_vdw
+S 1226 1 3 1 0 10 1 1223 9455 14 3000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d
+S 1227 1 3 2 0 261 1 1223 9457 80000014 3000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 df
+S 1228 1 3 1 0 323 1 1223 9460 80000014 3000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 grad
+S 1229 1 3 0 0 10 1 1223 9465 14 1003000 A 0 0 0 0 B 0 35 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f
+S 1230 14 5 0 0 10 1 1223 8890 4 1400000 A 0 0 0 0 B 0 0 0 0 0 0 0 56 5 0 0 1229 0 0 0 0 0 0 0 0 0 35 0 624 0 0 0 0 damping_fermi damping_fermi f
+F 1230 5 1224 1225 1226 1227 1228
+S 1231 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1232 23 5 0 0 10 1237 624 8904 4 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 damping_sqrtfermi
+S 1233 7 3 1 0 666 1 1232 9447 800014 3000 A 0 0 0 0 B 0 65 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 r
+S 1234 1 3 1 0 10 1 1232 9449 14 3000 A 0 0 0 0 B 0 65 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 s_vdw
+S 1235 1 3 1 0 10 1 1232 9455 14 3000 A 0 0 0 0 B 0 65 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d
+S 1236 1 3 0 0 10 1 1232 9467 14 1003000 A 0 0 0 0 B 0 65 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f
+S 1237 14 5 0 0 10 1 1232 8904 4 1400000 A 0 0 0 0 B 0 0 0 0 0 0 0 62 3 0 0 1236 0 0 0 0 0 0 0 0 0 65 0 624 0 0 0 0 damping_sqrtfermi damping_sqrtfermi f
+F 1237 3 1233 1234 1235
+S 1238 23 5 0 0 0 1241 624 8922 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 op1minus_grad
+S 1239 1 3 3 0 10 1 1238 9469 14 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f
+S 1240 1 3 3 0 261 1 1238 9457 14 3000 A 0 0 0 0 B 0 73 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 df
+S 1241 14 5 0 0 0 1 1238 8922 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 66 2 0 0 0 0 0 0 0 0 0 0 0 0 73 0 624 0 0 0 0 op1minus_grad op1minus_grad 
+F 1241 2 1239 1240
+S 1242 23 5 0 0 448 1247 624 9301 14 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 damping_set_params_from_xc
+S 1243 1 3 3 0 620 1 1242 6980 14 3200 A 0 0 0 0 B 0 82 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 this
+S 1244 1 3 1 0 30 1 1242 9471 14 43000 A 0 0 0 0 B 0 82 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 xc
+S 1245 1 3 1 0 30 1 1242 9474 14 43000 A 0 0 0 0 B 0 82 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 variant
+S 1246 1 3 0 0 448 1 1242 9482 14 1003000 A 0 0 0 0 B 0 82 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 exc
+S 1247 14 5 0 0 448 1 1242 9301 94 1400000 A 0 0 0 0 B 0 0 0 0 0 0 0 69 3 0 0 1246 0 0 0 0 0 0 0 0 0 82 0 624 0 0 0 0 damping_set_params_from_xc damping_set_params_from_xc exc
+F 1247 3 1243 1244 1245
+A 35 2 0 0 0 10 617 0 0 0 35 0 0 0 0 0 0 0 0 0 0 0
+A 45 2 0 0 0 10 661 0 0 0 45 0 0 0 0 0 0 0 0 0 0 0
+A 47 2 0 0 0 10 662 0 0 0 47 0 0 0 0 0 0 0 0 0 0 0
+A 49 2 0 0 0 7 668 0 0 0 49 0 0 0 0 0 0 0 0 0 0 0
+A 51 2 0 0 0 7 676 0 0 0 51 0 0 0 0 0 0 0 0 0 0 0
+A 53 2 0 0 0 7 669 0 0 0 53 0 0 0 0 0 0 0 0 0 0 0
+A 55 2 0 0 0 7 670 0 0 0 55 0 0 0 0 0 0 0 0 0 0 0
+A 59 2 0 0 0 7 673 0 0 0 59 0 0 0 0 0 0 0 0 0 0 0
+A 61 2 0 0 0 7 671 0 0 0 61 0 0 0 0 0 0 0 0 0 0 0
+A 63 2 0 0 0 7 672 0 0 0 63 0 0 0 0 0 0 0 0 0 0 0
+A 67 2 0 0 0 7 674 0 0 0 67 0 0 0 0 0 0 0 0 0 0 0
+A 69 2 0 0 0 7 675 0 0 0 69 0 0 0 0 0 0 0 0 0 0 0
+A 161 2 0 0 0 7 677 0 0 0 161 0 0 0 0 0 0 0 0 0 0 0
+A 175 2 0 0 0 7 678 0 0 0 175 0 0 0 0 0 0 0 0 0 0 0
+A 179 2 0 0 0 7 679 0 0 0 179 0 0 0 0 0 0 0 0 0 0 0
+A 182 2 0 0 0 7 680 0 0 0 182 0 0 0 0 0 0 0 0 0 0 0
+A 201 2 0 0 0 7 681 0 0 0 201 0 0 0 0 0 0 0 0 0 0 0
+A 205 2 0 0 0 7 682 0 0 0 205 0 0 0 0 0 0 0 0 0 0 0
+A 353 2 0 0 0 18 683 0 0 0 353 0 0 0 0 0 0 0 0 0 0 0
+A 354 2 0 0 0 6 908 0 0 0 354 0 0 0 0 0 0 0 0 0 0 0
+A 356 2 0 0 0 7 907 0 0 0 356 0 0 0 0 0 0 0 0 0 0 0
+A 538 2 0 0 0 454 909 0 0 0 538 0 0 0 0 0 0 0 0 0 0 0
+A 539 2 0 0 0 458 911 0 0 0 539 0 0 0 0 0 0 0 0 0 0 0
+A 540 2 0 0 0 18 913 0 0 0 540 0 0 0 0 0 0 0 0 0 0 0
+A 542 2 0 0 0 6 1177 0 0 0 542 0 0 0 0 0 0 0 0 0 0 0
+A 543 2 0 0 0 10 618 0 0 0 543 0 0 0 0 0 0 0 0 0 0 0
+A 545 1 0 3 416 631 1186 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 546 10 0 0 0 7 545 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 53
+A 547 10 0 0 546 7 545 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 55
+A 548 4 0 0 0 7 547 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 549 4 0 0 0 7 546 0 548 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 550 10 0 0 547 7 545 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 59
+A 551 10 0 0 550 7 545 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 69
+A 552 10 0 0 551 7 545 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 51
+A 554 1 0 3 0 637 1192 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 555 10 0 0 0 7 554 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 53
+A 556 10 0 0 555 7 554 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 55
+A 557 4 0 0 0 7 556 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 558 4 0 0 0 7 555 0 557 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 559 10 0 0 556 7 554 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 59
+A 560 10 0 0 559 7 554 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 69
+A 561 10 0 0 560 7 554 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 51
+A 564 1 0 1 0 643 1199 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 565 10 0 0 0 7 564 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 53
+A 566 10 0 0 565 7 564 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 55
+A 567 4 0 0 0 7 566 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 568 4 0 0 0 7 565 0 567 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 569 10 0 0 566 7 564 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 61
+A 570 10 0 0 569 7 564 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 63
+A 571 4 0 0 0 7 570 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 572 4 0 0 0 7 569 0 571 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 573 10 0 0 570 7 564 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 59
+A 574 10 0 0 573 7 564 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 67
+A 575 10 0 0 574 7 564 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 69
+A 576 10 0 0 575 7 564 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 51
+A 581 1 0 7 0 649 1208 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 582 10 0 0 482 7 581 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 53
+A 583 10 0 0 582 7 581 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 55
+A 584 4 0 0 0 7 583 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 585 4 0 0 0 7 582 0 584 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 586 10 0 0 583 7 581 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 61
+A 587 10 0 0 586 7 581 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 63
+A 588 4 0 0 0 7 587 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 589 4 0 0 0 7 586 0 588 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 590 10 0 0 587 7 581 25 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 49
+A 591 10 0 0 590 7 581 28 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 175
+A 592 4 0 0 0 7 591 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 593 4 0 0 0 7 590 0 592 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 594 10 0 0 591 7 581 34 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 161
+A 595 10 0 0 594 7 581 37 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 201
+A 596 4 0 0 0 7 595 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 597 4 0 0 0 7 594 0 596 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 598 10 0 0 595 7 581 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 59
+A 599 10 0 0 598 7 581 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 67
+A 600 10 0 0 599 7 581 31 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 179
+A 601 10 0 0 600 7 581 40 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 205
+A 602 10 0 0 601 7 581 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 69
+A 603 10 0 0 602 7 581 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 51
+A 604 2 0 0 0 7 1231 0 0 0 604 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 684 58 0 0 0 0
+A 689 7 130 0 1 2 1
+A 688 7 0 49 1 10 1
+A 696 7 132 0 1 2 1
+A 695 7 0 49 1 10 1
+A 702 7 134 0 1 2 1
+A 701 7 0 61 1 10 1
+A 709 7 136 0 1 2 1
+A 708 7 0 49 1 10 1
+A 715 7 138 0 1 2 1
+A 714 7 0 61 1 10 1
+A 721 7 140 0 1 2 1
+A 720 7 0 61 1 10 1
+A 727 7 142 0 1 2 1
+A 726 7 0 61 1 10 1
+A 733 7 144 0 1 2 1
+A 732 7 0 61 1 10 1
+A 739 7 146 0 1 2 1
+A 738 7 0 61 1 10 1
+A 745 7 148 0 1 2 1
+A 744 7 0 61 1 10 1
+A 751 7 150 0 1 2 1
+A 750 7 0 61 1 10 0
+T 756 155 0 0 0 0
+A 762 7 191 0 1 2 1
+A 761 7 0 161 1 10 1
+A 771 7 193 0 1 2 1
+A 770 7 0 182 1 10 1
+A 778 7 195 0 1 2 1
+A 777 7 0 49 1 10 1
+A 785 7 197 0 1 2 1
+A 784 7 0 49 1 10 1
+A 792 7 199 0 1 2 1
+A 791 7 0 49 1 10 0
+T 797 204 0 0 0 0
+A 803 7 246 0 1 2 1
+A 802 7 0 161 1 10 1
+A 812 7 248 0 1 2 1
+A 811 7 0 182 1 10 1
+A 820 7 250 0 1 2 1
+A 819 7 0 161 1 10 1
+A 827 7 252 0 1 2 1
+A 826 7 0 49 1 10 1
+A 834 7 254 0 1 2 1
+A 833 7 0 49 1 10 1
+A 841 7 256 0 1 2 1
+A 840 7 0 49 1 10 0
+T 846 261 0 0 0 0
+A 850 7 300 0 1 2 1
+A 849 7 0 61 1 10 1
+A 855 7 302 0 1 2 1
+A 858 7 304 0 1 2 1
+A 861 7 306 0 1 2 1
+A 864 7 308 0 1 2 1
+A 867 7 310 0 1 2 1
+A 870 7 312 0 1 2 1
+A 873 7 314 0 1 2 1
+A 876 7 316 0 1 2 1
+A 879 7 318 0 1 2 0
+T 882 323 0 3 0 0
+A 883 18 0 0 1 353 1
+A 884 18 0 0 1 353 1
+A 885 18 0 0 1 353 1
+A 886 18 0 0 1 353 1
+A 887 18 0 0 1 353 1
+A 888 18 0 0 1 353 1
+A 889 18 0 0 1 353 1
+A 890 18 0 0 1 353 1
+A 891 18 0 0 1 353 1
+A 892 18 0 0 1 353 1
+A 893 18 0 0 1 353 1
+A 894 18 0 0 1 353 1
+A 895 18 0 0 1 353 0
+T 932 426 0 3 0 0
+A 933 6 0 0 1 3 1
+A 935 7 443 0 1 2 1
+A 934 7 0 356 1 10 0
+T 942 448 0 3 0 0
+A 943 6 0 0 1 2 1
+A 944 454 0 0 1 538 1
+A 945 458 0 0 1 539 0
+T 948 465 0 3 0 0
+T 950 332 0 3 0 0
+A 689 7 338 0 1 2 1
+A 688 7 0 49 1 10 1
+A 696 7 340 0 1 2 1
+A 695 7 0 49 1 10 1
+A 702 7 342 0 1 2 1
+A 701 7 0 61 1 10 1
+A 709 7 344 0 1 2 1
+A 708 7 0 49 1 10 1
+A 715 7 346 0 1 2 1
+A 714 7 0 61 1 10 1
+A 721 7 348 0 1 2 1
+A 720 7 0 61 1 10 1
+A 727 7 350 0 1 2 1
+A 726 7 0 61 1 10 1
+A 733 7 352 0 1 2 1
+A 732 7 0 61 1 10 1
+A 739 7 354 0 1 2 1
+A 738 7 0 61 1 10 1
+A 745 7 356 0 1 2 1
+A 744 7 0 61 1 10 1
+A 751 7 358 0 1 2 1
+A 750 7 0 61 1 10 0
+T 1013 528 0 0 0 0
+A 1017 7 546 0 1 2 1
+A 1016 7 0 61 1 10 1
+A 1023 7 548 0 1 2 1
+A 1022 7 0 61 1 10 0
+T 1029 553 0 3 0 0
+A 1030 18 0 0 1 540 1
+A 1031 6 0 0 1 2 0
+T 1176 620 0 3 0 0
+A 1179 10 0 0 1 35 1
+A 1180 10 0 0 1 47 1
+A 1181 10 0 0 1 45 1
+A 1182 10 0 0 1 35 1
+A 1183 10 0 0 1 543 0
+Z

@@ -1,0 +1,12 @@
+# The fortran modules provided by this target.
+provides
+ cb_cond.mod
+ cond.mod
+ cond_files.mod
+ cond_restart.mod
+ control_cond.mod
+ eigen_cond.mod
+ geomcell_cond.mod
+ orbcell_cond.mod
+ realus_scatt.mod
+ scattnl_cond.mod

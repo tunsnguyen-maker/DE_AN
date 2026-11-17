@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_dftd3.a CMakeFiles/qe_dftd3.dir/common.f90.o CMakeFiles/qe_dftd3.dir/sizes.f90.o CMakeFiles/qe_dftd3.dir/pars.f90.o CMakeFiles/qe_dftd3.dir/core.f90.o CMakeFiles/qe_dftd3.dir/api.f90.o CMakeFiles/qe_dftd3.dir/dftd3_qe.f90.o
+/usr/bin/ranlib ../lib/libqe_dftd3.a

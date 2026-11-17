@@ -1,0 +1,108 @@
+V35 :0x24 atom
+8 atom.f90 S624 0
+11/11/2026  20:54:48
+use radial_grids private
+enduse
+D 58 26 646 1104 645 7
+D 130 23 58 1 108 107 0 1 0 0 1
+ 102 105 106 102 105 103
+D 133 23 7 1 0 92 0 0 0 0 0
+ 0 92 0 11 92 0
+D 136 23 7 1 0 92 0 0 0 0 0
+ 0 92 0 11 92 0
+D 139 23 6 1 120 119 0 1 0 0 1
+ 114 117 118 114 117 115
+D 142 23 7 1 0 92 0 0 0 0 0
+ 0 92 0 11 92 0
+S 624 24 0 0 0 9 1 0 4986 5 8000 A 0 0 0 0 B 0 10 0 0 0 0 0 0 0 0 0 0 27 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 atom
+S 626 23 0 0 0 9 645 624 5004 4 0 A 0 0 0 0 B 400000 14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 radial_grid_type
+S 636 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 637 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 638 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 639 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 640 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 645 25 3 radial_grids radial_grid_type
+R 646 5 4 radial_grids mesh radial_grid_type
+R 647 5 5 radial_grids r radial_grid_type
+R 649 5 7 radial_grids r$sd radial_grid_type
+R 650 5 8 radial_grids r$p radial_grid_type
+R 651 5 9 radial_grids r$o radial_grid_type
+R 653 5 11 radial_grids r2 radial_grid_type
+R 655 5 13 radial_grids r2$sd radial_grid_type
+R 656 5 14 radial_grids r2$p radial_grid_type
+R 657 5 15 radial_grids r2$o radial_grid_type
+R 659 5 17 radial_grids rab radial_grid_type
+R 661 5 19 radial_grids rab$sd radial_grid_type
+R 662 5 20 radial_grids rab$p radial_grid_type
+R 663 5 21 radial_grids rab$o radial_grid_type
+R 665 5 23 radial_grids sqr radial_grid_type
+R 667 5 25 radial_grids sqr$sd radial_grid_type
+R 668 5 26 radial_grids sqr$p radial_grid_type
+R 669 5 27 radial_grids sqr$o radial_grid_type
+R 671 5 29 radial_grids rm1 radial_grid_type
+R 673 5 31 radial_grids rm1$sd radial_grid_type
+R 674 5 32 radial_grids rm1$p radial_grid_type
+R 675 5 33 radial_grids rm1$o radial_grid_type
+R 677 5 35 radial_grids rm2 radial_grid_type
+R 679 5 37 radial_grids rm2$sd radial_grid_type
+R 680 5 38 radial_grids rm2$p radial_grid_type
+R 681 5 39 radial_grids rm2$o radial_grid_type
+R 683 5 41 radial_grids rm3 radial_grid_type
+R 685 5 43 radial_grids rm3$sd radial_grid_type
+R 686 5 44 radial_grids rm3$p radial_grid_type
+R 687 5 45 radial_grids rm3$o radial_grid_type
+R 689 5 47 radial_grids xmin radial_grid_type
+R 690 5 48 radial_grids rmax radial_grid_type
+R 691 5 49 radial_grids zmesh radial_grid_type
+R 692 5 50 radial_grids dx radial_grid_type
+S 753 7 6 0 0 130 1 624 5617 10a01024 59 A 0 0 0 0 B 0 19 0 0 0 0 757 0 0 0 759 0 0 0 0 0 0 0 0 760 0 0 761 624 0 0 0 0 rgrid
+S 754 6 4 0 0 7 764 624 5623 40800006 0 A 0 0 0 0 B 0 19 0 0 0 0 0 0 0 0 0 0 769 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_0_1
+S 755 3 0 0 0 7 0 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 756 8 1 0 0 133 1 624 5631 40822004 1020 A 0 0 0 0 B 0 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$sd
+S 757 6 4 0 0 7 761 624 5640 40802061 1020 A 0 0 0 0 B 0 19 0 0 0 0 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$p
+S 758 6 2 0 0 7 1 624 5648 40802060 1020 A 0 0 0 0 B 0 19 0 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$o
+S 759 22 1 0 0 9 1 624 5656 40000000 1000 A 0 0 0 0 B 0 19 0 0 0 0 0 753 0 0 0 0 760 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$arrdsc
+S 760 8 4 0 0 136 766 624 5669 40822004 1020 A 0 0 0 0 B 0 19 0 0 0 0 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$sd3
+S 761 6 4 0 0 7 760 624 5679 40802060 1020 A 0 0 0 0 B 0 19 0 0 0 16 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rgrid$o4
+S 763 7 6 0 0 139 1 624 5706 10a00024 51 A 0 0 0 0 B 0 25 0 0 0 0 766 0 0 0 768 0 0 0 0 0 0 0 0 765 0 0 767 624 0 0 0 0 msh
+S 764 6 4 0 0 7 1 624 5566 40800006 0 A 0 0 0 0 B 0 25 0 0 0 8 0 0 0 0 0 0 769 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 z_b_1_1
+S 765 8 4 0 0 142 1 624 5710 40822004 1020 A 0 0 0 0 B 0 25 0 0 0 0 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 msh$sd
+S 766 6 4 0 0 7 767 624 5717 40802061 1020 A 0 0 0 0 B 0 25 0 0 0 24 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 msh$p
+S 767 6 4 0 0 7 765 624 5723 40802060 1020 A 0 0 0 0 B 0 25 0 0 0 32 0 0 0 0 0 0 770 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 msh$o
+S 768 22 1 0 0 6 1 624 5729 40000000 1000 A 0 0 0 0 B 0 25 0 0 0 0 0 763 0 0 0 0 765 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 msh$arrdsc
+S 769 11 0 0 0 9 704 624 5740 40800000 805000 A 0 0 0 0 B 0 27 0 0 0 16 0 0 754 764 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _atom$2
+S 770 11 0 0 0 9 769 624 5748 40800000 805000 A 0 0 0 0 B 0 27 0 0 0 288 0 0 757 765 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _atom$0
+A 22 2 0 0 0 7 640 0 0 0 22 0 0 0 0 0 0 0 0 0 0 0
+A 24 2 0 0 0 7 636 0 0 0 24 0 0 0 0 0 0 0 0 0 0 0
+A 26 2 0 0 0 7 637 0 0 0 26 0 0 0 0 0 0 0 0 0 0 0
+A 30 2 0 0 0 7 638 0 0 0 30 0 0 0 0 0 0 0 0 0 0 0
+A 32 2 0 0 0 7 639 0 0 0 32 0 0 0 0 0 0 0 0 0 0 0
+A 92 2 0 0 0 7 755 0 0 0 92 0 0 0 0 0 0 0 0 0 0 0
+A 101 1 0 3 0 136 760 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 102 10 0 0 0 7 101 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 24
+A 103 10 0 0 102 7 101 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 26
+A 104 4 0 0 0 7 103 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 105 4 0 0 0 7 102 0 104 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 106 10 0 0 103 7 101 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 30
+A 107 10 0 0 106 7 101 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 32
+A 108 10 0 0 107 7 101 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+A 113 1 0 3 0 142 765 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+A 114 10 0 0 0 7 113 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 24
+A 115 10 0 0 114 7 113 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 26
+A 116 4 0 0 0 7 115 0 11 0 0 0 0 2 0 0 0 0 0 0 0 0
+A 117 4 0 0 0 7 114 0 116 0 0 0 0 1 0 0 0 0 0 0 0 0
+A 118 10 0 0 115 7 113 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 30
+A 119 10 0 0 118 7 113 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 32
+A 120 10 0 0 119 7 113 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+X 1 22
+Z
+Z

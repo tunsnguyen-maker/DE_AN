@@ -1,0 +1,9 @@
+# The fortran modules provided by this target.
+provides
+ device_auxfunc_m.mod
+ device_fbuff_m.mod
+ device_memcpy_m.mod
+ devicexlib_m.mod
+ tb_dev.mod
+ tb_pin.mod
+ timer_m.mod

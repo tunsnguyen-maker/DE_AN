@@ -1,0 +1,96 @@
+V35 :0x24 cp_autopilot
+16 cp_autopilot.f90 S624 0
+11/11/2026  20:55:50
+use autopilot private
+enduse
+S 624 24 0 0 0 9 1 0 4986 10015 8000 A 0 0 0 0 B 0 76 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 76 0 0 0 0 0 0 cp_autopilot
+S 627 23 0 0 0 9 804 624 5015 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 current_nfi
+S 628 23 0 0 0 9 805 624 5027 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pilot_p
+S 629 23 0 0 0 9 808 624 5035 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pilot_unit
+S 630 23 0 0 0 9 807 624 5046 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pause_p
+S 631 23 0 0 0 9 855 624 5054 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 auto_error
+S 632 23 0 0 0 9 875 624 5065 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 parse_mailbox
+S 633 23 0 0 0 9 810 624 5079 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_isave
+S 634 23 0 0 0 9 811 624 5090 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_iprint
+S 635 23 0 0 0 9 813 624 5102 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_dt
+S 636 23 0 0 0 9 814 624 5110 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_emass
+S 637 23 0 0 0 9 815 624 5121 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_electron_dynamics
+S 638 23 0 0 0 9 816 624 5144 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_electron_damping
+S 639 23 0 0 0 9 818 624 5166 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_ion_dynamics
+S 640 23 0 0 0 9 819 624 5184 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_ion_damping
+S 641 23 0 0 0 9 820 624 5201 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_ion_temperature
+S 642 23 0 0 0 9 821 624 5222 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_tempw
+S 643 23 0 0 0 9 817 624 5233 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_electron_orthogonalization
+S 644 23 0 0 0 9 812 624 5265 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_tprint
+S 645 23 0 0 0 9 822 624 5277 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_nhpcl
+S 646 23 0 0 0 9 823 624 5288 14 0 A 0 0 0 0 B 400000 92 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rule_fnosep
+S 647 23 0 0 0 9 800 624 5300 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_index
+S 648 23 0 0 0 9 803 624 5312 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_step
+S 649 23 0 0 0 9 824 624 5323 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_isave
+S 650 23 0 0 0 9 825 624 5335 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_iprint
+S 651 23 0 0 0 9 827 624 5348 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_dt
+S 652 23 0 0 0 9 828 624 5357 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_emass
+S 653 23 0 0 0 9 829 624 5369 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_electron_dynamics
+S 654 23 0 0 0 9 830 624 5393 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_electron_damping
+S 655 23 0 0 0 9 832 624 5416 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_ion_dynamics
+S 656 23 0 0 0 9 833 624 5435 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_ion_damping
+S 657 23 0 0 0 9 834 624 5453 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_ion_temperature
+S 658 23 0 0 0 9 835 624 5475 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_tempw
+S 659 23 0 0 0 9 831 624 5487 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_electron_orthogonalization
+S 660 23 0 0 0 9 826 624 5520 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_tprint
+S 661 23 0 0 0 9 836 624 5533 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_nhpcl
+S 662 23 0 0 0 9 837 624 5545 14 0 A 0 0 0 0 B 400000 98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 event_fnosep
+R 800 6 9 autopilot event_index
+R 803 7 12 autopilot event_step
+R 804 6 13 autopilot current_nfi
+R 805 6 14 autopilot pilot_p
+R 807 6 16 autopilot pause_p
+R 808 6 17 autopilot pilot_unit
+R 810 7 19 autopilot rule_isave
+R 811 7 20 autopilot rule_iprint
+R 812 7 21 autopilot rule_tprint
+R 813 7 22 autopilot rule_dt
+R 814 7 23 autopilot rule_emass
+R 815 7 24 autopilot rule_electron_dynamics
+R 816 7 25 autopilot rule_electron_damping
+R 817 7 26 autopilot rule_electron_orthogonalization
+R 818 7 27 autopilot rule_ion_dynamics
+R 819 7 28 autopilot rule_ion_damping
+R 820 7 29 autopilot rule_ion_temperature
+R 821 7 30 autopilot rule_tempw
+R 822 7 31 autopilot rule_nhpcl
+R 823 7 32 autopilot rule_fnosep
+R 824 7 33 autopilot event_isave
+R 825 7 34 autopilot event_iprint
+R 826 7 35 autopilot event_tprint
+R 827 7 36 autopilot event_dt
+R 828 7 37 autopilot event_emass
+R 829 7 38 autopilot event_electron_dynamics
+R 830 7 39 autopilot event_electron_damping
+R 831 7 40 autopilot event_electron_orthogonalization
+R 832 7 41 autopilot event_ion_dynamics
+R 833 7 42 autopilot event_ion_damping
+R 834 7 43 autopilot event_ion_temperature
+R 835 7 44 autopilot event_tempw
+R 836 7 45 autopilot event_nhpcl
+R 837 7 46 autopilot event_fnosep
+R 855 14 64 autopilot auto_error
+R 875 14 84 autopilot parse_mailbox
+S 876 27 0 0 0 9 884 624 6507 0 8000000 A 0 0 0 0 B 0 110 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 pilot
+S 877 27 0 0 0 9 882 624 6513 0 8000000 A 0 0 0 0 B 0 110 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 employ_rules
+S 878 6 4 0 0 18 880 624 6526 80001c 0 A 0 0 0 0 B 0 111 0 0 0 0 0 0 0 0 0 0 881 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 had_tcg_true
+S 880 6 4 0 0 18 1 624 6539 80001c 0 A 0 0 0 0 B 0 112 0 0 0 4 0 0 0 0 0 0 881 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 had_tens_true
+S 881 11 0 0 0 9 851 624 6553 40800010 805000 A 0 0 0 0 B 0 113 0 0 0 8 0 0 878 880 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _cp_autopilot$12
+S 882 23 5 0 0 0 883 624 6513 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 employ_rules
+S 883 14 5 0 0 0 1 882 6513 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 69 0 0 0 0 0 0 0 0 0 0 0 0 0 121 0 624 0 0 0 0 employ_rules employ_rules 
+F 883 0
+S 884 23 5 0 0 0 886 624 6507 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pilot
+S 885 1 3 0 0 6 1 884 6570 14 3000 A 0 0 0 0 B 0 437 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 nfi
+S 886 14 5 0 0 0 1 884 6507 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 70 1 0 0 0 0 0 0 0 0 0 0 0 0 437 0 624 0 0 0 0 pilot pilot 
+F 886 1 885
+S 887 23 5 0 0 6 888 624 6574 10 0 A 0 0 0 0 B 0 565 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 need_tprint_true
+S 888 14 5 0 0 18 1 887 6574 14 400000 A 0 0 0 0 B 0 565 0 0 0 0 0 72 0 0 0 889 0 0 0 0 0 0 0 0 0 565 0 624 0 0 0 0 need_tprint_true need_tprint_true need_tprint_true
+F 888 0
+S 889 1 3 0 0 18 1 887 6574 14 1003000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 need_tprint_true
+Z
+Z

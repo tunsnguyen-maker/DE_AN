@@ -1,0 +1,28 @@
+# The fortran modules provided by this target.
+provides
+ apply_dpot_mod.mod
+ control_lr.mod
+ coul_cut_2d_ph.mod
+ dfpt_kernels.mod
+ dfpt_tetra_mod.mod
+ dfpt_type.mod
+ dv_of_drho_lr.mod
+ dynamical.mod
+ efermi_shift.mod
+ eqv.mod
+ gc_lr.mod
+ incdrhoscf_mod.mod
+ ldau_lr.mod
+ localdos_mod.mod
+ lr_nc_mag.mod
+ lr_restart.mod
+ lr_sym_mod.mod
+ lr_symm_base.mod
+ lr_two_chem.mod
+ lrus.mod
+ ph_rvv10.mod
+ ph_vdw_df.mod
+ qpoint.mod
+ qpoint_aux.mod
+ response_kernels.mod
+ units_lr.mod

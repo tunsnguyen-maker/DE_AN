@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_kssolver_davidsonrci.a CMakeFiles/qe_kssolver_davidsonrci.dir/Davidson_RCI/david_rci.f90.o
+/usr/bin/ranlib ../lib/libqe_kssolver_davidsonrci.a

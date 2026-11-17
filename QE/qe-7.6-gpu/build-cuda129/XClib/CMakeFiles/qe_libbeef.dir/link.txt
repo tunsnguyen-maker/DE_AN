@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_libbeef.a CMakeFiles/qe_libbeef.dir/pbecor.c.o CMakeFiles/qe_libbeef.dir/beefun.c.o
+/usr/bin/ranlib ../lib/libqe_libbeef.a

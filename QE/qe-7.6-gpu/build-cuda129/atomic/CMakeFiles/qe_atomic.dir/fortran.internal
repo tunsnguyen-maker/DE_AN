@@ -1,0 +1,7 @@
+# The fortran modules provided by this target.
+provides
+ atomic_paw.mod
+ kli.mod
+ ld1_parameters.mod
+ ld1inc.mod
+ paw_type.mod

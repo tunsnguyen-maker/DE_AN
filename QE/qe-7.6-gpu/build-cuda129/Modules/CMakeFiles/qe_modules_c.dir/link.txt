@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libqe_modules_c.a CMakeFiles/qe_modules_c.dir/customize_signals.c.o CMakeFiles/qe_modules_c.dir/qmmm_aux.c.o CMakeFiles/qe_modules_c.dir/sockets.c.o
+/usr/bin/ranlib ../lib/libqe_modules_c.a

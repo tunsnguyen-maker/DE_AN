@@ -1,0 +1,3 @@
+# The fortran modules provided by this target.
+provides
+ qe_dft_refs.mod

@@ -1,0 +1,51 @@
+V35 :0x24 phcom
+9 phcom.f90 S624 0
+11/11/2026  20:57:51
+use dynmat public 0 direct
+use eqv public 0 direct
+use efield_mod public 0 direct
+use nlcc_ph public 0 direct
+use phus public 0 direct
+use partial public 0 direct
+use control_ph public 0 direct
+use freq_ph public 0 direct
+use units_ph public 0 direct
+use output public 0 direct
+use gamma_gamma public 0 direct
+use disp public 0 direct
+use grid_irr_iq public 0 direct
+use ldau_ph public 0 direct
+use becmod private
+enduse
+D 319 26 1064 656 1063 7
+D 343 22 7
+D 345 22 7
+D 347 22 7
+S 624 24 0 0 0 9 1 0 4986 5 8000 A 0 0 0 0 B 0 533 0 0 0 0 0 0 0 0 0 0 548 0 0 0 0 0 0 0 0 533 0 0 0 0 0 0 phcom
+S 712 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+S 1050 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 29 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 1063 25 13 becmod bec_type
+R 1064 5 14 becmod r bec_type
+R 1067 5 17 becmod r$sd bec_type
+R 1068 5 18 becmod r$p bec_type
+R 1069 5 19 becmod r$o bec_type
+R 1071 5 21 becmod k bec_type
+R 1074 5 24 becmod k$sd bec_type
+R 1075 5 25 becmod k$p bec_type
+R 1076 5 26 becmod k$o bec_type
+R 1078 5 28 becmod nc bec_type
+R 1082 5 32 becmod nc$sd bec_type
+R 1083 5 33 becmod nc$p bec_type
+R 1084 5 34 becmod nc$o bec_type
+R 1086 5 36 becmod nbnd bec_type
+A 153 2 0 0 0 7 712 0 0 0 153 0 0 0 0 0 0 0 0 0 0 0
+A 500 2 0 0 0 7 1050 0 0 0 500 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 1063 319 0 0 0 0
+A 1068 7 343 0 1 2 1
+A 1067 7 0 153 1 10 1
+A 1075 7 345 0 1 2 1
+A 1074 7 0 153 1 10 1
+A 1083 7 347 0 1 2 1
+A 1082 7 0 500 1 10 0
+Z

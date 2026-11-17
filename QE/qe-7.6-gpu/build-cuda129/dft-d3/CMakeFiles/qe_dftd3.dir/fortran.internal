@@ -1,0 +1,8 @@
+# The fortran modules provided by this target.
+provides
+ dftd3_api.mod
+ dftd3_common.mod
+ dftd3_core.mod
+ dftd3_pars.mod
+ dftd3_qe.mod
+ dftd3_sizes.mod

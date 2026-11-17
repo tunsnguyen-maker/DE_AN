@@ -1,0 +1,141 @@
+V35 :0x24 read_mol_module
+12 read_mol.f90 S624 0
+11/11/2026  20:55:11
+use dom private
+use upf_utils private
+use molecule_types private
+use molecule_const private
+use kinds private
+use constants private
+enduse
+D 85 26 807 1392 806 7
+D 142 26 926 16 924 7
+D 148 26 933 424 925 7
+D 178 22 148
+D 180 22 142
+D 194 26 956 16 955 7
+D 206 22 142
+D 208 22 194
+D 330 23 7 1 0 217 0 0 0 0 0
+ 0 217 0 11 217 0
+S 624 24 0 0 0 9 1 0 4986 10015 8000 A 0 0 0 0 B 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 read_mol_module
+S 626 23 0 0 0 9 757 624 5012 14 0 A 0 0 0 0 B 400000 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 bohr_radius_angs
+S 627 23 0 0 0 9 731 624 5029 14 0 A 0 0 0 0 B 400000 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 rytoev
+S 629 23 0 0 0 9 645 624 5042 14 0 A 0 0 0 0 B 400000 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 dp
+S 631 23 0 0 0 9 781 624 5060 14 0 A 0 0 0 0 B 400000 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ry_to_kjmolm1
+S 632 23 0 0 0 9 782 624 5074 14 0 A 0 0 0 0 B 400000 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 ry_to_kcalmolm1
+S 633 23 0 0 0 9 783 624 5090 14 0 A 0 0 0 0 B 400000 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 bohrm3_to_molcmm3
+S 634 23 0 0 0 9 784 624 5108 14 0 A 0 0 0 0 B 400000 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 bohrm3_to_mollm1
+S 636 23 0 0 0 6 806 624 5140 14 0 A 0 0 0 0 B 400000 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 molecule
+S 637 23 0 0 0 9 862 624 5149 14 0 A 0 0 0 0 B 400000 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 deallocate_molecule
+S 639 23 0 0 0 9 910 624 5179 14 0 A 0 0 0 0 B 400000 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 version_compare
+S 640 23 0 0 0 6 893 624 5195 14 0 A 0 0 0 0 B 400000 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 matches
+S 641 23 0 0 0 9 880 624 5203 14 0 A 0 0 0 0 B 400000 19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 capital
+R 645 16 1 kinds dp
+R 731 16 23 constants rytoev
+R 757 16 49 constants bohr_radius_angs
+R 781 16 8 molecule_const ry_to_kjmolm1
+R 782 16 9 molecule_const ry_to_kcalmolm1
+R 783 16 10 molecule_const bohrm3_to_molcmm3
+R 784 16 11 molecule_const bohrm3_to_mollm1
+R 806 25 9 molecule_types molecule
+R 807 5 10 molecule_types nv molecule
+R 808 5 11 molecule_types author molecule
+R 809 5 12 molecule_types date molecule
+R 810 5 13 molecule_types comment molecule
+R 811 5 14 molecule_types formula molecule
+R 812 5 15 molecule_types name molecule
+R 813 5 16 molecule_types natom molecule
+R 814 5 17 molecule_types mass molecule
+R 815 5 18 molecule_types density molecule
+R 816 5 19 molecule_types subdensity molecule
+R 817 5 20 molecule_types permittivity molecule
+R 818 5 21 molecule_types dipole molecule
+R 819 5 22 molecule_types has_charge molecule
+R 820 5 23 molecule_types has_lj molecule
+R 821 5 24 molecule_types is_polar molecule
+R 822 5 25 molecule_types aname molecule
+R 824 5 27 molecule_types aname$sd molecule
+R 825 5 28 molecule_types aname$p molecule
+R 826 5 29 molecule_types aname$o molecule
+R 828 5 31 molecule_types coord molecule
+R 831 5 34 molecule_types coord$sd molecule
+R 832 5 35 molecule_types coord$p molecule
+R 833 5 36 molecule_types coord$o molecule
+R 835 5 38 molecule_types charge molecule
+R 837 5 40 molecule_types charge$sd molecule
+R 838 5 41 molecule_types charge$p molecule
+R 839 5 42 molecule_types charge$o molecule
+R 841 5 44 molecule_types ljeps molecule
+R 843 5 46 molecule_types ljeps$sd molecule
+R 844 5 47 molecule_types ljeps$p molecule
+R 845 5 48 molecule_types ljeps$o molecule
+R 847 5 50 molecule_types ljsig molecule
+R 849 5 52 molecule_types ljsig$sd molecule
+R 850 5 53 molecule_types ljsig$p molecule
+R 851 5 54 molecule_types ljsig$o molecule
+R 862 14 65 molecule_types deallocate_molecule
+R 880 14 13 upf_utils capital
+R 893 14 26 upf_utils matches
+R 910 14 43 upf_utils version_compare
+S 921 3 0 0 0 7 1 1 0 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7
+R 924 25 2 dom nodelist
+R 925 25 3 dom node
+R 926 5 4 dom node nodelist
+R 928 5 6 dom node$p nodelist
+R 929 5 7 dom nextlist nodelist
+R 931 5 9 dom nextlist$p nodelist
+R 933 5 11 dom tag node
+R 934 5 12 dom tag$sd node
+R 935 5 13 dom tag$p node
+R 936 5 14 dom attr node
+R 937 5 15 dom attr$sd node
+R 938 5 16 dom attr$p node
+R 939 5 17 dom data node
+R 940 5 18 dom data$sd node
+R 941 5 19 dom data$p node
+R 942 5 20 dom prev node
+R 944 5 22 dom prev$p node
+R 945 5 23 dom linklist node
+R 947 5 25 dom linklist$p node
+R 955 25 33 dom metalist
+R 956 5 34 dom linklist metalist
+R 958 5 36 dom linklist$p metalist
+R 959 5 37 dom prevmeta metalist
+R 961 5 39 dom prevmeta$p metalist
+S 1192 6 4 0 0 18 1194 624 8019 80000c 0 A 0 0 0 0 B 0 31 0 0 0 0 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_mass
+S 1194 6 4 0 0 18 1195 624 8032 80000c 0 A 0 0 0 0 B 0 32 0 0 0 4 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_density
+S 1195 6 4 0 0 18 1196 624 8048 80000c 0 A 0 0 0 0 B 0 33 0 0 0 8 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_permittivity
+S 1196 6 4 0 0 18 1197 624 8069 80000c 0 A 0 0 0 0 B 0 34 0 0 0 12 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_element
+S 1197 6 4 0 0 18 1198 624 8085 80000c 0 A 0 0 0 0 B 0 35 0 0 0 16 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_xyz
+S 1198 6 4 0 0 18 1199 624 8097 80000c 0 A 0 0 0 0 B 0 36 0 0 0 20 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_charge
+S 1199 6 4 0 0 18 1 624 8112 80000c 0 A 0 0 0 0 B 0 37 0 0 0 24 0 0 0 0 0 0 1202 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 without_lj
+S 1200 27 0 0 0 9 1203 624 8123 0 8000000 A 0 0 0 0 B 0 47 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 clean_mol_readables
+S 1201 27 0 0 0 9 1205 624 8143 0 8000000 A 0 0 0 0 B 0 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 624 0 0 0 0 read_mol
+S 1202 11 0 0 0 9 995 624 8152 40800000 805000 A 0 0 0 0 B 0 50 0 0 0 28 0 0 1192 1199 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _read_mol_module$8
+S 1203 23 5 0 0 0 1204 624 8123 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 clean_mol_readables
+S 1204 14 5 0 0 0 1 1203 8123 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 138 0 0 0 0 0 0 0 0 0 0 0 0 0 53 0 624 0 0 0 0 clean_mol_readables clean_mol_readables 
+F 1204 0
+S 1205 23 5 0 0 0 1210 624 8143 0 0 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_mol
+S 1206 1 3 3 0 85 1 1205 6400 14 3000 A 0 0 0 0 B 0 68 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 mol
+S 1207 1 3 2 0 6 1 1205 6586 14 3000 A 0 0 0 0 B 0 68 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ierr
+S 1208 1 3 1 0 6 1 1205 3842 80000014 3000 A 0 0 0 0 B 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 unit
+S 1209 1 3 1 0 30 1 1205 7465 80000014 43000 A 0 0 0 0 B 0 68 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 filename
+S 1210 14 5 0 0 0 1 1205 8143 0 400000 A 0 0 0 0 B 0 0 0 0 0 0 0 139 4 0 0 0 0 0 0 0 0 0 0 0 0 68 0 624 0 0 0 0 read_mol read_mol 
+F 1210 4 1206 1207 1208 1209
+S 1211 23 5 0 0 0 1215 624 8171 10 0 A 0 0 0 0 B 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 read_mol_v1
+S 1212 1 3 1 0 148 1 1211 8183 14 3014 A 0 0 0 0 B 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1216 0 0 0 0 0 0 0 0 u
+S 1213 1 3 3 0 85 1 1211 6400 14 3000 A 0 0 0 0 B 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 mol
+S 1214 1 3 2 0 6 1 1211 6586 80000014 3000 A 0 0 0 0 B 0 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ierr
+S 1215 14 5 0 0 0 1 1211 8171 10 400000 A 0 0 0 0 B 0 126 0 0 0 0 0 144 3 0 0 0 0 0 0 0 0 0 0 0 0 126 0 624 0 0 0 0 read_mol_v1 read_mol_v1 
+F 1215 3 1212 1213 1214
+S 1216 8 1 0 0 330 1 1211 8185 40022016 1020 A 0 0 0 0 B 0 133 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 u$sd
+A 217 2 0 0 0 7 921 0 0 0 217 0 0 0 0 0 0 0 0 0 0 0
+Z
+T 925 148 0 3 0 0
+A 944 7 178 0 1 2 1
+A 947 7 180 0 1 2 0
+T 955 194 0 3 0 0
+A 958 7 206 0 1 2 1
+A 961 7 208 0 1 2 0
+Z
