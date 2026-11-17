@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_phonon_fd.a CMakeFiles/qe_phonon_fd.dir/FD/stop_pp.f90.o
-/usr/bin/ranlib ../lib/libqe_phonon_fd.a

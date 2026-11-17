@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_couple.a CMakeFiles/qe_couple.dir/src/libpwscf.f90.o CMakeFiles/qe_couple.dir/src/libcpv.f90.o CMakeFiles/qe_couple.dir/src/libqemod.f90.o
-/usr/bin/ranlib ../lib/libqe_couple.a

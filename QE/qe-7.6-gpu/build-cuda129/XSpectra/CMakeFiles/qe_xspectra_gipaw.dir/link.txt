@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_xspectra_gipaw.a CMakeFiles/qe_xspectra_gipaw.dir/src/paw_gipaw.f90.o CMakeFiles/qe_xspectra_gipaw.dir/src/init_gipaw_1.f90.o CMakeFiles/qe_xspectra_gipaw.dir/src/init_gipaw_2.f90.o
-/usr/bin/ranlib ../lib/libqe_xspectra_gipaw.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_kssolver_cg.a CMakeFiles/qe_kssolver_cg.dir/CG/ccgdiagg.f90.o CMakeFiles/qe_kssolver_cg.dir/CG/rcgdiagg.f90.o
-/usr/bin/ranlib ../lib/libqe_kssolver_cg.a

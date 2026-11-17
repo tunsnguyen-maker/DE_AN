@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_gww_head.a CMakeFiles/qe_gww_head.dir/head/bcast_gwl_input.f90.o CMakeFiles/qe_gww_head.dir/head/close_gwl.f90.o CMakeFiles/qe_gww_head.dir/head/lanczos_k.f90.o CMakeFiles/qe_gww_head.dir/head/openfilq_gwl.f90.o CMakeFiles/qe_gww_head.dir/head/gwl_readin.f90.o CMakeFiles/qe_gww_head.dir/head/solve_head.f90.o
-/usr/bin/ranlib ../lib/libqe_gww_head.a

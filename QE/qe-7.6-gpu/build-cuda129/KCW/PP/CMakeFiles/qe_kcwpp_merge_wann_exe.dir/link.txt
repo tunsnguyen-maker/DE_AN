@@ -1,1 +1,0 @@
-/export/download/nvidia/hpc_sdk/Linux_x86_64/25.9/comm_libs/12.9/hpcx/hpcx-2.24/ompi/bin/mpifort -cuda -gpu=cc75 -Wl,--dependency-file=CMakeFiles/qe_kcwpp_merge_wann_exe.dir/link.d  -Mcache_align -Mlarge_arrays -Mbackslash -fast CMakeFiles/qe_kcwpp_merge_wann_exe.dir/merge_wann.f90.o -o ../../bin/merge_wann.x

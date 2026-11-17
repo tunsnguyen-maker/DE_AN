@@ -1,6 +1,0 @@
-# The fortran modules provided by this target.
-provides
- input_simple_ip.mod
- simple_ip_objects.mod
- start_end.mod
- tetra_ip.mod

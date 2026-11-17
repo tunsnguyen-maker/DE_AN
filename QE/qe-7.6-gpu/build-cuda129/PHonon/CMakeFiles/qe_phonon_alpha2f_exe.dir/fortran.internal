@@ -1,4 +1,0 @@
-# The fortran modules provided by this target.
-provides
- alpha2f_routines.mod
- alpha2f_vals.mod

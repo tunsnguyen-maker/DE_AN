@@ -1,6 +1,0 @@
-# The fortran modules provided by this target.
-provides
- derived_objects.mod
- input_simple_exc.mod
- simple_objects.mod
- start_end.mod

@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libqe_kssolver_direct.a CMakeFiles/qe_kssolver_direct.dir/Direct/direct_diag_k.f90.o
-/usr/bin/ranlib ../lib/libqe_kssolver_direct.a

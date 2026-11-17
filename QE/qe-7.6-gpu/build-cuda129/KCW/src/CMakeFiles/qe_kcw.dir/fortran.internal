@@ -1,7 +1,0 @@
-# The fortran modules provided by this target.
-provides
- control_kcw.mod
- coulomb.mod
- interpolation.mod
- io_kcw.mod
- solve_linter_koop_mod.mod

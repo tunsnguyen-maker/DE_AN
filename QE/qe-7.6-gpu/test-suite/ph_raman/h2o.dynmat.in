@@ -1,4 +1,0 @@
-&input
-    fildyn = 'dynmat.h2o',
-    asr    = 'zero-dim',
-/

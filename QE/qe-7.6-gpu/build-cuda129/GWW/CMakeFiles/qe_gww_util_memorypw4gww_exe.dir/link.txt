@@ -1,1 +1,0 @@
-/export/download/nvidia/hpc_sdk/Linux_x86_64/25.9/comm_libs/12.9/hpcx/hpcx-2.24/ompi/bin/mpifort -cuda -gpu=cc75 -Wl,--dependency-file=CMakeFiles/qe_gww_util_memorypw4gww_exe.dir/link.d  -Mcache_align -Mlarge_arrays -Mbackslash -fast CMakeFiles/qe_gww_util_memorypw4gww_exe.dir/util/memory_pw4gww.f90.o -o ../bin/memory_pw4gww.x

@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../lib/libqe_kcwpp.a CMakeFiles/qe_kcwpp.dir/bcast_kcw_pp_input.f90.o CMakeFiles/qe_kcwpp.dir/input_pp_summary.f90.o CMakeFiles/qe_kcwpp.dir/kcw_pp_readin.f90.o CMakeFiles/qe_kcwpp.dir/read_hr.f90.o CMakeFiles/qe_kcwpp.dir/kcw_bands.f90.o CMakeFiles/qe_kcwpp.dir/sh_setup.f90.o
-/usr/bin/ranlib ../../lib/libqe_kcwpp.a
